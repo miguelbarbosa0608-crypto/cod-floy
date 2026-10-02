@@ -5,9 +5,9 @@ import { ArrowRight, ArrowUpRight, Check, CheckCheck, ChevronRight, FileText, Gl
 import { Button } from '@/components/ui/button';
 import { submitContact } from '@/lib/contact.functions';
 
-// WhatsApp short link provided by the agency.
+// WhatsApp contact link provided by the agency.
 const INSTAGRAM_URL = '';
-const whatsappUrl = 'https://w.app/codefloy';
+const whatsappUrl = 'https://www.contate.me/556292543903';
 
 type Icon = ComponentType<{ className?: string; size?: number; strokeWidth?: number }>;
 const navigation = [
