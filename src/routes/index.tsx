@@ -32,7 +32,7 @@ const steps: { icon: Icon; title: string; description: string }[] = [
 ];
 // Example-only entries: replace with approved, real client testimonials before publication.
 const testimonials = [
-  { text: 'Espaço reservado para o depoimento real de um cliente sobre a experiência com a COD FLOY.', metric: 'Seu resultado aqui', name: 'Nome do cliente', company: 'Empresa · Segmento' },
+  { text: 'Espaço reservado para o depoimento real de um cliente sobre a experiência com a CodeFlow.', metric: 'Seu resultado aqui', name: 'Nome do cliente', company: 'Empresa · Segmento' },
   { text: 'Espaço reservado para contar como a solução ajudou a organizar processos e alcançar objetivos reais.', metric: 'Seu resultado aqui', name: 'Nome do cliente', company: 'Empresa · Segmento' },
   { text: 'Espaço reservado para um relato verdadeiro sobre a parceria e os resultados conquistados.', metric: 'Seu resultado aqui', name: 'Nome do cliente', company: 'Empresa · Segmento' },
 ];
@@ -47,9 +47,9 @@ const differences: { icon: Icon; title: string; description: string }[] = [
 
 export const Route = createFileRoute('/')({
   head: () => ({ meta: [
-    { title: 'COD FLOY | Tecnologia, Marketing e Automação' },
+    { title: 'CodeFlow | Tecnologia, Marketing e Automação' },
     { name: 'description', content: 'Soluções digitais integradas em tecnologia, marketing e automação para fortalecer a presença digital e as vendas do seu negócio.' },
-    { property: 'og:title', content: 'COD FLOY | Tecnologia, Marketing e Automação' },
+    { property: 'og:title', content: 'CodeFlow | Tecnologia, Marketing e Automação' },
     { property: 'og:description', content: 'Soluções digitais integradas para transformar estratégia em resultados reais.' },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
@@ -134,7 +134,7 @@ function Home() {
       <div className="section-rule" />
 
       <section id="metodologia" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
-        <SectionHeading eyebrow="Nossa Metodologia" subtitle="Um processo estruturado em 6 etapas, da necessidade do cliente até a entrega da solução.">Metodologia <span className="text-primary">COD FLOY</span></SectionHeading>
+        <SectionHeading eyebrow="Nossa Metodologia" subtitle="Um processo estruturado em 6 etapas, da necessidade do cliente até a entrega da solução.">Metodologia <span className="text-primary">CodeFlow</span></SectionHeading>
         <div className="relative grid gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-9 lg:gap-y-14">
           {steps.map(({ icon: IconComponent, title, description }, i) => <article key={title} className="relative flex flex-col items-center text-center"><div className="icon-tile relative mb-6 grid h-19 w-19 place-items-center border border-border"><IconComponent size={31} strokeWidth={1.7} /><span className="absolute -right-3 -top-3 grid h-8 w-8 place-items-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">{String(i + 1).padStart(2, '0')}</span></div><h3 className="mb-2 text-lg font-bold">{title}</h3><p className="max-w-xs text-sm leading-7 text-muted-foreground">{description}</p></article>)}
         </div>
@@ -151,7 +151,7 @@ function Home() {
       <div className="section-rule" />
 
       <section id="diferenciais" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
-        <SectionHeading eyebrow="Por que a COD FLOY?" subtitle="Somos diferentes de agências comuns. Nosso compromisso é estruturar uma solução que funcione para o seu resultado.">Não Entregamos Peças.<br /><span className="text-primary">Entregamos Soluções.</span></SectionHeading>
+        <SectionHeading eyebrow="Por que a CodeFlow?" subtitle="Somos diferentes de agências comuns. Nosso compromisso é estruturar uma solução que funcione para o seu resultado.">Não Entregamos Peças.<br /><span className="text-primary">Entregamos Soluções.</span></SectionHeading>
         <div className="grid gap-4 md:grid-cols-2 lg:gap-5">{differences.map(({ icon: IconComponent, title, description }) => <article key={title} className="feature-card flex items-start gap-5 p-6"><div className="icon-tile grid h-12 w-12 shrink-0 place-items-center"><IconComponent size={23} strokeWidth={1.8} /></div><div className="min-w-0"><h3 className="mb-2 text-base font-bold sm:text-lg">{title}</h3><p className="text-sm leading-6 text-muted-foreground">{description}</p></div></article>)}</div>
       </section>
       <div className="section-rule" />
@@ -174,9 +174,9 @@ function Home() {
       </section>
     </main>
 
-    <footer className="border-t border-border px-5 py-14 text-center sm:px-8"><div className="mx-auto max-w-7xl"><Logo footer /><nav aria-label="Links do rodapé" className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-4 text-sm text-muted-foreground">{navigation.filter(([label]) => label !== 'Diferenciais').map(([label, href]) => <a key={href} href={href} className="hover:text-primary">{label}</a>)}<button type="button" onClick={() => setPrivacyOpen(true)} className="cursor-pointer hover:text-primary">Privacidade</button></nav>{INSTAGRAM_URL && <div className="mt-7 flex justify-center"><a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-muted-foreground hover:text-primary"><Instagram size={23} /></a></div>}<p className="mt-8 text-xs text-muted-foreground">© 2026 COD FLOY. Todos os direitos reservados.</p></div></footer>
+    <footer className="border-t border-border px-5 py-14 text-center sm:px-8"><div className="mx-auto max-w-7xl"><Logo footer /><nav aria-label="Links do rodapé" className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-4 text-sm text-muted-foreground">{navigation.filter(([label]) => label !== 'Diferenciais').map(([label, href]) => <a key={href} href={href} className="hover:text-primary">{label}</a>)}<button type="button" onClick={() => setPrivacyOpen(true)} className="cursor-pointer hover:text-primary">Privacidade</button></nav>{INSTAGRAM_URL && <div className="mt-7 flex justify-center"><a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-muted-foreground hover:text-primary"><Instagram size={23} /></a></div>}<p className="mt-8 text-xs text-muted-foreground">© 2026 CodeFlow. Todos os direitos reservados.</p></div></footer>
 
     <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp" title="Falar pelo WhatsApp" className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-lg transition-transform hover:scale-105 sm:bottom-7 sm:right-7"><MessageCircle size={27} strokeWidth={2.2} /></a>
-    {privacyOpen && <div role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setPrivacyOpen(false); }} className="fixed inset-0 z-[60] flex items-center justify-center bg-background/90 px-5 backdrop-blur-sm"><div role="dialog" aria-modal="true" aria-labelledby="privacy-title" className="feature-card max-h-[85vh] w-full max-w-lg overflow-y-auto p-7 shadow-xl"><div className="flex items-start justify-between gap-4"><h2 id="privacy-title" className="text-2xl font-bold">Política de Privacidade</h2><Button variant="ghost" size="icon" aria-label="Fechar política" onClick={() => setPrivacyOpen(false)}><X /></Button></div><p className="mt-5 text-sm leading-7 text-muted-foreground">Os dados informados no formulário — nome, WhatsApp, e-mail e empresa — são utilizados para responder à sua solicitação de diagnóstico e entrar em contato sobre os serviços da COD FLOY. Não exibimos esses dados publicamente. Você pode solicitar informações, correção ou exclusão dos seus dados pelo canal de contato da agência.</p><Button onClick={() => setPrivacyOpen(false)} className="mt-7">Entendi</Button></div></div>}
+    {privacyOpen && <div role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setPrivacyOpen(false); }} className="fixed inset-0 z-[60] flex items-center justify-center bg-background/90 px-5 backdrop-blur-sm"><div role="dialog" aria-modal="true" aria-labelledby="privacy-title" className="feature-card max-h-[85vh] w-full max-w-lg overflow-y-auto p-7 shadow-xl"><div className="flex items-start justify-between gap-4"><h2 id="privacy-title" className="text-2xl font-bold">Política de Privacidade</h2><Button variant="ghost" size="icon" aria-label="Fechar política" onClick={() => setPrivacyOpen(false)}><X /></Button></div><p className="mt-5 text-sm leading-7 text-muted-foreground">Os dados informados no formulário — nome, WhatsApp, e-mail e empresa — são utilizados para responder à sua solicitação de diagnóstico e entrar em contato sobre os serviços da CodeFlow. Não exibimos esses dados publicamente. Você pode solicitar informações, correção ou exclusão dos seus dados pelo canal de contato da agência.</p><Button onClick={() => setPrivacyOpen(false)} className="mt-7">Entendi</Button></div></div>}
   </div>;
 }

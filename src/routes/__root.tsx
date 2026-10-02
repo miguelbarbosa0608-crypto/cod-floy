@@ -78,10 +78,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "COD FLOY | Tecnologia, Marketing e Automação" },
+      { title: "CodeFlow | Tecnologia, Marketing e Automação" },
       { name: "description", content: "Soluções digitais em tecnologia, marketing e automação para fortalecer a presença digital e as vendas do seu negócio." },
-      { name: "author", content: "COD FLOY" },
-      { property: "og:title", content: "COD FLOY | Tecnologia, Marketing e Automação" },
+      { name: "author", content: "CodeFlow" },
+      { property: "og:title", content: "CodeFlow | Tecnologia, Marketing e Automação" },
       { property: "og:description", content: "Soluções digitais em tecnologia, marketing e automação para fortalecer a presença digital e as vendas do seu negócio." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
