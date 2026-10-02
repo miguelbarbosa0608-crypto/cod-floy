@@ -5,11 +5,9 @@ import { ArrowRight, ArrowUpRight, Check, CheckCheck, ChevronRight, FileText, Gl
 import { Button } from '@/components/ui/button';
 import { submitContact } from '@/lib/contact.functions';
 
-// Replace these with the agency's official contact details when available.
-const WHATSAPP_NUMBER = '';
+// WhatsApp short link provided by the agency.
 const INSTAGRAM_URL = '';
-const WHATSAPP_MESSAGE = 'Olá! Gostaria de conversar sobre soluções digitais para meu negócio.';
-const whatsappUrl = WHATSAPP_NUMBER ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}` : '#contato';
+const whatsappUrl = 'https://w.app/codefloy';
 
 type Icon = ComponentType<{ className?: string; size?: number; strokeWidth?: number }>;
 const navigation = [
@@ -60,8 +58,8 @@ export const Route = createFileRoute('/')({
 });
 
 function Logo({ footer = false }: { footer?: boolean }) {
-  return <a href="#inicio" aria-label="COD FLOY, voltar ao início" className={`inline-flex shrink-0 items-center font-extrabold leading-none tracking-normal text-foreground ${footer ? 'text-2xl' : 'text-xl sm:text-2xl'}`}>
-    <span>COD</span><span className="ml-1 text-primary">FLOY<span className="text-accent">.</span></span>
+  return <a href="#inicio" aria-label="CodeFlow, voltar ao início" className={`inline-flex shrink-0 items-center font-extrabold leading-none tracking-normal text-foreground ${footer ? 'text-2xl' : 'text-xl sm:text-2xl'}`}>
+    <span>Code</span><span className="ml-1 text-primary">Flow<span className="text-accent">.</span></span>
   </a>;
 }
 function SectionHeading({ eyebrow, children, subtitle }: { eyebrow: string; children: React.ReactNode; subtitle?: string }) {
@@ -166,7 +164,7 @@ function Home() {
             <input name="website" tabIndex={-1} autoComplete="off" className="absolute -left-[9999px]" aria-hidden="true" />
             <div className="mt-2 space-y-4 sm:col-span-2">
               <Button type="submit" disabled={sending} className="primary-glow h-13 w-full rounded-xl text-sm font-bold sm:text-base">{sending ? 'Enviando...' : 'Solicitar Diagnóstico Gratuito'} <Send size={17} /></Button>
-              <Button asChild variant="outline" className="h-13 w-full rounded-xl border-whatsapp bg-transparent text-whatsapp hover:bg-whatsapp/10 hover:text-whatsapp"><a href={whatsappUrl} target={WHATSAPP_NUMBER ? '_blank' : undefined} rel={WHATSAPP_NUMBER ? 'noopener noreferrer' : undefined}><MessageCircle size={19} /> {WHATSAPP_NUMBER ? 'Falar no WhatsApp Agora' : 'Fale com a gente pelo formulário'} <ArrowUpRight size={16} /></a></Button>
+              <Button asChild variant="outline" className="h-13 w-full rounded-xl border-whatsapp bg-transparent text-whatsapp hover:bg-whatsapp/10 hover:text-whatsapp"><a href={whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle size={19} /> Falar no WhatsApp Agora <ArrowUpRight size={16} /></a></Button>
               {status === 'success' && <p role="status" className="flex items-center gap-2 text-sm text-whatsapp"><Check size={18} /> Solicitação enviada! Entraremos em contato em breve.</p>}
               {status === 'error' && <p role="alert" className="text-sm text-primary">Não foi possível enviar sua solicitação. Tente novamente.</p>}
               <p className="text-center text-xs leading-5 text-muted-foreground">Ao enviar, você concorda com nossa <button type="button" onClick={() => setPrivacyOpen(true)} className="cursor-pointer text-primary hover:underline">Política de Privacidade</button>.</p>
@@ -178,7 +176,7 @@ function Home() {
 
     <footer className="border-t border-border px-5 py-14 text-center sm:px-8"><div className="mx-auto max-w-7xl"><Logo footer /><nav aria-label="Links do rodapé" className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-4 text-sm text-muted-foreground">{navigation.filter(([label]) => label !== 'Diferenciais').map(([label, href]) => <a key={href} href={href} className="hover:text-primary">{label}</a>)}<button type="button" onClick={() => setPrivacyOpen(true)} className="cursor-pointer hover:text-primary">Privacidade</button></nav>{INSTAGRAM_URL && <div className="mt-7 flex justify-center"><a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-muted-foreground hover:text-primary"><Instagram size={23} /></a></div>}<p className="mt-8 text-xs text-muted-foreground">© 2026 COD FLOY. Todos os direitos reservados.</p></div></footer>
 
-    <a href={whatsappUrl} target={WHATSAPP_NUMBER ? '_blank' : undefined} rel={WHATSAPP_NUMBER ? 'noopener noreferrer' : undefined} aria-label={WHATSAPP_NUMBER ? 'Falar pelo WhatsApp' : 'Ir ao formulário de contato'} title={WHATSAPP_NUMBER ? 'Falar pelo WhatsApp' : 'Ir ao formulário de contato'} className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-lg transition-transform hover:scale-105 sm:bottom-7 sm:right-7"><MessageCircle size={27} strokeWidth={2.2} /></a>
+    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp" title="Falar pelo WhatsApp" className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-lg transition-transform hover:scale-105 sm:bottom-7 sm:right-7"><MessageCircle size={27} strokeWidth={2.2} /></a>
     {privacyOpen && <div role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setPrivacyOpen(false); }} className="fixed inset-0 z-[60] flex items-center justify-center bg-background/90 px-5 backdrop-blur-sm"><div role="dialog" aria-modal="true" aria-labelledby="privacy-title" className="feature-card max-h-[85vh] w-full max-w-lg overflow-y-auto p-7 shadow-xl"><div className="flex items-start justify-between gap-4"><h2 id="privacy-title" className="text-2xl font-bold">Política de Privacidade</h2><Button variant="ghost" size="icon" aria-label="Fechar política" onClick={() => setPrivacyOpen(false)}><X /></Button></div><p className="mt-5 text-sm leading-7 text-muted-foreground">Os dados informados no formulário — nome, WhatsApp, e-mail e empresa — são utilizados para responder à sua solicitação de diagnóstico e entrar em contato sobre os serviços da COD FLOY. Não exibimos esses dados publicamente. Você pode solicitar informações, correção ou exclusão dos seus dados pelo canal de contato da agência.</p><Button onClick={() => setPrivacyOpen(false)} className="mt-7">Entendi</Button></div></div>}
   </div>;
 }
