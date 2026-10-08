@@ -37,6 +37,8 @@
     │   ├── error-capture.ts      Captura de erros
     │   ├── error-page.ts         Página de erro
     │   └── lovable-error-reporting.ts  Envio de erros ao Lovable
+    ├── components/HeroWaves.tsx  Fundo animado 3D do topo
+    ├── data/depoimentos.ts   Textos dos depoimentos
     ├── components/ui/        Componentes prontos (button.tsx é usado na página; os demais ficam disponíveis)
     ├── hooks/use-mobile.tsx  Detecta tela de celular
     ├── integrations/supabase/  Conexão com o banco de dados (gerado, não editar)
@@ -56,7 +58,7 @@
 | Números | `Nossa atuação` | lista dentro da seção |
 | Serviços | `#servicos` | `services` |
 | Metodologia | `#metodologia` | `steps` |
-| Depoimentos | `#resultados` | `testimonials` |
+| Depoimentos | `#resultados` | `src/data/depoimentos.ts` |
 | Diferenciais | `#diferenciais` | `differences` |
 | Contato/formulário | `#contato` | `submitContact`, `whatsappUrl` |
 | Rodapé | `<footer>` | `navigation`, `INSTAGRAM_URL` |

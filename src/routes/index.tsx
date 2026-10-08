@@ -4,6 +4,9 @@ import { useServerFn } from '@tanstack/react-start';
 import { ArrowRight, ArrowUpRight, Check, CheckCheck, ChevronRight, FileText, Globe2, Instagram, LayoutTemplate, Map, Menu, MessageCircle, MousePointer2, Quote, Rocket, Search, Send, Settings2, ShieldCheck, Target, TrendingUp, X, Zap, Megaphone, Puzzle, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { submitContact } from '@/lib/contact.functions';
+import { Smile, Sparkles, Scale } from 'lucide-react';
+import HeroWaves from '@/components/HeroWaves';
+import { depoimentos, MOSTRAR_NOTA_ILUSTRATIVA, NOTA_ILUSTRATIVA } from '@/data/depoimentos';
 
 // WhatsApp contact link provided by the agency.
 const INSTAGRAM_URL = '';
@@ -30,12 +33,8 @@ const steps: { icon: Icon; title: string; description: string }[] = [
   { icon: FileText, title: 'Documentação', description: 'Registramos a solução e orientamos você sobre como utilizá-la.' },
   { icon: Rocket, title: 'Entrega', description: 'Apresentamos a solução, coletamos feedback e seguimos como parceiros.' },
 ];
-// Example-only entries: replace with approved, real client testimonials before publication.
-const testimonials = [
-  { text: 'Espaço reservado para o depoimento real de um cliente sobre a experiência com a CodeFlow.', metric: 'Seu resultado aqui', name: 'Nome do cliente', company: 'Empresa · Segmento' },
-  { text: 'Espaço reservado para contar como a solução ajudou a organizar processos e alcançar objetivos reais.', metric: 'Seu resultado aqui', name: 'Nome do cliente', company: 'Empresa · Segmento' },
-  { text: 'Espaço reservado para um relato verdadeiro sobre a parceria e os resultados conquistados.', metric: 'Seu resultado aqui', name: 'Nome do cliente', company: 'Empresa · Segmento' },
-];
+// Depoimentos ficam em src/data/depoimentos.ts.
+const segmentIcons: Record<'Smile' | 'Sparkles' | 'Scale', Icon> = { Smile, Sparkles, Scale };
 const differences: { icon: Icon; title: string; description: string }[] = [
   { icon: Puzzle, title: 'Solução Integrada', description: 'Marketing, tecnologia e automação trabalhando juntos.' },
   { icon: MousePointer2, title: 'Personalização Real', description: 'Cada solução parte da necessidade real do seu negócio.' },
@@ -108,8 +107,10 @@ function Home() {
     </header>
 
     <main>
-      <section id="inicio" className="hero-scene flex min-h-[730px] flex-col justify-center pt-28 sm:min-h-[760px] lg:min-h-[770px] lg:pt-24">
-        <div className="mx-auto w-full max-w-5xl px-5 pb-14 text-center sm:px-8 lg:pb-20">
+      <section id="inicio" className="hero-scene relative flex min-h-[730px] flex-col justify-center overflow-hidden pt-28 sm:min-h-[760px] lg:min-h-[770px] lg:pt-24">
+        <HeroWaves />
+        <div className="hero-readability pointer-events-none absolute inset-0 z-[1]" aria-hidden="true" />
+        <div className="relative z-10 mx-auto w-full max-w-5xl px-5 pb-14 text-center sm:px-8 lg:pb-20">
           <div className="flow-in mb-7 inline-flex max-w-full items-center rounded-full border border-primary/35 bg-primary/5 px-4 py-2 text-center text-[10px] font-bold uppercase tracking-widest text-primary sm:text-xs">Tecnologia, Marketing e Automação</div>
           <h1 className="flow-in flow-delay mx-auto max-w-4xl text-[clamp(2.15rem,4.7vw,4.9rem)] font-bold leading-[1.13] text-foreground">Soluções Digitais que Geram<br className="hidden sm:block" /> <span className="text-primary">Resultados Reais.</span></h1>
           <p className="flow-in flow-delay-more mx-auto mt-7 max-w-2xl text-base leading-[1.8] text-muted-foreground sm:text-lg">Somos uma empresa de tecnologia, marketing e automação que une desenvolvimento, estratégia e processos inteligentes para fortalecer a presença digital e as vendas do seu negócio.</p>
@@ -144,9 +145,9 @@ function Home() {
       <section id="resultados" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
         <SectionHeading eyebrow="Resultados">O Que Nossos Clientes <span className="text-primary">Dizem</span></SectionHeading>
         <div className="grid gap-5 lg:grid-cols-3 lg:gap-6">
-          {testimonials.map((item, i) => <article key={i} className={`feature-card flex flex-col p-7 sm:p-8 ${i === 1 ? 'featured' : ''}`}><Quote size={30} className="mb-6 text-primary/40" /><p className="min-h-28 text-sm leading-7 text-muted-foreground">“{item.text}”</p><div className="mt-5 text-sm tracking-widest text-primary" aria-label="Exemplo visual de cinco estrelas">★★★★★</div><p className="mt-5 text-lg font-bold text-primary">{item.metric}</p><div className="mt-5 border-t border-border pt-5"><p className="font-semibold">{item.name}</p><p className="mt-1 text-xs text-muted-foreground">{item.company}</p></div></article>)}
+          {depoimentos.map((item, i) => { const SegIcon = segmentIcons[item.icone]; const initials = item.nome.replace(/^Dr\.?\s+/, '').split(' ').map((p) => p[0]).slice(0, 2).join(''); return <article key={item.nome} className={`feature-card flex flex-col p-7 sm:p-8 ${i === 1 ? 'featured' : ''}`}><Quote size={30} className="mb-6 text-primary/40" /><p className="flex-1 text-sm leading-7 text-muted-foreground">“{item.texto}”</p><div className="mt-5 text-sm tracking-widest text-primary" aria-label="Cinco estrelas">★★★★★</div><p className="mt-4 text-lg font-bold text-primary">{item.destaque}</p><div className="mt-5 flex items-center gap-3 border-t border-border pt-5"><div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary/15 text-sm font-bold text-primary">{initials}</div><div className="min-w-0 flex-1"><p className="font-semibold text-foreground">{item.nome}</p><p className="mt-0.5 text-xs text-muted-foreground">{item.cargo} · {item.segmento}</p></div><span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-primary/30 bg-primary/5 px-2 py-1 text-[10px] font-semibold text-primary" title={item.segmento}><SegIcon size={12} /></span></div></article>; })}
         </div>
-        <p className="mt-5 text-center text-xs text-muted-foreground">Depoimentos ilustrativos. Em breve, histórias reais por aqui.</p>
+        {MOSTRAR_NOTA_ILUSTRATIVA && <p className="mt-5 text-center text-xs text-muted-foreground">{NOTA_ILUSTRATIVA}</p>}
       </section>
       <div className="section-rule" />
 

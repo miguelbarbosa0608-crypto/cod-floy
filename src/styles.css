@@ -79,3 +79,10 @@
 
 @keyframes flow-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .flow-in { animation: none; } .feature-card { transition: none; } }
+
+/* Camada que protege a leitura do texto sobre o fundo animado do topo */
+.hero-readability {
+  background:
+    radial-gradient(ellipse at 50% 45%, rgb(7 11 18 / 0.55) 0%, transparent 70%),
+    linear-gradient(to bottom, transparent 60%, var(--background) 100%);
+}
