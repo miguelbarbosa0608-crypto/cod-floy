@@ -4,9 +4,11 @@ import { useServerFn } from '@tanstack/react-start';
 import { ArrowRight, ArrowUpRight, Check, CheckCheck, ChevronRight, FileText, Globe2, Instagram, LayoutTemplate, Map, Menu, MessageCircle, MousePointer2, Quote, Rocket, Search, Send, Settings2, ShieldCheck, Target, TrendingUp, X, Zap, Megaphone, Puzzle, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { submitContact } from '@/lib/contact.functions';
-import { Smile, Sparkles, Scale } from 'lucide-react';
+import { Smile, Sparkles, Scale, Store, Briefcase, Plus } from 'lucide-react';
+import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import HeroWaves from '@/components/HeroWaves';
-import { depoimentos, MOSTRAR_NOTA_ILUSTRATIVA, NOTA_ILUSTRATIVA } from '@/data/depoimentos';
+import { depoimentos, MOSTRAR_NOTA_ILUSTRATIVA, NOTA_ILUSTRATIVA, VELOCIDADE_CARROSSEL_SEGUNDOS, type IconeSegmento } from '@/data/depoimentos';
+import { faq } from '@/data/faq';
 
 // WhatsApp contact link provided by the agency.
 const INSTAGRAM_URL = '';
@@ -15,7 +17,7 @@ const whatsappUrl = 'https://www.contate.me/556292543903';
 type Icon = ComponentType<{ className?: string; size?: number; strokeWidth?: number }>;
 const navigation = [
   ['Serviços', '#servicos'], ['Metodologia', '#metodologia'], ['Resultados', '#resultados'],
-  ['Diferenciais', '#diferenciais'], ['Contato', '#contato'],
+  ['Diferenciais', '#diferenciais'], ['Contato', '#contato'], ['FAQ', '#faq'],
 ];
 const services: { icon: Icon; title: string; description: string }[] = [
   { icon: Target, title: 'Tráfego Pago', description: 'Gestão de campanhas e anúncios para atrair clientes qualificados e gerar oportunidades com previsibilidade.' },
@@ -34,7 +36,7 @@ const steps: { icon: Icon; title: string; description: string }[] = [
   { icon: Rocket, title: 'Entrega', description: 'Apresentamos a solução, coletamos feedback e seguimos como parceiros.' },
 ];
 // Depoimentos ficam em src/data/depoimentos.ts.
-const segmentIcons: Record<'Smile' | 'Sparkles' | 'Scale', Icon> = { Smile, Sparkles, Scale };
+const segmentIcons: Record<IconeSegmento, Icon> = { Smile, Sparkles, Scale, Store, Briefcase };
 const differences: { icon: Icon; title: string; description: string }[] = [
   { icon: Puzzle, title: 'Solução Integrada', description: 'Marketing, tecnologia e automação trabalhando juntos.' },
   { icon: MousePointer2, title: 'Personalização Real', description: 'Cada solução parte da necessidade real do seu negócio.' },
@@ -96,13 +98,13 @@ function Home() {
         <Logo />
         <nav aria-label="Navegação principal" className="hidden items-center gap-6 lg:flex xl:gap-8">
           {navigation.map(([label, href]) => <a key={href} href={href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">{label}</a>)}
-          <Button asChild className="primary-glow ml-1 h-10 rounded-lg px-5 font-bold"><a href="#contato">Falar com Especialista</a></Button>
+          <Button asChild className="btn-primary primary-glow ml-1 h-10 rounded-lg px-5 font-bold"><a href="#contato">Falar com Especialista</a></Button>
         </nav>
-        <Button variant="ghost" size="icon" className="lg:hidden" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={24} /> : <Menu size={24} />}</Button>
+        <Button variant="ghost" size="icon" className="btn-secondary lg:hidden" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={24} /> : <Menu size={24} />}</Button>
       </div>
       {menuOpen && <nav aria-label="Menu móvel" className="flex max-h-[calc(100dvh-64px)] flex-col gap-1 overflow-y-auto border-t border-border bg-background px-5 py-5 lg:hidden">
         {navigation.map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)} className="flex items-center justify-between border-b border-border/60 py-4 text-lg font-semibold text-foreground">{label}<ChevronRight size={18} className="text-primary" /></a>)}
-        <Button asChild className="primary-glow mt-5 h-12 rounded-lg font-bold"><a href="#contato" onClick={() => setMenuOpen(false)}>Falar com Especialista <ArrowRight /></a></Button>
+        <Button asChild className="btn-primary primary-glow mt-5 h-12 rounded-lg font-bold"><a href="#contato" onClick={() => setMenuOpen(false)}>Falar com Especialista <ArrowRight /></a></Button>
       </nav>}
     </header>
 
@@ -115,8 +117,8 @@ function Home() {
           <h1 className="flow-in flow-delay mx-auto max-w-4xl text-[clamp(2.15rem,4.7vw,4.9rem)] font-bold leading-[1.13] text-foreground">Soluções Digitais que Geram<br className="hidden sm:block" /> <span className="text-primary">Resultados Reais.</span></h1>
           <p className="flow-in flow-delay-more mx-auto mt-7 max-w-2xl text-base leading-[1.8] text-muted-foreground sm:text-lg">Somos uma empresa de tecnologia, marketing e automação que une desenvolvimento, estratégia e processos inteligentes para fortalecer a presença digital e as vendas do seu negócio.</p>
           <div className="flow-in flow-delay-more mx-auto mt-10 flex max-w-md flex-col justify-center gap-3 sm:max-w-none sm:flex-row">
-            <Button asChild size="lg" className="primary-glow h-14 rounded-xl px-7 text-sm font-bold sm:text-base"><a href="#contato">Quero Transformar Meu Negócio <ArrowRight /></a></Button>
-            <Button asChild variant="outline" size="lg" className="h-14 rounded-xl border-border bg-transparent px-8 text-sm font-semibold text-muted-foreground hover:bg-card hover:text-foreground sm:text-base"><a href="#servicos">Conheça Nossos Serviços</a></Button>
+            <Button asChild size="lg" className="btn-primary primary-glow h-14 rounded-xl px-7 text-sm font-bold sm:text-base"><a href="#contato">Quero Transformar Meu Negócio <ArrowRight /></a></Button>
+            <Button asChild variant="outline" size="lg" className="btn-secondary h-14 rounded-xl border-border bg-transparent px-8 text-sm font-semibold text-muted-foreground hover:bg-card hover:text-foreground sm:text-base"><a href="#servicos">Conheça Nossos Serviços</a></Button>
           </div>
         </div>
       </section>
@@ -129,7 +131,7 @@ function Home() {
       <section id="servicos" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
         <SectionHeading eyebrow="Nossos Serviços" subtitle="Cada serviço é pensado para unir tecnologia, estratégia e performance no seu negócio.">Soluções que Geram <span className="text-primary">Resultados</span></SectionHeading>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          {services.map(({ icon: IconComponent, title, description }, i) => <article key={title} className={`feature-card p-7 sm:p-8 ${i === 0 ? 'featured' : ''}`}><div className="icon-tile mb-7 grid h-13 w-13 place-items-center"><IconComponent size={25} strokeWidth={1.8} /></div><h3 className="mb-3 text-xl font-bold">{title}</h3><p className="text-sm leading-7 text-muted-foreground">{description}</p></article>)}
+          {services.map(({ icon: IconComponent, title, description }, i) => <article key={title} className={`feature-card p-7 sm:p-8`}><div className="icon-tile mb-7 grid h-13 w-13 place-items-center"><IconComponent size={25} strokeWidth={1.8} /></div><h3 className="mb-3 text-xl font-bold">{title}</h3><p className="text-sm leading-7 text-muted-foreground">{description}</p></article>)}
         </div>
       </section>
       <div className="section-rule" />
@@ -142,12 +144,15 @@ function Home() {
       </section>
       <div className="section-rule" />
 
-      <section id="resultados" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
+      <section id="resultados" className="overflow-hidden mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
         <SectionHeading eyebrow="Resultados">O Que Nossos Clientes <span className="text-primary">Dizem</span></SectionHeading>
-        <div className="grid gap-5 lg:grid-cols-3 lg:gap-6">
-          {depoimentos.map((item, i) => { const SegIcon = segmentIcons[item.icone]; const initials = item.nome.replace(/^Dr\.?\s+/, '').split(' ').map((p) => p[0]).slice(0, 2).join(''); return <article key={item.nome} className={`feature-card flex flex-col p-7 sm:p-8 ${i === 1 ? 'featured' : ''}`}><Quote size={30} className="mb-6 text-primary/40" /><p className="flex-1 text-sm leading-7 text-muted-foreground">“{item.texto}”</p><div className="mt-5 text-sm tracking-widest text-primary" aria-label="Cinco estrelas">★★★★★</div><p className="mt-4 text-lg font-bold text-primary">{item.destaque}</p><div className="mt-5 flex items-center gap-3 border-t border-border pt-5"><div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary/15 text-sm font-bold text-primary">{initials}</div><div className="min-w-0 flex-1"><p className="font-semibold text-foreground">{item.nome}</p><p className="mt-0.5 text-xs text-muted-foreground">{item.cargo} · {item.segmento}</p></div><span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-primary/30 bg-primary/5 px-2 py-1 text-[10px] font-semibold text-primary" title={item.segmento}><SegIcon size={12} /></span></div></article>; })}
+        {/* Carrossel automático: a lista é duplicada para o loop não ter emenda. */}
+        <div className="testimonial-marquee" style={{ ['--marquee-duration' as string]: `${VELOCIDADE_CARROSSEL_SEGUNDOS}s` }}>
+          <div className="testimonial-track">
+            {[...depoimentos, ...depoimentos].map((item, i) => { const SegIcon = segmentIcons[item.icone]; const initials = item.nome.replace(/^Dra?\.?\s+/, '').split(' ').map((p) => p[0]).slice(0, 2).join(''); return <article key={i} aria-hidden={i >= depoimentos.length} className="feature-card flex w-[300px] shrink-0 flex-col p-6 sm:w-[320px]"><div className="text-xs tracking-widest text-primary" aria-label="Cinco estrelas">★★★★★</div><p className="mt-3 line-clamp-4 flex-1 text-sm leading-6 text-muted-foreground">“{item.texto}”</p><div className="mt-4 flex items-center gap-3 border-t border-border pt-4"><div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary/15 text-xs font-bold text-primary">{initials}</div><div className="min-w-0"><p className="text-sm font-semibold text-foreground">{item.nome}</p><p className="mt-0.5 flex items-center gap-1.5 text-xs text-muted-foreground"><SegIcon size={12} className="shrink-0 text-primary" />{item.segmento} · {item.cidade}</p></div></div></article>; })}
+          </div>
         </div>
-        {MOSTRAR_NOTA_ILUSTRATIVA && <p className="mt-5 text-center text-xs text-muted-foreground">{NOTA_ILUSTRATIVA}</p>}
+        {MOSTRAR_NOTA_ILUSTRATIVA && <p className="mt-6 text-center text-xs text-muted-foreground">{NOTA_ILUSTRATIVA}</p>}
       </section>
       <div className="section-rule" />
 
@@ -164,8 +169,8 @@ function Home() {
             {[['name', 'Nome', 'Seu nome completo', 'text'], ['whatsapp', 'WhatsApp', '(00) 00000-0000', 'tel'], ['email', 'E-mail', 'seu@email.com', 'email'], ['company', 'Empresa', 'Nome da sua empresa', 'text']].map(([name, label, placeholder, type]) => <label key={name} className="block text-sm font-semibold text-foreground">{label}<input className="form-field mt-2 block h-12 w-full px-4 text-sm font-normal placeholder:text-muted-foreground/55" name={name} type={type} placeholder={placeholder} required minLength={name === 'whatsapp' ? 10 : 2} autoComplete={name === 'name' ? 'name' : name === 'email' ? 'email' : name === 'company' ? 'organization' : 'tel'} /></label>)}
             <input name="website" tabIndex={-1} autoComplete="off" className="absolute -left-[9999px]" aria-hidden="true" />
             <div className="mt-2 space-y-4 sm:col-span-2">
-              <Button type="submit" disabled={sending} className="primary-glow h-13 w-full rounded-xl text-sm font-bold sm:text-base">{sending ? 'Enviando...' : 'Solicitar Diagnóstico Gratuito'} <Send size={17} /></Button>
-              <Button asChild variant="outline" className="h-13 w-full rounded-xl border-whatsapp bg-transparent text-whatsapp hover:bg-whatsapp/10 hover:text-whatsapp"><a href={whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle size={19} /> Falar no WhatsApp Agora <ArrowUpRight size={16} /></a></Button>
+              <Button type="submit" disabled={sending} className="btn-primary primary-glow h-13 w-full rounded-xl text-sm font-bold sm:text-base">{sending ? 'Enviando...' : 'Solicitar Diagnóstico Gratuito'} <Send size={17} /></Button>
+              <Button asChild variant="outline" className="btn-whatsapp h-13 w-full rounded-xl border-whatsapp bg-transparent text-whatsapp hover:bg-whatsapp/10 hover:text-whatsapp"><a href={whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle size={19} /> Falar no WhatsApp Agora <ArrowUpRight size={16} /></a></Button>
               {status === 'success' && <p role="status" className="flex items-center gap-2 text-sm text-whatsapp"><Check size={18} /> Solicitação enviada! Entraremos em contato em breve.</p>}
               {status === 'error' && <p role="alert" className="text-sm text-primary">Não foi possível enviar sua solicitação. Tente novamente.</p>}
               <p className="text-center text-xs leading-5 text-muted-foreground">Ao enviar, você concorda com nossa <button type="button" onClick={() => setPrivacyOpen(true)} className="cursor-pointer text-primary hover:underline">Política de Privacidade</button>.</p>
@@ -173,11 +178,22 @@ function Home() {
           </form>
         </div>
       </section>
+      <div className="section-rule" />
+
+      <section id="faq" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
+        <SectionHeading eyebrow="Dúvidas Frequentes" subtitle="Respostas diretas para as dúvidas mais comuns antes de começar.">Perguntas <span className="text-primary">Frequentes</span></SectionHeading>
+        <AccordionPrimitive.Root type="single" collapsible className="mx-auto flex max-w-3xl flex-col gap-3">
+          {faq.map((item, i) => <AccordionPrimitive.Item key={item.pergunta} value={`faq-${i}`} className="feature-card faq-item overflow-hidden">
+            <AccordionPrimitive.Header><AccordionPrimitive.Trigger className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left text-base font-semibold text-foreground sm:px-6"><span>{item.pergunta}</span><Plus size={20} className="faq-icon shrink-0 text-primary" /></AccordionPrimitive.Trigger></AccordionPrimitive.Header>
+            <AccordionPrimitive.Content className="faq-content overflow-hidden"><p className="px-5 pb-5 text-sm leading-7 text-muted-foreground sm:px-6">{item.resposta}</p></AccordionPrimitive.Content>
+          </AccordionPrimitive.Item>)}
+        </AccordionPrimitive.Root>
+      </section>
     </main>
 
     <footer className="border-t border-border px-5 py-14 text-center sm:px-8"><div className="mx-auto max-w-7xl"><Logo footer /><nav aria-label="Links do rodapé" className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-4 text-sm text-muted-foreground">{navigation.filter(([label]) => label !== 'Diferenciais').map(([label, href]) => <a key={href} href={href} className="hover:text-primary">{label}</a>)}<button type="button" onClick={() => setPrivacyOpen(true)} className="cursor-pointer hover:text-primary">Privacidade</button></nav>{INSTAGRAM_URL && <div className="mt-7 flex justify-center"><a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-muted-foreground hover:text-primary"><Instagram size={23} /></a></div>}<p className="mt-8 text-xs text-muted-foreground">© 2026 CodeFlow. Todos os direitos reservados.</p></div></footer>
 
-    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp" title="Falar pelo WhatsApp" className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-lg transition-transform hover:scale-105 sm:bottom-7 sm:right-7"><MessageCircle size={27} strokeWidth={2.2} /></a>
+    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp" title="Falar pelo WhatsApp" className="btn-whatsapp-float fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-lg transition-transform hover:scale-105 sm:bottom-7 sm:right-7"><MessageCircle size={27} strokeWidth={2.2} /></a>
     {privacyOpen && <div role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setPrivacyOpen(false); }} className="fixed inset-0 z-[60] flex items-center justify-center bg-background/90 px-5 backdrop-blur-sm"><div role="dialog" aria-modal="true" aria-labelledby="privacy-title" className="feature-card max-h-[85vh] w-full max-w-lg overflow-y-auto p-7 shadow-xl"><div className="flex items-start justify-between gap-4"><h2 id="privacy-title" className="text-2xl font-bold">Política de Privacidade</h2><Button variant="ghost" size="icon" aria-label="Fechar política" onClick={() => setPrivacyOpen(false)}><X /></Button></div><p className="mt-5 text-sm leading-7 text-muted-foreground">Os dados informados no formulário — nome, WhatsApp, e-mail e empresa — são utilizados para responder à sua solicitação de diagnóstico e entrar em contato sobre os serviços da CodeFlow. Não exibimos esses dados publicamente. Você pode solicitar informações, correção ou exclusão dos seus dados pelo canal de contato da agência.</p><Button onClick={() => setPrivacyOpen(false)} className="mt-7">Entendi</Button></div></div>}
   </div>;
 }

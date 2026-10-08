@@ -1,39 +1,32 @@
-// Depoimentos da seção "Resultados".
-// Para editar: troque texto, destaque, nome, cargo e segmento de cada item.
-// "icone" aceita: 'Smile', 'Sparkles' ou 'Scale' (ícones do lucide-react).
-// Quando tiver depoimentos reais, troque os itens, mude "ilustrativo" para false
-// e coloque MOSTRAR_NOTA_ILUSTRATIVA = false para esconder a nota abaixo dos cards.
+// Depoimentos do carrossel da seção "Resultados".
+// Para editar: troque texto, nome, segmento, cidade e ícone de cada item.
+// "icone" aceita: 'Smile', 'Sparkles', 'Scale', 'Store', 'Briefcase' (ícones do lucide-react).
+// Velocidade do carrossel: VELOCIDADE_CARROSSEL_SEGUNDOS (tempo de uma volta completa).
 
+// Mude para false quando substituir por depoimentos reais e remova o campo ilustrativo dos itens.
 export const MOSTRAR_NOTA_ILUSTRATIVA = true;
-export const NOTA_ILUSTRATIVA = 'Depoimentos ilustrativos. Em breve, histórias reais de clientes por aqui.';
+export const NOTA_ILUSTRATIVA = 'Exemplos ilustrativos de depoimentos. Em breve, relatos reais de clientes.';
 
+// Tempo (em segundos) de uma volta completa. No celular fica 40% mais lento.
+export const VELOCIDADE_CARROSSEL_SEGUNDOS = 50;
+
+export type IconeSegmento = 'Smile' | 'Sparkles' | 'Scale' | 'Store' | 'Briefcase';
 export type Depoimento = {
   texto: string;
-  destaque: string;
   nome: string;
-  cargo: string;
   segmento: string;
-  icone: 'Smile' | 'Sparkles' | 'Scale';
-  ilustrativo: boolean;
+  cidade: string;
+  icone: IconeSegmento;
+  ilustrativo?: boolean;
 };
 
 export const depoimentos: Depoimento[] = [
-  {
-    texto: 'Antes, cada paciente que chamava no WhatsApp ficava esperando resposta. Com a landing page e a automação que a Code Flow estruturou, o primeiro atendimento ficou organizado e a equipe passou a acompanhar cada contato com clareza.',
-    destaque: 'Atendimento mais organizado',
-    nome: 'Dr. Rafael Menezes', cargo: 'Cirurgião-dentista', segmento: 'Clínica Odontológica',
-    icone: 'Smile', ilustrativo: true,
-  },
-  {
-    texto: 'Eles começaram entendendo a rotina da clínica, e não oferecendo um pacote pronto. O site novo e a gestão de tráfego deixaram nossa presença digital mais profissional e alinhada ao que realmente oferecemos.',
-    destaque: 'Presença digital profissional',
-    nome: 'Camila Andrade', cargo: 'Diretora', segmento: 'Clínica de Estética',
-    icone: 'Sparkles', ilustrativo: true,
-  },
-  {
-    texto: 'Precisávamos de um site sóbrio e de um fluxo para organizar os contatos recebidos. A comunicação foi clara em todas as etapas, e a documentação e a entrega foram muito bem explicadas.',
-    destaque: 'Processo claro e bem documentado',
-    nome: 'Dr. Henrique Duarte', cargo: 'Sócio', segmento: 'Escritório de Advocacia',
-    icone: 'Scale', ilustrativo: true,
-  },
+  { texto: "O atendimento inicial pelo WhatsApp ficou organizado. Agora acompanhamos cada contato do primeiro 'oi' até o agendamento.", nome: 'Dr. Rafael M.', segmento: 'Odontologia', cidade: 'Campinas, SP', icone: 'Smile', ilustrativo: true },
+  { texto: 'Eles entenderam a rotina da clínica antes de propor qualquer coisa. O site e as campanhas ficaram alinhados ao que realmente oferecemos.', nome: 'Camila A.', segmento: 'Clínica de Estética', cidade: 'Goiânia, GO', icone: 'Sparkles', ilustrativo: true },
+  { texto: 'Precisávamos de um site sóbrio e de um fluxo para organizar os contatos. A comunicação foi clara em todas as etapas.', nome: 'Dr. Henrique D.', segmento: 'Advocacia', cidade: 'Belo Horizonte, MG', icone: 'Scale', ilustrativo: true },
+  { texto: 'A landing page ficou rápida e objetiva. Os pedidos de orçamento chegam mais completos e fáceis de responder.', nome: 'Marcos T.', segmento: 'Comércio Local', cidade: 'Curitiba, PR', icone: 'Store', ilustrativo: true },
+  { texto: 'A mentoria ajudou a organizar o processo comercial. Saí das reuniões com um plano claro e próximos passos definidos.', nome: 'Juliana R.', segmento: 'Consultoria', cidade: 'São Paulo, SP', icone: 'Briefcase', ilustrativo: true },
+  { texto: 'Gostei da documentação. Recebi tudo explicado, sei como cada automação funciona e consigo ajustar sem depender de ninguém.', nome: 'Dra. Patrícia L.', segmento: 'Odontologia', cidade: 'Brasília, DF', icone: 'Smile', ilustrativo: true },
+  { texto: 'O diagnóstico inicial mostrou pontos que a gente nem enxergava na nossa presença digital. Foi um começo bem consistente.', nome: 'Fernanda S.', segmento: 'Clínica de Estética', cidade: 'Florianópolis, SC', icone: 'Sparkles', ilustrativo: true },
+  { texto: 'Entrega dentro do combinado, com teste e revisão antes de publicar. Dá segurança trabalhar com um processo assim.', nome: 'Dr. Eduardo C.', segmento: 'Advocacia', cidade: 'Recife, PE', icone: 'Scale', ilustrativo: true },
 ];
