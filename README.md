@@ -55,7 +55,7 @@ Quase tudo está em **`src/routes/index.tsx`**. No topo do arquivo ficam as list
 | Menu | lista `navigation` |
 | Serviços | lista `services` |
 | Metodologia (etapas) | lista `steps` |
-| Depoimentos | lista `testimonials` |
+| Depoimentos | `src/data/depoimentos.ts` |
 | Diferenciais | lista `differences` |
 | Títulos e textos das seções | dentro da função `Home`, procure o texto com Ctrl+F |
 | Título do Google / redes sociais | bloco `head` em `index.tsx` |
@@ -90,3 +90,15 @@ A validação e o envio ficam em `src/lib/contact.functions.ts`. Os contatos sã
 git remote add novo https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
 git push novo main
 ```
+
+## Fundo animado do topo (Hero)
+
+Arquivo: `src/components/HeroWaves.tsx`. No topo do arquivo, em "CONFIGURAÇÃO EDITÁVEL":
+- `COR_LINHAS` / `COR_PARTICULAS` — cores (hexadecimal)
+- `OPACIDADE_LINHAS` — intensidade das linhas
+- `VELOCIDADE_ONDA` / `ALTURA_ONDA` — velocidade e altura das ondas
+- `PARTICULAS_DESKTOP` / `PARTICULAS_MOBILE` — quantidade de partículas
+
+## Depoimentos
+
+Arquivo: `src/data/depoimentos.ts`. Edite texto, destaque, nome, cargo, segmento e ícone (`Smile`, `Sparkles` ou `Scale`). Para esconder a nota "Depoimentos ilustrativos", mude `MOSTRAR_NOTA_ILUSTRATIVA` para `false`.

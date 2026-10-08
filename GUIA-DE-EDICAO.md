@@ -9,7 +9,7 @@ Dica: no VS Code, use **Ctrl+P** para abrir um arquivo pelo nome e **Ctrl+F** pa
 | Itens do menu | `src/routes/index.tsx` | `const navigation` |
 | Um serviço (título, texto, ícone) | `src/routes/index.tsx` | `const services` |
 | Etapas da metodologia | `src/routes/index.tsx` | `const steps` |
-| Depoimentos | `src/routes/index.tsx` | `const testimonials` (troque `text`, `metric`, `name`, `company`) |
+| Depoimentos | `src/routes/index.tsx` | veja src/data/depoimentos.ts |
 | Diferenciais | `src/routes/index.tsx` | `const differences` |
 | Números (6 serviços, 100%...) | `src/routes/index.tsx` | `Serviços integrados` |
 | Título principal do topo | `src/routes/index.tsx` | `Soluções Digitais que Geram` |
@@ -44,3 +44,13 @@ Se usar um ícone novo, adicione o nome dele no `import { ... } from 'lucide-rea
 
 - Não edite `src/routeTree.gen.ts` nem arquivos em `src/integrations/` — são gerados automaticamente.
 - Mantenha vírgulas e aspas ao editar listas. Se o site quebrar, desfaça com **Ctrl+Z**.
+
+## Novos itens
+
+| Quero mudar... | Edite o arquivo | O que procurar |
+|---|---|---|
+| Cor das ondas/partículas do topo | `src/components/HeroWaves.tsx` | `COR_LINHAS`, `COR_PARTICULAS` |
+| Velocidade das ondas | `src/components/HeroWaves.tsx` | `VELOCIDADE_ONDA` |
+| Quantidade de partículas | `src/components/HeroWaves.tsx` | `PARTICULAS_DESKTOP`, `PARTICULAS_MOBILE` |
+| Depoimentos (substituir/editar) | `src/data/depoimentos.ts` | lista `depoimentos` |
+| Esconder nota "ilustrativos" | `src/data/depoimentos.ts` | `MOSTRAR_NOTA_ILUSTRATIVA = false` |
