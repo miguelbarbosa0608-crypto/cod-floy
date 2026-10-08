@@ -34,7 +34,7 @@ const steps: { icon: Icon; title: string; description: string }[] = [
   { icon: Rocket, title: 'Entrega', description: 'Apresentamos a solução, coletamos feedback e seguimos como parceiros.' },
 ];
 // Depoimentos ficam em src/data/depoimentos.ts.
-const segmentIcons: Record<string, Icon> = { Smile, Sparkles, Scale };
+const segmentIcons: Record<'Smile' | 'Sparkles' | 'Scale', Icon> = { Smile, Sparkles, Scale };
 const differences: { icon: Icon; title: string; description: string }[] = [
   { icon: Puzzle, title: 'Solução Integrada', description: 'Marketing, tecnologia e automação trabalhando juntos.' },
   { icon: MousePointer2, title: 'Personalização Real', description: 'Cada solução parte da necessidade real do seu negócio.' },
