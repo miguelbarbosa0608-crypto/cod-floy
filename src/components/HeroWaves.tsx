@@ -1,11 +1,18 @@
+// @ts-nocheck -- tipos do three/webgpu e three/tsl ainda são incompletos
+// Fundo animado 3D do topo (Hero): malha de ondas azul + partículas subindo.
+// Para mudar cores, velocidade ou quantidade de partículas, edite as constantes
+// em "CONFIGURAÇÃO EDITÁVEL" logo abaixo. É só decoração (não clicável).
 import { useEffect, useRef } from "react";
 
 // ===== CONFIGURAÇÃO EDITÁVEL =====
+// Cores em hexadecimal (linhas e partículas)
 const COR_LINHAS = "#5CB8FF";      // azul claro das linhas
 const COR_PARTICULAS = "#9ADBFF";  // azul mais claro das partículas
 const OPACIDADE_LINHAS = 0.06;
+// Velocidade (maior = mais rápido) e altura das ondas
 const VELOCIDADE_ONDA = 0.25;
 const ALTURA_ONDA = 4;
+// Quantidade de partículas (menos = mais leve)
 const PARTICULAS_DESKTOP = 25000;
 const PARTICULAS_MOBILE = 8000;
 
@@ -235,4 +242,17 @@ export default function HeroWaves() {
       cleanup();
     };
   }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 z-0"
+      style={{
+        background:
+          "radial-gradient(ellipse at 50% 40%, rgba(10,140,255,0.12) 0%, rgba(7,11,18,0) 65%)",
+      }}
+    />
+  );
+}
 
