@@ -39,6 +39,7 @@
     │   └── lovable-error-reporting.ts  Envio de erros ao Lovable
     ├── components/HeroWaves.tsx  Fundo animado 3D do topo
     ├── data/depoimentos.ts   Textos dos depoimentos
+    ├── data/faq.ts           Perguntas e respostas do FAQ
     ├── components/ui/        Componentes prontos (button.tsx é usado na página; os demais ficam disponíveis)
     ├── hooks/use-mobile.tsx  Detecta tela de celular
     ├── integrations/supabase/  Conexão com o banco de dados (gerado, não editar)
