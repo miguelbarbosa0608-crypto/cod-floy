@@ -5,7 +5,7 @@ Dica: no VS Code, use **Ctrl+P** para abrir um arquivo pelo nome e **Ctrl+F** pa
 | Quero mudar... | Edite o arquivo | O que procurar |
 |---|---|---|
 | Link do WhatsApp | `src/routes/index.tsx` | `const whatsappUrl = '...'` |
-| Link do Instagram | `src/routes/index.tsx` | `const INSTAGRAM_URL = ''` — coloque o link entre as aspas |
+| Link do Instagram | `src/data/config.ts` | `INSTAGRAM_URL` |
 | Itens do menu | `src/routes/index.tsx` | `const navigation` |
 | Um serviço (título, texto, ícone) | `src/routes/index.tsx` | `const services` |
 | Etapas da metodologia | `src/routes/index.tsx` | `const steps` |
@@ -59,3 +59,4 @@ Se usar um ícone novo, adicione o nome dele no `import { ... } from 'lucide-rea
 | Perguntas do FAQ | `src/data/faq.ts` | lista `faq` |
 | Efeitos dos botões (glow, brilho, subida) | `src/styles.css` | "Efeitos dos botões" |
 | Efeito dos cards ao passar o mouse | `src/styles.css` | `.feature-card:hover` |
+| Frase de credibilidade (abaixo do carrossel) | `src/data/depoimentos.ts` | `FRASE_CREDIBILIDADE` |

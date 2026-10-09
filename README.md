@@ -51,7 +51,7 @@ Quase tudo está em **`src/routes/index.tsx`**. No topo do arquivo ficam as list
 | O que mudar | Onde |
 |---|---|
 | Link do WhatsApp | constante `whatsappUrl` |
-| Link do Instagram | constante `INSTAGRAM_URL` (vazio = ícone escondido) |
+| Link do Instagram | `INSTAGRAM_URL` em `src/data/config.ts` |
 | Menu | lista `navigation` |
 | Serviços | lista `services` |
 | Metodologia (etapas) | lista `steps` |

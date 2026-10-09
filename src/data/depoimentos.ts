@@ -7,6 +7,9 @@
 export const MOSTRAR_NOTA_ILUSTRATIVA = true;
 export const NOTA_ILUSTRATIVA = 'Exemplos ilustrativos de depoimentos. Em breve, relatos reais de clientes.';
 
+// Frase de destaque abaixo do carrossel. "Code Flow" aparece em azul automaticamente.
+export const FRASE_CREDIBILIDADE = 'Processo claro, comunicação transparente e entrega documentada: é assim que a Code Flow ajuda empresas a dar o próximo passo no digital.';
+
 // Tempo (em segundos) de uma volta completa. No celular fica 40% mais lento.
 export const VELOCIDADE_CARROSSEL_SEGUNDOS = 50;
 
