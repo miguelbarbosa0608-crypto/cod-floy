@@ -102,3 +102,9 @@ Arquivo: `src/components/HeroWaves.tsx`. No topo do arquivo, em "CONFIGURAÇÃO 
 ## Depoimentos
 
 Arquivo: `src/data/depoimentos.ts`. Edite texto, destaque, nome, cargo, segmento e ícone (`Smile`, `Sparkles` ou `Scale`). Para esconder a nota "Depoimentos ilustrativos", mude `MOSTRAR_NOTA_ILUSTRATIVA` para `false`.
+
+## Depoimentos (carrossel), FAQ e botões
+
+- **Depoimentos:** `src/data/depoimentos.ts`. Edite texto, nome, segmento, cidade e ícone. Velocidade: `VELOCIDADE_CARROSSEL_SEGUNDOS`. Para remover a nota ilustrativa: `MOSTRAR_NOTA_ILUSTRATIVA = false` e apague o campo `ilustrativo` dos itens.
+- **FAQ:** `src/data/faq.ts` — lista de `pergunta` e `resposta`.
+- **Efeitos dos botões:** final de `src/styles.css`, bloco "Efeitos dos botões" (classes `btn-primary`, `btn-secondary`, `btn-whatsapp`, `btn-whatsapp-float`). Efeito dos cards: `.feature-card`.

@@ -54,3 +54,8 @@ Se usar um ícone novo, adicione o nome dele no `import { ... } from 'lucide-rea
 | Quantidade de partículas | `src/components/HeroWaves.tsx` | `PARTICULAS_DESKTOP`, `PARTICULAS_MOBILE` |
 | Depoimentos (substituir/editar) | `src/data/depoimentos.ts` | lista `depoimentos` |
 | Esconder nota "ilustrativos" | `src/data/depoimentos.ts` | `MOSTRAR_NOTA_ILUSTRATIVA = false` |
+| Velocidade do carrossel de depoimentos | `src/data/depoimentos.ts` | `VELOCIDADE_CARROSSEL_SEGUNDOS` |
+| Remover nota ilustrativa | `src/data/depoimentos.ts` | `MOSTRAR_NOTA_ILUSTRATIVA = false` e apague `ilustrativo` |
+| Perguntas do FAQ | `src/data/faq.ts` | lista `faq` |
+| Efeitos dos botões (glow, brilho, subida) | `src/styles.css` | "Efeitos dos botões" |
+| Efeito dos cards ao passar o mouse | `src/styles.css` | `.feature-card:hover` |
