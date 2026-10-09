@@ -25,6 +25,7 @@
   --color-ring: var(--ring);
   --color-whatsapp: var(--whatsapp);
   --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --color-silver: var(--silver);
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
   --radius-lg: 1rem;
@@ -47,6 +48,7 @@
   --ring: oklch(0.65 0.19 252);
   --whatsapp: oklch(0.7 0.2 148);
   --whatsapp-foreground: oklch(0.99 0 0);
+  --silver: #C9D0DA;
   --line: linear-gradient(90deg, transparent, oklch(0.65 0.19 252 / 35%), transparent);
   --hero-glow: radial-gradient(ellipse 42% 40% at 50% 43%, oklch(0.45 0.17 255 / 15%), transparent 80%);
   --card-glow: 0 0 38px oklch(0.55 0.2 255 / 12%);
@@ -129,3 +131,4 @@
   .btn-primary::after, .btn-whatsapp-float:hover { animation: none; display: none; }
   .btn-primary:hover, .btn-secondary:hover, .btn-whatsapp:hover { transform: none; }
 }
+.btn-instagram:hover { box-shadow: 0 6px 22px rgb(10 140 255 / 0.25); }

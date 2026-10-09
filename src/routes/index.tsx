@@ -7,11 +7,11 @@ import { submitContact } from '@/lib/contact.functions';
 import { Smile, Sparkles, Scale, Store, Briefcase, Plus } from 'lucide-react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import HeroWaves from '@/components/HeroWaves';
-import { depoimentos, MOSTRAR_NOTA_ILUSTRATIVA, NOTA_ILUSTRATIVA, VELOCIDADE_CARROSSEL_SEGUNDOS, type IconeSegmento } from '@/data/depoimentos';
+import { depoimentos, MOSTRAR_NOTA_ILUSTRATIVA, NOTA_ILUSTRATIVA, FRASE_CREDIBILIDADE, VELOCIDADE_CARROSSEL_SEGUNDOS, type IconeSegmento } from '@/data/depoimentos';
 import { faq } from '@/data/faq';
+import { INSTAGRAM_URL } from '@/data/config';
 
 // WhatsApp contact link provided by the agency.
-const INSTAGRAM_URL = '';
 const whatsappUrl = 'https://www.contate.me/556292543903';
 
 type Icon = ComponentType<{ className?: string; size?: number; strokeWidth?: number }>;
@@ -152,7 +152,8 @@ function Home() {
             {[...depoimentos, ...depoimentos].map((item, i) => { const SegIcon = segmentIcons[item.icone]; const initials = item.nome.replace(/^Dra?\.?\s+/, '').split(' ').map((p) => p[0]).slice(0, 2).join(''); return <article key={i} aria-hidden={i >= depoimentos.length} className="feature-card flex w-[300px] shrink-0 flex-col p-6 sm:w-[320px]"><div className="text-xs tracking-widest text-primary" aria-label="Cinco estrelas">★★★★★</div><p className="mt-3 line-clamp-4 flex-1 text-sm leading-6 text-muted-foreground">“{item.texto}”</p><div className="mt-4 flex items-center gap-3 border-t border-border pt-4"><div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary/15 text-xs font-bold text-primary">{initials}</div><div className="min-w-0"><p className="text-sm font-semibold text-foreground">{item.nome}</p><p className="mt-0.5 flex items-center gap-1.5 text-xs text-muted-foreground"><SegIcon size={12} className="shrink-0 text-primary" />{item.segmento} · {item.cidade}</p></div></div></article>; })}
           </div>
         </div>
-        {MOSTRAR_NOTA_ILUSTRATIVA && <p className="mt-6 text-center text-xs text-muted-foreground">{NOTA_ILUSTRATIVA}</p>}
+        <p className="mx-auto mt-10 max-w-3xl text-center text-base leading-relaxed text-silver sm:text-lg">{FRASE_CREDIBILIDADE.split('Code Flow').map((part, i, arr) => <span key={i}>{part}{i < arr.length - 1 && <span className="font-semibold text-primary">Code Flow</span>}</span>)}</p>
+        {MOSTRAR_NOTA_ILUSTRATIVA && <p className="mt-3 text-center text-xs text-muted-foreground">{NOTA_ILUSTRATIVA}</p>}
       </section>
       <div className="section-rule" />
 
@@ -191,7 +192,7 @@ function Home() {
       </section>
     </main>
 
-    <footer className="border-t border-border px-5 py-14 text-center sm:px-8"><div className="mx-auto max-w-7xl"><Logo footer /><nav aria-label="Links do rodapé" className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-4 text-sm text-muted-foreground">{navigation.filter(([label]) => label !== 'Diferenciais').map(([label, href]) => <a key={href} href={href} className="hover:text-primary">{label}</a>)}<button type="button" onClick={() => setPrivacyOpen(true)} className="cursor-pointer hover:text-primary">Privacidade</button></nav>{INSTAGRAM_URL && <div className="mt-7 flex justify-center"><a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-muted-foreground hover:text-primary"><Instagram size={23} /></a></div>}<p className="mt-8 text-xs text-muted-foreground">© 2026 CodeFlow. Todos os direitos reservados.</p></div></footer>
+    <footer className="border-t border-border px-5 py-14 text-center sm:px-8"><div className="mx-auto max-w-7xl"><Logo footer /><nav aria-label="Links do rodapé" className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-4 text-sm text-muted-foreground">{navigation.filter(([label]) => label !== 'Diferenciais').map(([label, href]) => <a key={href} href={href} className="hover:text-primary">{label}</a>)}<button type="button" onClick={() => setPrivacyOpen(true)} className="cursor-pointer hover:text-primary">Privacidade</button></nav><div className="mt-8 flex justify-center"><a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Abrir o Instagram da Code Flow" className="btn-secondary btn-instagram inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-silver"><Instagram size={18} /> Siga a Code Flow no Instagram</a></div><p className="mt-8 text-xs text-muted-foreground">© 2026 CodeFlow. Todos os direitos reservados.</p></div></footer>
 
     <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp" title="Falar pelo WhatsApp" className="btn-whatsapp-float fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-lg transition-transform hover:scale-105 sm:bottom-7 sm:right-7"><MessageCircle size={27} strokeWidth={2.2} /></a>
     {privacyOpen && <div role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setPrivacyOpen(false); }} className="fixed inset-0 z-[60] flex items-center justify-center bg-background/90 px-5 backdrop-blur-sm"><div role="dialog" aria-modal="true" aria-labelledby="privacy-title" className="feature-card max-h-[85vh] w-full max-w-lg overflow-y-auto p-7 shadow-xl"><div className="flex items-start justify-between gap-4"><h2 id="privacy-title" className="text-2xl font-bold">Política de Privacidade</h2><Button variant="ghost" size="icon" aria-label="Fechar política" onClick={() => setPrivacyOpen(false)}><X /></Button></div><p className="mt-5 text-sm leading-7 text-muted-foreground">Os dados informados no formulário — nome, WhatsApp, e-mail e empresa — são utilizados para responder à sua solicitação de diagnóstico e entrar em contato sobre os serviços da CodeFlow. Não exibimos esses dados publicamente. Você pode solicitar informações, correção ou exclusão dos seus dados pelo canal de contato da agência.</p><Button onClick={() => setPrivacyOpen(false)} className="mt-7">Entendi</Button></div></div>}
