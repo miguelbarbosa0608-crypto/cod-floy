@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { submitContact } from '@/lib/contact.functions';
 import { Smile, Sparkles, Scale, Store, Briefcase, Plus } from 'lucide-react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
+import logoUrl from '@/assets/logo.png';
 import HeroWaves from '@/components/HeroWaves';
 import { depoimentos, MOSTRAR_NOTA_ILUSTRATIVA, NOTA_ILUSTRATIVA, FRASE_CREDIBILIDADE, VELOCIDADE_CARROSSEL_SEGUNDOS, type IconeSegmento } from '@/data/depoimentos';
 import { faq } from '@/data/faq';
