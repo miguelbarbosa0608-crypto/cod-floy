@@ -8,6 +8,7 @@ import { Smile, Sparkles, Scale, Store, Briefcase, Plus } from 'lucide-react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import logoUrl from '@/assets/logo.png';
 import HeroWaves from '@/components/HeroWaves';
+import ServiceAdvisor from '@/components/ServiceAdvisor';
 import { depoimentos, MOSTRAR_NOTA_ILUSTRATIVA, NOTA_ILUSTRATIVA, FRASE_CREDIBILIDADE, VELOCIDADE_CARROSSEL_SEGUNDOS, type IconeSegmento } from '@/data/depoimentos';
 import { faq } from '@/data/faq';
 import { INSTAGRAM_URL } from '@/data/config';
@@ -161,6 +162,12 @@ function Home() {
       <section id="diferenciais" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
         <SectionHeading eyebrow="Por que a CodeFlow?" subtitle="Somos diferentes de agências comuns. Nosso compromisso é estruturar uma solução que funcione para o seu resultado.">Não Entregamos Peças.<br /><span className="text-primary">Entregamos Soluções.</span></SectionHeading>
         <div className="grid gap-4 md:grid-cols-2 lg:gap-5">{differences.map(({ icon: IconComponent, title, description }) => <article key={title} className="feature-card flex items-start gap-5 p-6"><div className="icon-tile grid h-12 w-12 shrink-0 place-items-center"><IconComponent size={23} strokeWidth={1.8} /></div><div className="min-w-0"><h3 className="mb-2 text-base font-bold sm:text-lg">{title}</h3><p className="text-sm leading-6 text-muted-foreground">{description}</p></div></article>)}</div>
+      </section>
+      <div className="section-rule" />
+
+      <section id="consultor" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
+        <SectionHeading eyebrow="Consultor Inteligente" subtitle="Conte sobre seu negócio e seus desafios. Nossa inteligência artificial indica os serviços ideais e os próximos passos.">Descubra o Plano Ideal para seu <span className="text-primary">Negócio</span></SectionHeading>
+        <ServiceAdvisor />
       </section>
       <div className="section-rule" />
 
