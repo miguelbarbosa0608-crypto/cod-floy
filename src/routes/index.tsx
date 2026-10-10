@@ -59,8 +59,8 @@ export const Route = createFileRoute('/')({
 });
 
 function Logo({ footer = false }: { footer?: boolean }) {
-  return <a href="#inicio" aria-label="CodeFlow, voltar ao início" className={`inline-flex shrink-0 items-center font-extrabold leading-none tracking-normal text-foreground ${footer ? 'text-2xl' : 'text-xl sm:text-2xl'}`}>
-    <span>Code</span><span className="ml-1 text-primary">Flow<span className="text-accent">.</span></span>
+  return <a href="#inicio" aria-label="Cod Floy, voltar ao início" className="inline-flex shrink-0 items-center">
+    <img src={logoUrl} alt="Cod Floy — Soluções digitais que geram resultados" width={1240} height={694} className={`h-10 w-auto sm:h-11 ${footer ? 'sm:h-14' : ''}`} />
   </a>;
 }
 function SectionHeading({ eyebrow, children, subtitle }: { eyebrow: string; children: React.ReactNode; subtitle?: string }) {
