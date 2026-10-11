@@ -161,7 +161,6 @@ function Home() {
           </div>
         </div>
         <p className="mx-auto mt-10 max-w-3xl text-center text-base leading-relaxed text-silver sm:text-lg">{FRASE_CREDIBILIDADE.split('Code Flow').map((part, i, arr) => <span key={i}>{part}{i < arr.length - 1 && <span className="font-semibold text-primary">Code Flow</span>}</span>)}</p>
-        {MOSTRAR_NOTA_ILUSTRATIVA && <p className="mt-3 text-center text-xs text-muted-foreground">{NOTA_ILUSTRATIVA}</p>}
       </section>
       <div className="section-rule" />
 
