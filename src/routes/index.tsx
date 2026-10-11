@@ -11,7 +11,7 @@ import HeroWaves from '@/components/HeroWaves';
 import ServiceAdvisor from '@/components/ServiceAdvisor';
 import SitePersonalizado from '@/components/SitePersonalizado';
 import QuemSomos from '@/components/QuemSomos';
-import { depoimentos, MOSTRAR_NOTA_ILUSTRATIVA, NOTA_ILUSTRATIVA, FRASE_CREDIBILIDADE, VELOCIDADE_CARROSSEL_SEGUNDOS, type IconeSegmento } from '@/data/depoimentos';
+import { depoimentos, FRASE_CREDIBILIDADE, VELOCIDADE_CARROSSEL_SEGUNDOS, type IconeSegmento } from '@/data/depoimentos';
 import { faq } from '@/data/faq';
 import { INSTAGRAM_URL } from '@/data/config';
 
