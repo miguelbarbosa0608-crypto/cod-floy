@@ -9,6 +9,8 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import logoUrl from '@/assets/logo.png';
 import HeroWaves from '@/components/HeroWaves';
 import ServiceAdvisor from '@/components/ServiceAdvisor';
+import SitePersonalizado from '@/components/SitePersonalizado';
+import QuemSomos from '@/components/QuemSomos';
 import { depoimentos, MOSTRAR_NOTA_ILUSTRATIVA, NOTA_ILUSTRATIVA, FRASE_CREDIBILIDADE, VELOCIDADE_CARROSSEL_SEGUNDOS, type IconeSegmento } from '@/data/depoimentos';
 import { faq } from '@/data/faq';
 import { INSTAGRAM_URL } from '@/data/config';
@@ -18,7 +20,7 @@ const whatsappUrl = 'https://www.contate.me/556292543903';
 
 type Icon = ComponentType<{ className?: string; size?: number; strokeWidth?: number }>;
 const navigation = [
-  ['Serviços', '#servicos'], ['Metodologia', '#metodologia'], ['Resultados', '#resultados'],
+  ['Sobre', '#quem-somos'], ['Serviços', '#servicos'], ['Metodologia', '#metodologia'], ['Resultados', '#resultados'],
   ['Diferenciais', '#diferenciais'], ['Contato', '#contato'], ['FAQ', '#faq'],
 ];
 const services: { icon: Icon; title: string; description: string }[] = [
@@ -98,7 +100,7 @@ function Home() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8 lg:h-[76px] lg:px-10">
         <Logo />
-        <nav aria-label="Navegação principal" className="hidden items-center gap-6 lg:flex xl:gap-8">
+        <nav aria-label="Navegação principal" className="hidden items-center gap-4 whitespace-nowrap lg:flex xl:gap-7">
           {navigation.map(([label, href]) => <a key={href} href={href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">{label}</a>)}
           <Button asChild className="btn-primary primary-glow ml-1 h-10 rounded-lg px-5 font-bold"><a href="#contato">Falar com Especialista</a></Button>
         </nav>
@@ -128,6 +130,10 @@ function Home() {
       <section aria-label="Nossa atuação" className="mx-auto grid max-w-5xl grid-cols-3 gap-2 px-4 py-10 text-center sm:gap-10 sm:py-14">
         {[['6', 'Serviços integrados'], ['6', 'Etapas de processo'], ['100%', 'Soluções personalizadas']].map(([number, label]) => <div key={label}><div className="text-2xl font-bold text-primary sm:text-4xl">{number}</div><p className="mx-auto mt-2 max-w-36 text-[11px] leading-snug text-muted-foreground sm:text-sm">{label}</p></div>)}
       </section>
+      <div className="section-rule" />
+      <SitePersonalizado />
+      <div className="section-rule" />
+      <QuemSomos />
       <div className="section-rule" />
 
       <section id="servicos" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
