@@ -108,3 +108,8 @@ Arquivo: `src/data/depoimentos.ts`. Edite texto, destaque, nome, cargo, segmento
 - **Depoimentos:** `src/data/depoimentos.ts`. Edite texto, nome, segmento, cidade e ícone. Velocidade: `VELOCIDADE_CARROSSEL_SEGUNDOS`. Para remover a nota ilustrativa: `MOSTRAR_NOTA_ILUSTRATIVA = false` e apague o campo `ilustrativo` dos itens.
 - **FAQ:** `src/data/faq.ts` — lista de `pergunta` e `resposta`.
 - **Efeitos dos botões:** final de `src/styles.css`, bloco "Efeitos dos botões" (classes `btn-primary`, `btn-secondary`, `btn-whatsapp`, `btn-whatsapp-float`). Efeito dos cards: `.feature-card`.
+
+## Novas seções
+- **Site Personalizado** e **Quem Somos**: textos em `src/data/sobre.ts`, componentes em `src/components/SitePersonalizado.tsx` e `src/components/QuemSomos.tsx`.
+- **Trocar a logo**: substitua `src/assets/logo.png` mantendo o nome.
+- Detalhes no `GUIA-DE-EDICAO.md`.

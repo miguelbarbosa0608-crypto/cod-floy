@@ -65,3 +65,9 @@
 | Contato/formulário | `#contato` | `submitContact`, `whatsappUrl` |
 | Rodapé | `<footer>` | `navigation`, `INSTAGRAM_URL` |
 | Botão flutuante WhatsApp | final do arquivo | `whatsappUrl` |
+
+- `src/data/sobre.ts` — textos das seções Site Personalizado e Quem Somos.
+- `src/components/SitePersonalizado.tsx` — seção com o celular ilustrativo.
+- `src/components/QuemSomos.tsx` — seção Quem Somos com a logo e 3 cards.
+- `src/components/Reveal.tsx` — efeito de aparecer ao rolar.
+- `src/components/ServiceAdvisor.tsx` + `src/lib/recommend.functions.ts` — consultor inteligente com IA.

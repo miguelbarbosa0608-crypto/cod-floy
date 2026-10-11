@@ -60,3 +60,12 @@ Se usar um ícone novo, adicione o nome dele no `import { ... } from 'lucide-rea
 | Efeitos dos botões (glow, brilho, subida) | `src/styles.css` | "Efeitos dos botões" |
 | Efeito dos cards ao passar o mouse | `src/styles.css` | `.feature-card:hover` |
 | Frase de credibilidade (abaixo do carrossel) | `src/data/depoimentos.ts` | `FRASE_CREDIBILIDADE` |
+
+## Como editar a seção Site Personalizado
+Abra `src/data/sobre.ts` e altere o objeto `sitePersonalizado`: título, subtítulo, parágrafos, lista de itens, texto do botão e a mensagem pronta do WhatsApp. O número do WhatsApp fica em `src/data/config.ts` (`WHATSAPP_NUMERO`). O desenho do celular está em `src/components/SitePersonalizado.tsx`.
+
+## Como editar a seção Quem Somos
+Em `src/data/sobre.ts`, edite o objeto `quemSomos`. Trechos entre `**asteriscos**` aparecem em negrito branco. Os 3 cards ficam na lista `cards`.
+
+## Como trocar a logo
+Substitua o arquivo `src/assets/logo.png` por outro com o mesmo nome. Ela é usada no topo, no rodapé e na seção Quem Somos.
