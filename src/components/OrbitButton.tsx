@@ -1,6 +1,7 @@
-// Botão com borda orbital (arco luminoso girando). Ajuste espessura, velocidade,
-// tamanho do arco e cores no bloco "Botões orbitais" de src/styles.css.
-import type { ReactNode, MouseEventHandler } from "react";
+// Botão com borda orbital: um arco luminoso gira em volta da borda (estilo "Orbit Border Button").
+// Espessura, velocidade, tamanho do arco e cores ficam no bloco "Botões orbitais" de src/styles.css.
+// Use className para tamanho, posição, texto e padding; faceClassName muda só a cor de fundo da face.
+import type { MouseEventHandler, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -9,6 +10,10 @@ type Props = {
   onClick?: MouseEventHandler<HTMLElement>;
   children?: ReactNode;
   icon?: ReactNode;
+  /** "end" (padrão): ícone depois do texto, desliza 4px no hover. "start": antes do texto. */
+  iconPosition?: "start" | "end";
+  /** Botão circular (ex.: WhatsApp flutuante). */
+  round?: boolean;
   className?: string;
   faceClassName?: string;
   type?: "button" | "submit";
@@ -25,6 +30,8 @@ export default function OrbitButton({
   onClick,
   children,
   icon,
+  iconPosition = "end",
+  round,
   className,
   faceClassName,
   type = "button",
@@ -32,33 +39,45 @@ export default function OrbitButton({
   external,
   tabIndex,
   title,
-  ...rest
+  "aria-label": ariaLabel,
 }: Props) {
-  const inner = (
+  const conteudo = (
     <>
-      <span className="orbit-ring" aria-hidden="true">
-        <span className="orbit-spin orbit-spin-glow" />
-        <span className="orbit-spin orbit-spin-sharp" />
+      {/* Brilho: uma cópia do anel, desfocada (o desfoque fica colado à borda) */}
+      <span className="orbit-glow" aria-hidden="true">
+        <span className="orbit-ring orbit-ring-glow">
+          <span className="orbit-spin" />
+        </span>
       </span>
-      <span className={cn("orbit-face", faceClassName)}>
+      {/* Anel da borda: a máscara mostra só a faixa da espessura */}
+      <span className="orbit-ring" aria-hidden="true">
+        <span className="orbit-spin" />
+      </span>
+      {/* Face (fundo) por dentro do anel; o conteúdo fica numa camada própria por cima */}
+      <span className={cn("orbit-face", faceClassName)} aria-hidden="true" />
+      <span className="orbit-label">
+        {icon && iconPosition === "start" && <span className="orbit-icon">{icon}</span>}
         {children}
-        {icon && <span className="orbit-icon">{icon}</span>}
+        {icon && iconPosition === "end" && (
+          <span className="orbit-icon orbit-icon-end">{icon}</span>
+        )}
       </span>
     </>
   );
-  const cls = cn("orbit-btn", `orbit-${variant}`, className);
+  const classes = cn("orbit-btn", `orbit-${variant}`, round && "orbit-round", className);
+
   if (href)
     return (
       <a
         href={href}
         onClick={onClick}
-        className={cls}
+        className={classes}
         tabIndex={tabIndex}
         title={title}
-        aria-label={rest["aria-label"]}
+        aria-label={ariaLabel}
         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       >
-        {inner}
+        {conteudo}
       </a>
     );
   return (
@@ -66,12 +85,12 @@ export default function OrbitButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={cls}
+      className={classes}
       tabIndex={tabIndex}
       title={title}
-      aria-label={rest["aria-label"]}
+      aria-label={ariaLabel}
     >
-      {inner}
+      {conteudo}
     </button>
   );
 }

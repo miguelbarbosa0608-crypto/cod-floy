@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { servicos, type IconeServico } from "@/data/servicos";
 import { WHATSAPP_NUMERO } from "@/data/config";
+import OrbitButton from "@/components/OrbitButton";
 
 type Icon = ComponentType<{ size?: number; strokeWidth?: number }>;
 const icones: Record<IconeServico, Icon> = {
@@ -75,9 +76,17 @@ function FlipCard({ s }: { s: (typeof servicos)[number] }) {
         onClick={() => setVirado((v) => !v)}
       />
       {/* Fica fora do botão (link não pode ficar dentro de botão) e só aparece com o verso visível. */}
-      <a href={wa} target="_blank" rel="noopener noreferrer" className="flip-cta">
-        Falar sobre este serviço <ArrowUpRight size={14} />
-      </a>
+      <span className="flip-cta">
+        <OrbitButton
+          variant="secondary"
+          href={wa}
+          external
+          icon={<ArrowUpRight size={14} />}
+          className="h-9 px-4 text-xs font-bold"
+        >
+          Falar sobre este serviço
+        </OrbitButton>
+      </span>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 // Seção "Site Personalizado". Textos: src/data/sobre.ts. Cores: tokens em src/styles.css (classes .phone-*).
 import { ArrowRight, Check, Menu, Rocket, ShieldCheck, Zap } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import OrbitButton from "@/components/OrbitButton";
 import { sitePersonalizado as d } from "@/data/sobre";
 import { WHATSAPP_NUMERO } from "@/data/config";
 import Reveal from "@/components/Reveal";
@@ -95,15 +95,14 @@ export default function SitePersonalizado() {
                 </li>
               ))}
             </ul>
-            <Button
-              asChild
-              size="lg"
-              className="btn-primary primary-glow mt-8 h-14 w-full rounded-xl px-7 text-sm font-bold sm:w-auto sm:text-base"
+            <OrbitButton
+              href={waLink}
+              external
+              icon={<ArrowRight size={16} />}
+              className="primary-glow mt-8 h-14 w-full px-7 text-sm font-bold sm:w-auto sm:text-base"
             >
-              <a href={waLink} target="_blank" rel="noopener noreferrer">
-                {d.botao} <ArrowRight />
-              </a>
-            </Button>
+              {d.botao}
+            </OrbitButton>
           </div>
         </div>
       </Reveal>

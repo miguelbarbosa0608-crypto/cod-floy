@@ -28,6 +28,7 @@ import HeroWaves from "@/components/HeroWaves";
 import ServiceAdvisor from "@/components/ServiceAdvisor";
 import ServiceFlipCards from "@/components/ServiceFlipCards";
 import TeamCarousel from "@/components/TeamCarousel";
+import OrbitButton from "@/components/OrbitButton";
 import { FRASE_EQUIPE } from "@/data/equipe";
 import SitePersonalizado from "@/components/SitePersonalizado";
 import QuemSomos from "@/components/QuemSomos";
@@ -198,12 +199,9 @@ function Home() {
                 {label}
               </a>
             ))}
-            <Button
-              asChild
-              className="btn-primary primary-glow ml-1 h-10 rounded-lg px-5 font-bold"
-            >
-              <a href="#contato">Falar com Especialista</a>
-            </Button>
+            <OrbitButton href="#contato" className="primary-glow ml-1 h-10 px-5 text-sm font-bold">
+              Falar com Especialista
+            </OrbitButton>
           </nav>
           <Button
             variant="ghost"
@@ -232,11 +230,14 @@ function Home() {
                 <ChevronRight size={18} className="text-primary" />
               </a>
             ))}
-            <Button asChild className="btn-primary primary-glow mt-5 h-12 rounded-lg font-bold">
-              <a href="#contato" onClick={() => setMenuOpen(false)}>
-                Falar com Especialista <ArrowRight />
-              </a>
-            </Button>
+            <OrbitButton
+              href="#contato"
+              onClick={() => setMenuOpen(false)}
+              icon={<ArrowRight size={16} />}
+              className="primary-glow mt-5 h-12 w-full text-sm font-bold"
+            >
+              Falar com Especialista
+            </OrbitButton>
           </nav>
         )}
       </header>
@@ -266,23 +267,20 @@ function Home() {
               seu negócio.
             </p>
             <div className="flow-in flow-delay-more mx-auto mt-10 flex max-w-md flex-col justify-center gap-3 sm:max-w-none sm:flex-row">
-              <Button
-                asChild
-                size="lg"
-                className="btn-primary primary-glow h-14 rounded-xl px-7 text-sm font-bold sm:text-base"
+              <OrbitButton
+                href="#contato"
+                icon={<ArrowRight size={16} />}
+                className="primary-glow h-14 px-7 text-sm font-bold sm:text-base"
               >
-                <a href="#contato">
-                  Quero Transformar Meu Negócio <ArrowRight />
-                </a>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="btn-secondary h-14 rounded-xl border-border bg-transparent px-8 text-sm font-semibold text-muted-foreground hover:bg-card hover:text-foreground sm:text-base"
+                Quero Transformar Meu Negócio
+              </OrbitButton>
+              <OrbitButton
+                variant="secondary"
+                href="#servicos"
+                className="h-14 px-8 text-sm font-semibold sm:text-base"
               >
-                <a href="#servicos">Conheça Nossos Serviços</a>
-              </Button>
+                Conheça Nossos Serviços
+              </OrbitButton>
             </div>
           </div>
         </section>
@@ -483,22 +481,24 @@ function Home() {
                 aria-hidden="true"
               />
               <div className="mt-2 space-y-4 sm:col-span-2">
-                <Button
+                <OrbitButton
                   type="submit"
                   disabled={sending}
-                  className="btn-primary primary-glow h-13 w-full rounded-xl text-sm font-bold sm:text-base"
+                  icon={<Send size={17} />}
+                  className="primary-glow h-13 w-full text-sm font-bold sm:text-base"
                 >
-                  {sending ? "Enviando..." : "Solicitar Diagnóstico Gratuito"} <Send size={17} />
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="btn-whatsapp h-13 w-full rounded-xl border-whatsapp bg-transparent text-whatsapp hover:bg-whatsapp/10 hover:text-whatsapp"
+                  {sending ? "Enviando..." : "Solicitar Diagnóstico Gratuito"}
+                </OrbitButton>
+                <OrbitButton
+                  variant="whatsapp"
+                  href={whatsappUrl}
+                  external
+                  icon={<ArrowUpRight size={16} />}
+                  faceClassName="bg-card"
+                  className="h-13 w-full text-sm font-medium text-whatsapp"
                 >
-                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                    <MessageCircle size={19} /> Falar no WhatsApp Agora <ArrowUpRight size={16} />
-                  </a>
-                </Button>
+                  <MessageCircle size={19} /> Falar no WhatsApp Agora
+                </OrbitButton>
                 {status === "success" && (
                   <p role="status" className="flex items-center gap-2 text-sm text-whatsapp">
                     <Check size={18} /> Solicitação enviada! Entraremos em contato em breve.
@@ -582,15 +582,17 @@ function Home() {
             </button>
           </nav>
           <div className="mt-8 flex justify-center">
-            <a
+            <OrbitButton
+              variant="secondary"
               href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              external
               aria-label="Abrir o Instagram da Code Flow"
-              className="btn-secondary btn-instagram inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-silver"
+              icon={<Instagram size={18} />}
+              iconPosition="start"
+              className="px-6 py-3 text-sm font-semibold text-silver"
             >
-              <Instagram size={18} /> Siga a Code Flow no Instagram
-            </a>
+              Siga a Code Flow no Instagram
+            </OrbitButton>
           </div>
           <p className="mt-8 text-xs text-muted-foreground">
             © 2026 CodeFlow. Todos os direitos reservados.
@@ -598,16 +600,17 @@ function Home() {
         </div>
       </footer>
 
-      <a
+      <OrbitButton
+        variant="whatsapp"
+        round
         href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+        external
         aria-label="Falar pelo WhatsApp"
         title="Falar pelo WhatsApp"
-        className="btn-whatsapp-float fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-lg transition-transform hover:scale-105 sm:bottom-7 sm:right-7"
+        className="fixed bottom-5 right-5 z-40 h-14 w-14 shadow-lg sm:bottom-7 sm:right-7"
       >
         <MessageCircle size={27} strokeWidth={2.2} />
-      </a>
+      </OrbitButton>
       {privacyOpen && (
         <div
           role="presentation"

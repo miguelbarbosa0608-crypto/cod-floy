@@ -503,52 +503,37 @@
   outline: 2px solid #0a8cff;
   outline-offset: 3px;
 }
+/* Posição e visibilidade do botão "Falar sobre este serviço" (o visual vem do OrbitButton) */
 .flip-cta {
   position: absolute;
   left: 1.75rem;
   bottom: 1.75rem;
   z-index: 2;
   display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  height: 2.25rem;
-  padding: 0 1rem;
-  border-radius: 999px;
-  border: 1px solid rgb(255 255 255 / 0.4);
-  background: rgb(255 255 255 / 0.14);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 700;
   opacity: 0;
   visibility: hidden;
   transition:
     opacity 0.2s ease,
-    visibility 0s linear 0.2s,
-    background-color 0.2s ease;
+    visibility 0s linear 0.2s;
 }
-.flip-cta:hover {
-  background: rgb(255 255 255 / 0.24);
-}
-.flip-cta:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 3px;
+.flip-cta .orbit-btn:focus-visible {
+  outline-color: #fff; /* anel de foco visível sobre o verso azul */
 }
 .hint-hover {
   display: none;
 }
 /* Estado virado: clique/toque/teclado (data-flipped) ou foco no botão do verso */
 .flip-card[data-flipped="true"] .flip-inner,
-.flip-card:has(.flip-cta:focus-visible) .flip-inner {
+.flip-card:has(.flip-cta :focus-visible) .flip-inner {
   transform: rotateY(180deg);
 }
 .flip-card[data-flipped="true"] .flip-cta,
-.flip-card:has(.flip-cta:focus-visible) .flip-cta {
+.flip-card:has(.flip-cta :focus-visible) .flip-cta {
   opacity: 1;
   visibility: visible;
   transition:
     opacity 0.25s ease 0.3s,
-    visibility 0s linear 0.3s,
-    background-color 0.2s ease;
+    visibility 0s linear 0.3s;
 }
 /* Desktop com mouse: passar o mouse vira o card */
 @media (hover: hover) and (pointer: fine) {
@@ -566,8 +551,7 @@
     visibility: visible;
     transition:
       opacity 0.25s ease 0.3s,
-      visibility 0s linear 0.3s,
-      background-color 0.2s ease;
+      visibility 0s linear 0.3s;
   }
 }
 /* Movimento reduzido: troca o giro por um fade entre frente e verso */
@@ -575,7 +559,7 @@
   .flip-inner,
   .flip-card:hover .flip-inner,
   .flip-card[data-flipped="true"] .flip-inner,
-  .flip-card:has(.flip-cta:focus-visible) .flip-inner {
+  .flip-card:has(.flip-cta :focus-visible) .flip-inner {
     transform: none;
     transition: none;
   }
@@ -587,11 +571,11 @@
     opacity: 0;
   }
   .flip-card[data-flipped="true"] .flip-back,
-  .flip-card:has(.flip-cta:focus-visible) .flip-back {
+  .flip-card:has(.flip-cta :focus-visible) .flip-back {
     opacity: 1;
   }
   .flip-card[data-flipped="true"] .flip-front,
-  .flip-card:has(.flip-cta:focus-visible) .flip-front {
+  .flip-card:has(.flip-cta :focus-visible) .flip-front {
     opacity: 0;
   }
 }
@@ -819,5 +803,199 @@
   .phone-float,
   .phone-float:hover .phone-palette span {
     animation: none;
+  }
+}
+
+/* ==========================================================================
+   Botões orbitais (componente em src/components/OrbitButton.tsx)
+   Um arco luminoso gira em volta da borda (sentido anti-horário) e cresce no hover.
+   ========================================================================== */
+
+/* Tamanho do arco animável (permite a transição suave de 30% para 100%) */
+@property --orbit-arc {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 30%;
+}
+@keyframes orbit-spin {
+  to {
+    rotate: -360deg; /* anti-horário */
+  }
+}
+
+@layer components {
+  .orbit-btn {
+    /* ===== Parâmetros (ajuste aqui) ===== */
+    --orbit-thickness: 2px; /* espessura da borda */
+    --orbit-speed: 7s; /* tempo de uma volta completa do arco */
+    --orbit-arc-rest: 30%; /* tamanho do arco em repouso (% do perímetro) */
+    --orbit-arc-hover: 100%; /* tamanho do arco no hover/foco */
+    --orbit-arc-duration: 450ms; /* tempo para o arco crescer/encolher */
+    --orbit-glow-blur: 13px; /* desfoque do brilho */
+    --orbit-glow-opacity: 1; /* intensidade do brilho (0 a 1) */
+    --orbit-glow-width: 6px; /* largura da faixa que gera o brilho */
+    --orbit-sharp-opacity: 0.45; /* opacidade do arco nítido sobre a borda */
+    --orbit-hover-scale: 1.04; /* aumento no hover */
+    --orbit-press-scale: 0.97; /* redução ao pressionar */
+
+    --orbit-arc: var(--orbit-arc-rest);
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    color: var(--orbit-text);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      transform 250ms ease,
+      --orbit-arc var(--orbit-arc-duration) ease;
+  }
+
+  /* Cores por variante: face (fundo), texto, borda base e as duas cores do arco */
+  .orbit-primary {
+    --orbit-face: #0a8cff;
+    --orbit-text: #fff;
+    --orbit-base: rgb(255 255 255 / 0.18);
+    --orbit-c1: #9adbff;
+    --orbit-c2: #00d9ff;
+  }
+  .orbit-secondary {
+    --orbit-face: #0b1220;
+    --orbit-text: #f7f9fc;
+    --orbit-base: #13213a;
+    --orbit-c1: #0a8cff;
+    --orbit-c2: #0a8cff;
+  }
+  .orbit-whatsapp {
+    --orbit-face: var(--whatsapp);
+    --orbit-text: var(--whatsapp-foreground);
+    --orbit-base: color-mix(in oklab, var(--whatsapp) 45%, transparent);
+    --orbit-c1: #9ff0bd;
+    --orbit-c2: #dfffea;
+  }
+
+  /* Camadas: brilho (atrás) → anel da borda → face → conteúdo */
+  .orbit-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    /* desfoca o anel já recortado, então o brilho acompanha a borda */
+    filter: blur(var(--orbit-glow-blur));
+    opacity: var(--orbit-glow-opacity);
+  }
+  .orbit-ring {
+    position: absolute;
+    overflow: hidden;
+    border-radius: inherit;
+    pointer-events: none;
+    container-type: size; /* permite calcular a diagonal com cqw/cqh */
+    inset: 0;
+    padding: var(--orbit-thickness);
+    background: var(--orbit-base);
+    /* máscara que deixa visível só o anel (a faixa do padding) */
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box exclude,
+      linear-gradient(#000 0 0);
+  }
+  .orbit-ring .orbit-spin {
+    opacity: var(--orbit-sharp-opacity);
+  }
+  /* Cópia do anel usada no brilho: faixa mais larga, sem cor de base, arco em opacidade total */
+  .orbit-ring-glow {
+    padding: var(--orbit-glow-width);
+    background: none;
+  }
+  .orbit-ring-glow .orbit-spin {
+    opacity: 1;
+  }
+  /* Quadrado centralizado (lado ≈ diagonal do botão x 1.02) com o arco em conic-gradient */
+  .orbit-spin {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 150cqw;
+    width: calc(hypot(100cqw, 100cqh) * 1.02);
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    background: conic-gradient(
+      transparent 0 calc(100% - var(--orbit-arc)),
+      var(--orbit-c1) calc(100% - var(--orbit-arc) + 10%),
+      var(--orbit-c2) 100%
+    );
+    animation: orbit-spin var(--orbit-speed) linear infinite;
+  }
+  .orbit-face {
+    position: absolute;
+    inset: var(--orbit-thickness);
+    border-radius: inherit;
+    background: var(--orbit-face);
+  }
+  .orbit-label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  .orbit-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    transition: translate 250ms ease;
+  }
+
+  /* Estados */
+  .orbit-btn:focus-visible {
+    --orbit-arc: var(--orbit-arc-hover);
+    outline: 2px solid #0a8cff;
+    outline-offset: 3px;
+  }
+  .orbit-btn:active:not(:disabled) {
+    transform: scale(var(--orbit-press-scale));
+    transition-duration: 80ms;
+  }
+  .orbit-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  /* Hover só em aparelhos com mouse (evita hover "preso" no toque) */
+  @media (hover: hover) and (pointer: fine) {
+    .orbit-btn:hover:not(:disabled) {
+      --orbit-arc: var(--orbit-arc-hover);
+      transform: scale(var(--orbit-hover-scale));
+    }
+    .orbit-btn:hover:not(:disabled) .orbit-icon-end {
+      translate: 4px 0;
+    }
+    .orbit-round.orbit-whatsapp:hover {
+      animation: wa-pulse 1.2s ease-in-out infinite;
+    }
+  }
+  /* Movimento reduzido: arco parado, sem escala nem pulso */
+  @media (prefers-reduced-motion: reduce) {
+    .orbit-spin {
+      animation: none;
+    }
+    .orbit-btn,
+    .orbit-icon {
+      transition: none;
+    }
+    .orbit-btn:hover:not(:disabled),
+    .orbit-btn:active:not(:disabled) {
+      transform: none;
+    }
+    .orbit-btn:hover .orbit-icon-end {
+      translate: none;
+    }
+    .orbit-round.orbit-whatsapp:hover {
+      animation: none;
+    }
   }
 }
