@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { submitContact } from "@/lib/contact.functions";
-import { Smile, Sparkles, Scale, Store, Briefcase, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import logoUrl from "@/assets/code-flow-logo-compacta.png";
 import HeroWaves from "@/components/HeroWaves";
@@ -39,11 +39,16 @@ import { FRASE_EQUIPE } from "@/data/equipe";
 import SitePersonalizado from "@/components/SitePersonalizado";
 import QuemSomos from "@/components/QuemSomos";
 import {
-  depoimentos,
+  depoimentosLinha1,
+  depoimentosLinha2,
   FRASE_CREDIBILIDADE,
-  VELOCIDADE_CARROSSEL_SEGUNDOS,
-  type IconeSegmento,
+  MOSTRAR_NOTA_ILUSTRATIVA,
+  NOTA_ILUSTRATIVA,
+  VELOCIDADE_LINHA_1_SEGUNDOS,
+  VELOCIDADE_LINHA_2_SEGUNDOS,
+  type Depoimento,
 } from "@/data/depoimentos";
+import AvatarIlustrado from "@/components/AvatarIlustrado";
 import { faq } from "@/data/faq";
 import { INSTAGRAM_URL } from "@/data/config";
 
@@ -93,7 +98,23 @@ const steps: { icon: Icon; title: string; description: string }[] = [
   },
 ];
 // Depoimentos ficam em src/data/depoimentos.ts.
-const segmentIcons: Record<IconeSegmento, Icon> = { Smile, Sparkles, Scale, Store, Briefcase };
+// Card de depoimento (estilos no bloco "Depoimentos" de src/styles.css).
+function DepoimentoCard({ item }: { item: Depoimento }) {
+  return (
+    <article className="testimonial-card">
+      <div className="flex items-center gap-3">
+        <AvatarIlustrado nome={item.nome} foto={item.foto} />
+        <div className="min-w-0">
+          <p className="truncate text-sm font-semibold text-[#F7F9FC]">{item.nome}</p>
+          <p className="truncate text-xs text-[#C9D0DA]/80">
+            {item.cargo} · {item.segmento} · {item.cidade}
+          </p>
+        </div>
+      </div>
+      <p className="mt-4 line-clamp-4 text-sm leading-6 text-[#C9D0DA]">“{item.texto}”</p>
+    </article>
+  );
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -362,51 +383,29 @@ function Home() {
           <SectionHeading eyebrow="Resultados">
             O Que Nossos Clientes <span className="text-primary">Dizem</span>
           </SectionHeading>
-          {/* Carrossel automático: a lista é duplicada para o loop não ter emenda. */}
-          <div
-            className="testimonial-marquee"
-            style={{ ["--marquee-duration" as string]: `${VELOCIDADE_CARROSSEL_SEGUNDOS}s` }}
-          >
-            <div className="testimonial-track">
-              {[...depoimentos, ...depoimentos].map((item, i) => {
-                const SegIcon = segmentIcons[item.icone];
-                const initials = item.nome
-                  .replace(/^Dra?\.?\s+/, "")
-                  .split(" ")
-                  .map((p) => p[0])
-                  .slice(0, 2)
-                  .join("");
-                return (
-                  <article
-                    key={i}
-                    aria-hidden={i >= depoimentos.length}
-                    className="feature-card flex w-[300px] shrink-0 flex-col p-6 sm:w-[320px]"
-                  >
-                    <div
-                      className="text-xs tracking-widest text-primary"
-                      aria-label="Cinco estrelas"
-                    >
-                      ★★★★★
-                    </div>
-                    <p className="mt-3 line-clamp-4 flex-1 text-sm leading-6 text-muted-foreground">
-                      “{item.texto}”
-                    </p>
-                    <div className="mt-4 flex items-center gap-3 border-t border-border pt-4">
-                      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary/15 text-xs font-bold text-primary">
-                        {initials}
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-sm font-semibold text-foreground">{item.nome}</p>
-                        <p className="mt-0.5 flex items-center gap-1.5 text-xs text-muted-foreground">
-                          <SegIcon size={12} className="shrink-0 text-primary" />
-                          {item.segmento} · {item.cidade}
-                        </p>
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
+          {/* Dois carrosséis em sentidos opostos (dados em src/data/depoimentos.ts). */}
+          <div className="-mx-5 space-y-5 sm:-mx-8 lg:-mx-10">
+            <Marquee
+              duration={VELOCIDADE_LINHA_1_SEGUNDOS}
+              gap={20}
+              className="py-2"
+              aria-label="Depoimentos, linha 1"
+            >
+              {depoimentosLinha1.map((item) => (
+                <DepoimentoCard key={item.nome} item={item} />
+              ))}
+            </Marquee>
+            <Marquee
+              duration={VELOCIDADE_LINHA_2_SEGUNDOS}
+              gap={20}
+              reverse
+              className="py-2"
+              aria-label="Depoimentos, linha 2"
+            >
+              {depoimentosLinha2.map((item) => (
+                <DepoimentoCard key={item.nome} item={item} />
+              ))}
+            </Marquee>
           </div>
           <p className="mx-auto mt-10 max-w-3xl text-center text-base leading-relaxed text-silver sm:text-lg">
             {FRASE_CREDIBILIDADE.split("Code Flow").map((part, i, arr) => (
@@ -418,6 +417,9 @@ function Home() {
               </span>
             ))}
           </p>
+          {MOSTRAR_NOTA_ILUSTRATIVA && (
+            <p className="mt-4 text-center text-xs text-muted-foreground/70">{NOTA_ILUSTRATIVA}</p>
+          )}
         </section>
         <div className="section-rule" />
 
