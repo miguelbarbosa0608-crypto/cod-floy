@@ -604,6 +604,212 @@
   }
 }
 
+/* Equipe (seção "Nossa Equipe"): carrossel de cards com foto e verso azul. Componente em src/components/TeamCarousel.tsx */
+.team-viewport {
+  --fade: 48px; /* largura do esmaecido nas bordas */
+  position: relative;
+}
+.team-viewport[data-fade-right="true"] {
+  mask-image: linear-gradient(to right, black calc(100% - var(--fade)), transparent);
+}
+.team-viewport[data-fade-left="true"] {
+  mask-image: linear-gradient(to right, transparent, black var(--fade));
+}
+.team-viewport[data-fade-left="true"][data-fade-right="true"] {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black var(--fade),
+    black calc(100% - var(--fade)),
+    transparent
+  );
+}
+.team-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 8px;
+  padding: 8px; /* espaço para o anel de foco não ser cortado */
+  scrollbar-width: none;
+  cursor: grab;
+}
+.team-track::-webkit-scrollbar {
+  display: none;
+}
+.team-track.is-dragging {
+  scroll-snap-type: none;
+  cursor: grabbing;
+  user-select: none;
+}
+.team-card {
+  position: relative;
+  flex: 0 0 min(350px, 78vw);
+  aspect-ratio: 2 / 3;
+  scroll-snap-align: start;
+  perspective: 1200px;
+  border-radius: 28px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+.team-card:focus-visible {
+  outline: 2px solid #0a8cff;
+  outline-offset: 3px;
+}
+.team-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+.team-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid #13213a;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.team-front {
+  background: #0b1220;
+}
+.team-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.team-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 45%, rgb(7 11 18 / 0.75) 72%, #070b12 100%);
+}
+.team-caption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 1.5rem 3.5rem 1.5rem 1.5rem;
+}
+.team-cf {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.6rem;
+  opacity: 0.35;
+}
+.team-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 35%, #13213a, #0b1220 60%, #070b12);
+}
+.team-placeholder .cf-mark {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+.team-initials {
+  margin-top: -20%;
+  font-size: 4.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #9adbff;
+}
+.team-back {
+  transform: rotateY(180deg);
+  padding: 1.75rem;
+  color: #fff;
+  border-color: rgb(255 255 255 / 0.12);
+  background:
+    linear-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1px) 0 0 / 22px 22px,
+    linear-gradient(90deg, rgb(255 255 255 / 0.07) 1px, transparent 1px) 0 0 / 22px 22px,
+    linear-gradient(145deg, #0a8cff, #0b5fbf);
+}
+.team-card[data-flipped="true"] .team-inner {
+  transform: rotateY(180deg);
+}
+@media (hover: hover) and (pointer: fine) {
+  .team-track:not(.is-dragging) .team-card:hover .team-inner {
+    transform: rotateY(180deg);
+  }
+}
+.team-arrow {
+  position: absolute;
+  top: calc(50% - 22px - 14px); /* centro dos cards (desconta a barra de progresso) */
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid #13213a;
+  background: rgb(11 18 32 / 0.92);
+  color: #f7f9fc;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.35);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+.team-arrow:hover {
+  border-color: #0a8cff;
+  background: #0b1220;
+}
+.team-arrow:focus-visible {
+  outline: 2px solid #0a8cff;
+  outline-offset: 3px;
+}
+.team-progress {
+  margin: 1.5rem auto 0;
+  max-width: 20rem;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #1b2a44;
+}
+.team-progress span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: #0a8cff;
+  transition: transform 0.15s linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .team-inner,
+  .team-card[data-flipped="true"] .team-inner,
+  .team-track:not(.is-dragging) .team-card:hover .team-inner {
+    transform: none;
+    transition: none;
+  }
+  .team-face {
+    transition: opacity 0.3s ease;
+  }
+  .team-back {
+    transform: none;
+    opacity: 0;
+  }
+  .team-card[data-flipped="true"] .team-back {
+    opacity: 1;
+  }
+  .team-card[data-flipped="true"] .team-front {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) and (hover: hover) and (pointer: fine) {
+  .team-track:not(.is-dragging) .team-card:hover .team-back {
+    opacity: 1;
+  }
+  .team-track:not(.is-dragging) .team-card:hover .team-front {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;

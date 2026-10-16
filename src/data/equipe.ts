@@ -1,8 +1,15 @@
-// Equipe exibida no carrossel "Nossa Equipe".
-// Para colocar/trocar a foto: salve o arquivo em src/assets/equipe/ (ex.: miguel.jpg),
-// importe abaixo (import miguel from '@/assets/equipe/miguel.jpg') e coloque em "foto: miguel".
+// Equipe exibida no carrossel "Nossa Equipe" (a ordem abaixo é a ordem do carrossel).
+// Para trocar a foto: substitua o arquivo em src/assets/equipe/ mantendo o mesmo nome
+// (JPG, de preferência com até ~900px de largura).
 // Sem foto (foto: undefined), o card mostra automaticamente um placeholder com as iniciais.
 // objectPosition ajusta o enquadramento do rosto ("50% 35%" = centro horizontal, 35% do topo).
+import miguel from "@/assets/equipe/miguel.jpg";
+import vitor from "@/assets/equipe/vitor.jpg";
+import rodrigo from "@/assets/equipe/rodrigo.jpg";
+import ramalho from "@/assets/equipe/ramalho.jpg";
+import matheus from "@/assets/equipe/matheus.jpg";
+import leonardo from "@/assets/equipe/leonardo.jpg";
+
 export type Membro = {
   nome: string;
   funcaoCurta: string;
@@ -22,7 +29,7 @@ export const equipe: Membro[] = [
     funcaoCompleta: "Líder Técnico / Especialista de Execução",
     descricao:
       "Responsável pela arquitetura técnica, pela padronização da execução e pela definição das soluções. Resolve gargalos operacionais e técnicos e também atua na gestão de anúncios online.",
-    foto: undefined,
+    foto: miguel,
     objectPosition: "50% 35%",
   },
   {
@@ -31,7 +38,7 @@ export const equipe: Membro[] = [
     funcaoCompleta: "Gerente de Projetos / Scrum Master",
     descricao:
       "Cuida do cronograma, organiza as tarefas no quadro Kanban, acompanha cada etapa do projeto e mantém a comunicação direta com o cliente.",
-    foto: undefined,
+    foto: vitor,
     objectPosition: "50% 40%",
   },
   {
@@ -39,8 +46,8 @@ export const equipe: Membro[] = [
     funcaoCurta: "Integrante da Equipe",
     funcaoCompleta: "Integrante da Equipe",
     descricao: colaborativo,
-    foto: undefined,
-    objectPosition: "50% 30%",
+    foto: rodrigo,
+    objectPosition: "70% 30%",
   },
   {
     nome: "Gabriel Ramalho",
@@ -48,7 +55,7 @@ export const equipe: Membro[] = [
     funcaoCompleta: "Analista de Documentação e Compliance",
     descricao:
       "Responsável pelo dossiê técnico, pela documentação do projeto, pelos manuais de operação, pelo registro das etapas, pelas evidências das entregas e pela organização dos documentos.",
-    foto: undefined,
+    foto: ramalho,
     objectPosition: "50% 25%",
   },
   {
@@ -56,7 +63,7 @@ export const equipe: Membro[] = [
     funcaoCurta: "Integrante da Equipe",
     funcaoCompleta: "Integrante da Equipe",
     descricao: colaborativo,
-    foto: undefined,
+    foto: matheus,
     objectPosition: "50% 20%",
   },
   {
@@ -65,7 +72,7 @@ export const equipe: Membro[] = [
     funcaoCompleta: "Analista de Qualidade (QA) e Normas",
     descricao:
       "Verifica se as entregas atendem às normas técnicas, padrões de segurança, requisitos e especificações definidos para o projeto.",
-    foto: undefined,
+    foto: leonardo,
     objectPosition: "50% 25%",
   },
 ];

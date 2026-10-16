@@ -5,24 +5,19 @@ import {
   ArrowRight,
   ArrowUpRight,
   Check,
-  CheckCheck,
   ChevronRight,
   FileText,
   Instagram,
   Map,
   Menu,
   MessageCircle,
-  MousePointer2,
   Quote,
   Rocket,
   Search,
   Send,
   ShieldCheck,
-  TrendingUp,
   X,
   Zap,
-  Puzzle,
-  Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { submitContact } from "@/lib/contact.functions";
@@ -32,6 +27,8 @@ import logoUrl from "@/assets/logo.png";
 import HeroWaves from "@/components/HeroWaves";
 import ServiceAdvisor from "@/components/ServiceAdvisor";
 import ServiceFlipCards from "@/components/ServiceFlipCards";
+import TeamCarousel from "@/components/TeamCarousel";
+import { FRASE_EQUIPE } from "@/data/equipe";
 import SitePersonalizado from "@/components/SitePersonalizado";
 import QuemSomos from "@/components/QuemSomos";
 import {
@@ -52,7 +49,7 @@ const navigation = [
   ["Serviços", "#servicos"],
   ["Metodologia", "#metodologia"],
   ["Resultados", "#resultados"],
-  ["Diferenciais", "#diferenciais"],
+  ["Equipe", "#equipe"],
   ["Contato", "#contato"],
   ["FAQ", "#faq"],
 ];
@@ -90,38 +87,6 @@ const steps: { icon: Icon; title: string; description: string }[] = [
 ];
 // Depoimentos ficam em src/data/depoimentos.ts.
 const segmentIcons: Record<IconeSegmento, Icon> = { Smile, Sparkles, Scale, Store, Briefcase };
-const differences: { icon: Icon; title: string; description: string }[] = [
-  {
-    icon: Puzzle,
-    title: "Solução Integrada",
-    description: "Marketing, tecnologia e automação trabalhando juntos.",
-  },
-  {
-    icon: MousePointer2,
-    title: "Personalização Real",
-    description: "Cada solução parte da necessidade real do seu negócio.",
-  },
-  {
-    icon: CheckCheck,
-    title: "Processo Organizado",
-    description: "Diagnóstico, planejamento, execução, teste, documentação e entrega.",
-  },
-  {
-    icon: MessageCircle,
-    title: "Comunicação Clara",
-    description: "Linguagem didática, objetiva e acompanhamento de todas as etapas.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Foco em Processo",
-    description: "Não entregamos apenas uma peça: estruturamos uma solução funcional.",
-  },
-  {
-    icon: Users,
-    title: "Parceria Contínua",
-    description: "Tratamos a relação com o cliente como uma construção de longo prazo.",
-  },
-];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -449,31 +414,17 @@ function Home() {
         </section>
         <div className="section-rule" />
 
-        <section
-          id="diferenciais"
-          className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-10"
-        >
+        <section id="equipe" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
           <SectionHeading
-            eyebrow="Por que a CodeFlow?"
-            subtitle="Somos diferentes de agências comuns. Nosso compromisso é estruturar uma solução que funcione para o seu resultado."
+            eyebrow="Nossa Equipe"
+            subtitle="Pessoas com funções claras, trabalhando juntas para entregar soluções que funcionam."
           >
-            Não Entregamos Peças.
-            <br />
-            <span className="text-primary">Entregamos Soluções.</span>
+            Quem faz a <span className="text-primary">Code Flow acontecer</span>
           </SectionHeading>
-          <div className="grid gap-4 md:grid-cols-2 lg:gap-5">
-            {differences.map(({ icon: IconComponent, title, description }) => (
-              <article key={title} className="feature-card flex items-start gap-5 p-6">
-                <div className="icon-tile grid h-12 w-12 shrink-0 place-items-center">
-                  <IconComponent size={23} strokeWidth={1.8} />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="mb-2 text-base font-bold sm:text-lg">{title}</h3>
-                  <p className="text-sm leading-6 text-muted-foreground">{description}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+          <TeamCarousel />
+          <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-7 text-muted-foreground sm:text-base">
+            {FRASE_EQUIPE}
+          </p>
         </section>
         <div className="section-rule" />
 
@@ -617,13 +568,11 @@ function Home() {
             aria-label="Links do rodapé"
             className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-4 text-sm text-muted-foreground"
           >
-            {navigation
-              .filter(([label]) => label !== "Diferenciais")
-              .map(([label, href]) => (
-                <a key={href} href={href} className="hover:text-primary">
-                  {label}
-                </a>
-              ))}
+            {navigation.map(([label, href]) => (
+              <a key={href} href={href} className="hover:text-primary">
+                {label}
+              </a>
+            ))}
             <button
               type="button"
               onClick={() => setPrivacyOpen(true)}
