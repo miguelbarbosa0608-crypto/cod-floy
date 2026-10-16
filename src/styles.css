@@ -225,6 +225,81 @@
   }
 }
 
+/* ===== Marquee: faixa de rolagem infinita (componente src/components/Marquee.tsx) ===== */
+.marquee {
+  --marquee-fade: 10%; /* largura do esmaecido em cada ponta */
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 var(--marquee-fade),
+    #000 calc(100% - var(--marquee-fade)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 var(--marquee-fade),
+    #000 calc(100% - var(--marquee-fade)),
+    transparent
+  );
+}
+.marquee::-webkit-scrollbar {
+  display: none;
+}
+.marquee-track {
+  display: flex;
+  gap: var(--marquee-gap);
+  width: max-content;
+  animation: marquee-loop var(--marquee-duration, 60s) linear infinite;
+}
+.marquee[data-reverse="true"] .marquee-track {
+  animation-direction: reverse;
+}
+.marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--marquee-gap);
+}
+.marquee:hover .marquee-track,
+.marquee:active .marquee-track {
+  animation-play-state: paused;
+}
+/* desloca exatamente uma cópia + o espaço entre as cópias: a volta fica sem emenda */
+@keyframes marquee-loop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - var(--marquee-gap) / 2));
+  }
+}
+@media (max-width: 767px) {
+  .marquee-track {
+    animation-duration: calc(var(--marquee-duration, 60s) * 1.4);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  .marquee-copy {
+    display: none;
+  }
+}
+
+/* Faixa de ferramentas (abaixo do topo). Itens em src/data/ferramentas.ts */
+.tool-name {
+  white-space: nowrap;
+  font-size: clamp(1.25rem, 2.6vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #c9d0da;
+  opacity: 0.42;
+}
+
 /* ===== FAQ ===== */
 .faq-icon {
   transition: transform 0.25s ease;

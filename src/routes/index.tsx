@@ -29,6 +29,12 @@ import ServiceAdvisor from "@/components/ServiceAdvisor";
 import ServiceFlipCards from "@/components/ServiceFlipCards";
 import TeamCarousel from "@/components/TeamCarousel";
 import OrbitButton from "@/components/OrbitButton";
+import Marquee from "@/components/Marquee";
+import {
+  ferramentas,
+  TITULO_FERRAMENTAS,
+  VELOCIDADE_FERRAMENTAS_SEGUNDOS,
+} from "@/data/ferramentas";
 import { FRASE_EQUIPE } from "@/data/equipe";
 import SitePersonalizado from "@/components/SitePersonalizado";
 import QuemSomos from "@/components/QuemSomos";
@@ -285,22 +291,25 @@ function Home() {
           </div>
         </section>
         <div className="section-rule" />
-        <section
-          aria-label="Nossa atuação"
-          className="mx-auto grid max-w-5xl grid-cols-3 gap-2 px-4 py-10 text-center sm:gap-10 sm:py-14"
-        >
-          {[
-            ["6", "Serviços integrados"],
-            ["6", "Etapas de processo"],
-            ["100%", "Soluções personalizadas"],
-          ].map(([number, label]) => (
-            <div key={label}>
-              <div className="text-2xl font-bold text-primary sm:text-4xl">{number}</div>
-              <p className="mx-auto mt-2 max-w-36 text-[11px] leading-snug text-muted-foreground sm:text-sm">
-                {label}
-              </p>
-            </div>
-          ))}
+        <section aria-labelledby="ferramentas-titulo" className="mx-auto max-w-7xl py-10 sm:py-14">
+          <p
+            id="ferramentas-titulo"
+            className="mb-6 px-5 text-center text-xs font-bold uppercase tracking-widest text-muted-foreground sm:mb-8"
+          >
+            {TITULO_FERRAMENTAS}
+          </p>
+          <Marquee
+            duration={VELOCIDADE_FERRAMENTAS_SEGUNDOS}
+            gap={56}
+            aria-label={TITULO_FERRAMENTAS}
+            groupClassName="items-center"
+          >
+            {ferramentas.map((nome) => (
+              <span key={nome} className="tool-name">
+                {nome}
+              </span>
+            ))}
+          </Marquee>
         </section>
         <div className="section-rule" />
         <SitePersonalizado />
