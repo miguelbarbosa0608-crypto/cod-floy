@@ -8,9 +8,7 @@ import {
   CheckCheck,
   ChevronRight,
   FileText,
-  Globe2,
   Instagram,
-  LayoutTemplate,
   Map,
   Menu,
   MessageCircle,
@@ -19,13 +17,10 @@ import {
   Rocket,
   Search,
   Send,
-  Settings2,
   ShieldCheck,
-  Target,
   TrendingUp,
   X,
   Zap,
-  Megaphone,
   Puzzle,
   Users,
 } from "lucide-react";
@@ -36,6 +31,7 @@ import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import logoUrl from "@/assets/logo.png";
 import HeroWaves from "@/components/HeroWaves";
 import ServiceAdvisor from "@/components/ServiceAdvisor";
+import ServiceFlipCards from "@/components/ServiceFlipCards";
 import SitePersonalizado from "@/components/SitePersonalizado";
 import QuemSomos from "@/components/QuemSomos";
 import {
@@ -59,43 +55,6 @@ const navigation = [
   ["Diferenciais", "#diferenciais"],
   ["Contato", "#contato"],
   ["FAQ", "#faq"],
-];
-const services: { icon: Icon; title: string; description: string }[] = [
-  {
-    icon: Target,
-    title: "Tráfego Pago",
-    description:
-      "Gestão de campanhas e anúncios para atrair clientes qualificados e gerar oportunidades com previsibilidade.",
-  },
-  {
-    icon: Megaphone,
-    title: "Social Media",
-    description:
-      "Estratégia, conteúdo e presença digital para fortalecer a sua marca e conectar com o público certo.",
-  },
-  {
-    icon: LayoutTemplate,
-    title: "Landing Pages",
-    description:
-      "Páginas estratégicas, rápidas e persuasivas para captação, apresentação e conversão.",
-  },
-  {
-    icon: Globe2,
-    title: "Sites Institucionais",
-    description: "Sites modernos, rápidos e alinhados ao posicionamento da sua empresa.",
-  },
-  {
-    icon: Settings2,
-    title: "Automação de CRM",
-    description:
-      "Automatização de relacionamento, acompanhamento e organização comercial para nutrir leads e escalar sem aumentar a equipe.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Mentoria Empresarial",
-    description:
-      "Orientação prática para organizar, estruturar e desenvolver a estratégia comercial do seu negócio.",
-  },
 ];
 const steps: { icon: Icon; title: string; description: string }[] = [
   {
@@ -393,17 +352,7 @@ function Home() {
           >
             Soluções que Geram <span className="text-primary">Resultados</span>
           </SectionHeading>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-            {services.map(({ icon: IconComponent, title, description }, i) => (
-              <article key={title} className={`feature-card p-7 sm:p-8`}>
-                <div className="icon-tile mb-7 grid h-13 w-13 place-items-center">
-                  <IconComponent size={25} strokeWidth={1.8} />
-                </div>
-                <h3 className="mb-3 text-xl font-bold">{title}</h3>
-                <p className="text-sm leading-7 text-muted-foreground">{description}</p>
-              </article>
-            ))}
-          </div>
+          <ServiceFlipCards />
         </section>
         <div className="section-rule" />
 

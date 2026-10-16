@@ -19,6 +19,9 @@ dist-ssr
 # Variáveis de ambiente (modelo versionado em .env.example)
 .env
 
+# Arquivo recriado automaticamente por ferramenta local (não faz parte do projeto)
+.lovable/claude
+
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars
