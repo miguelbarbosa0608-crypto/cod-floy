@@ -31,10 +31,10 @@ export default function CursorTrail() {
       const dt = Math.min((t - (last || t)) / 1000, 0.05); last = t;
       ctx.clearRect(0, 0, innerWidth, innerHeight);
       const k = Math.pow(ATRITO, dt * 60);
-      for (let i = ps.length - 1; i >= 0; i--) { const p = ps[i]; p.idade += dt; if (p.idade >= DURACAO) { ps.splice(i, 1); continue; } p.vx *= k; p.vy *= k; p.x += p.vx * dt * 60; p.y += p.vy * dt * 60; }
+      for (let i = ps.length - 1; i >= 0; i--) { const p = ps[i]!; p.idade += dt; if (p.idade >= DURACAO) { ps.splice(i, 1); continue; } p.vx *= k; p.vy *= k; p.x += p.vx * dt * 60; p.y += p.vy * dt * 60; }
       ctx.lineWidth = 1;
       for (let i = 0; i < ps.length; i++) for (let j = i + 1; j < ps.length; j++) {
-        const a = ps[i], b = ps[j]; const d = Math.hypot(a.x - b.x, a.y - b.y); if (d > ALCANCE_LINHA) continue;
+        const a = ps[i]!, b = ps[j]!; const d = Math.hypot(a.x - b.x, a.y - b.y); if (d > ALCANCE_LINHA) continue;
         const v = (1 - ease(Math.max(a.idade, b.idade) / DURACAO)) * (1 - d / ALCANCE_LINHA) * INTENSIDADE * 0.4;
         ctx.strokeStyle = `rgba(${COR}, ${v})`; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
       }

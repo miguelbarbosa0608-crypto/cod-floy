@@ -3,7 +3,7 @@
 // importe abaixo (import miguel from '@/assets/equipe/miguel.jpg') e coloque em "foto: miguel".
 // Sem foto (foto: undefined), o card mostra automaticamente um placeholder com as iniciais.
 // objectPosition ajusta o enquadramento do rosto ("50% 35%" = centro horizontal, 35% do topo).
-export type Membro = { nome: string; funcaoCurta: string; funcaoCompleta: string; descricao: string; foto?: string; objectPosition: string };
+export type Membro = { nome: string; funcaoCurta: string; funcaoCompleta: string; descricao: string; foto?: string | undefined; objectPosition: string };
 
 const colaborativo = 'Atua de forma colaborativa na execução das atividades, apoia as áreas do projeto e participa das entregas conforme a necessidade da equipe.';
 
