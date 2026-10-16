@@ -2,15 +2,15 @@
 
 ```text
 .
-├── .env                      Endereços públicos do banco de dados (Lovable Cloud)
+├── .env                      Endereços públicos do banco de dados (local, fora do Git)
+├── .env.example              Modelo do .env com os nomes das variáveis
 ├── .gitignore                Arquivos ignorados pelo Git
 ├── .prettierrc / .prettierignore  Regras de formatação automática do código
 ├── AGENTS.md                 Regras técnicas do projeto (para o Lovable)
 ├── GUIA-DE-EDICAO.md         Passo a passo "quero mudar X, edite Y"
 ├── README.md                 Visão geral, instalação e publicação
 ├── roadmap.md                Lista de tarefas do projeto
-├── bun.lock                  Versões travadas das dependências
-├── bunfig.toml               Configuração do gerenciador Bun
+├── package-lock.json         Versões travadas das dependências (npm)
 ├── components.json           Configuração dos componentes de interface (shadcn)
 ├── eslint.config.js          Regras de verificação de código
 ├── package.json              Dependências e comandos (dev, build...)
