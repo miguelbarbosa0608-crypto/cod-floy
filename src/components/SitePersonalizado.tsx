@@ -1,65 +1,12 @@
-// Seção "Site Personalizado". Textos: src/data/sobre.ts. Cores: tokens em src/styles.css (classes .phone-*).
-import { ArrowRight, Check, Menu, Rocket, ShieldCheck, Zap } from "lucide-react";
+// Seção "Site Personalizado". Textos: src/data/sobre.ts. Celulares de exemplo: src/data/exemplosSites.ts (PhoneRing).
+import { ArrowRight, Check } from "lucide-react";
 import OrbitButton from "@/components/OrbitButton";
 import { sitePersonalizado as d } from "@/data/sobre";
 import { WHATSAPP_NUMERO } from "@/data/config";
 import Reveal from "@/components/Reveal";
+import PhoneRing from "@/components/PhoneRing";
 
 const waLink = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(d.mensagemWhatsapp)}`;
-
-function PhoneMockup() {
-  return (
-    <div className="phone-float relative mx-auto w-[260px] max-w-full">
-      <div className="phone-glow" aria-hidden="true" />
-      <div
-        className="phone-frame relative"
-        role="img"
-        aria-label="Exemplo de site personalizado no celular"
-      >
-        <div className="phone-screen">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1.5">
-              <span className="h-4 w-4 rounded-md bg-primary" />
-              <span className="text-[10px] font-bold text-foreground">SuaMarca</span>
-            </div>
-            <Menu size={14} className="text-silver" />
-          </div>
-          <span className="mt-5 inline-block rounded-full border border-primary/40 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-primary">
-            Novo site
-          </span>
-          <p className="mt-3 text-lg font-bold leading-tight text-foreground">
-            Sua marca.
-            <br />
-            <span className="text-primary">Seu jeito.</span>
-          </p>
-          <div className="mt-3 space-y-1.5">
-            <div className="h-1.5 w-full rounded bg-muted-foreground/30" />
-            <div className="h-1.5 w-3/4 rounded bg-muted-foreground/30" />
-          </div>
-          <div className="mt-4 h-7 w-24 rounded-md bg-primary" />
-          <div className="mt-5 grid grid-cols-3 gap-2">
-            {[Zap, Rocket, ShieldCheck].map((I, i) => (
-              <div
-                key={i}
-                className="grid h-12 place-items-center rounded-lg border border-border bg-card"
-              >
-                <I size={14} className="text-primary" />
-              </div>
-            ))}
-          </div>
-          <div
-            className="phone-palette mt-6 flex justify-center gap-2"
-            aria-label="Paleta personalizada"
-          >
-            {["bg-primary", "bg-accent", "bg-foreground", "bg-silver"].map((c) => (
-              <span key={c} className={`h-4 w-4 rounded-full ${c}`} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function SitePersonalizado() {
   return (
@@ -77,7 +24,7 @@ export default function SitePersonalizado() {
           </h2>
         </div>
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          <PhoneMockup />
+          <PhoneRing />
           <div className="min-w-0">
             <p className="text-xl font-semibold leading-snug text-foreground sm:text-2xl">
               {d.subtitulo}

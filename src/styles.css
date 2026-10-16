@@ -449,12 +449,6 @@
   background: oklch(0.08 0.01 255);
   padding: 12px;
 }
-.phone-screen {
-  border-radius: 30px;
-  background: var(--background);
-  padding: 22px 18px;
-  min-height: 400px;
-}
 .phone-glow {
   position: absolute;
   inset: 10% -10%;
@@ -465,43 +459,87 @@
   );
   filter: blur(30px);
 }
-.phone-float {
-  animation: phone-float 6s ease-in-out infinite;
+
+/* Anel de celulares (componente src/components/PhoneRing.tsx; dados em src/data/exemplosSites.ts) */
+.phone-ring {
+  --ring-height: 560px; /* altura da área do anel */
+  --ring-scale: 1; /* escala dos celulares (1 = 220x440px) */
+  position: relative;
+  height: var(--ring-height);
+  overflow: hidden;
+  perspective: 3000px;
+  touch-action: pan-y; /* arrastar na horizontal sem travar a rolagem vertical */
+  cursor: grab;
+  user-select: none;
 }
-@keyframes phone-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
+.phone-ring.is-dragging {
+  cursor: grabbing;
 }
-.phone-palette span {
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+.phone-ring::before {
+  /* brilho azul suave atrás do anel */
+  content: "";
+  position: absolute;
+  inset: 20% 15%;
+  background: radial-gradient(circle, rgb(10 140 255 / 0.28), transparent 70%);
+  filter: blur(30px);
+  pointer-events: none;
 }
-.phone-float:hover .phone-palette span {
-  animation: palette-pulse 1.6s ease-in-out infinite;
+.phone-ring-scale {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: scale(var(--ring-scale));
+  transform-style: preserve-3d;
 }
-.phone-float:hover .phone-palette span:nth-child(2) {
-  animation-delay: 0.4s;
+.phone-ring-stage {
+  position: absolute;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
-.phone-float:hover .phone-palette span:nth-child(3) {
-  animation-delay: 0.8s;
+.phone-ring-item {
+  position: absolute;
+  left: -110px;
+  top: -240px;
+  width: 220px;
+  transform: rotateY(calc(var(--i) * var(--passo))) translateZ(var(--raio));
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
-.phone-float:hover .phone-palette span:nth-child(4) {
-  animation-delay: 1.2s;
+.phone-ring-frame {
+  width: 220px;
+  height: 440px;
+  border-color: #13213a;
+  box-shadow: 0 0 40px -6px rgb(10 140 255 / 0.35);
 }
-@keyframes palette-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  25% {
-    transform: scale(1.35);
-    box-shadow: 0 0 10px var(--primary);
+.phone-ring-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 30px;
+  padding: 16px 14px 14px;
+}
+.phone-ring-btn {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid #13213a;
+  background: #0b1220;
+  color: #f7f9fc;
+}
+.phone-ring-btn:hover {
+  border-color: #0a8cff;
+}
+.phone-ring-btn:focus-visible {
+  outline: 2px solid #0a8cff;
+  outline-offset: 3px;
+}
+@media (max-width: 639px) {
+  .phone-ring {
+    --ring-height: 440px;
+    --ring-scale: 0.773; /* ~170x340px */
   }
 }
 /* Card da logo em Quem Somos: a borda é o anel do OrbitBorder */
@@ -864,10 +902,6 @@
     opacity: 1;
     transform: none;
     transition: none;
-  }
-  .phone-float,
-  .phone-float:hover .phone-palette span {
-    animation: none;
   }
 }
 
