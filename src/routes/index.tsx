@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent, type ComponentType } from "react";
+import { useEffect, useState, type FormEvent, type ComponentType } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowRight,
@@ -179,6 +179,14 @@ function SectionHeading({
 }
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  // Header mais opaco e um pouco mais baixo depois que a página rola (estilos em .site-header).
+  const [rolou, setRolou] = useState(false);
+  useEffect(() => {
+    const aoRolar = () => setRolou(window.scrollY > 8);
+    aoRolar();
+    window.addEventListener("scroll", aoRolar, { passive: true });
+    return () => window.removeEventListener("scroll", aoRolar);
+  }, []);
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
@@ -210,8 +218,12 @@ function Home() {
   };
   return (
     <div className="site-shell min-h-screen">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8 lg:h-[76px] lg:px-10">
+      <header
+        className="site-header fixed inset-x-0 top-0 z-50"
+        data-scrolled={rolou}
+        data-menu-open={menuOpen}
+      >
+        <div className="site-header-bar mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
           <Logo />
           <nav
             aria-label="Navegação principal"
@@ -244,7 +256,7 @@ function Home() {
         {menuOpen && (
           <nav
             aria-label="Menu móvel"
-            className="flex max-h-[calc(100dvh-64px)] flex-col gap-1 overflow-y-auto border-t border-border bg-background px-5 py-5 lg:hidden"
+            className="flex max-h-[calc(100dvh-64px)] flex-col gap-1 overflow-y-auto border-t border-[rgb(92_184_255/0.12)] px-5 py-5 lg:hidden"
           >
             {navigation.map(([label, href]) => (
               <a
