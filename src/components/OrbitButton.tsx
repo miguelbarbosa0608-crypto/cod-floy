@@ -64,7 +64,12 @@ export default function OrbitButton({
       </span>
     </>
   );
-  const classes = cn("orbit-btn", `orbit-${variant}`, round && "orbit-round", className);
+  const classes = cn(
+    "orbit-surface orbit-btn",
+    `orbit-${variant}`,
+    round && "orbit-round",
+    className,
+  );
 
   if (href)
     return (

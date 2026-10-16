@@ -4,6 +4,7 @@ import { ListChecks, Layers, MapPin } from "lucide-react";
 import logoUrl from "@/assets/code-flow-logo-completa.png";
 import { quemSomos as d } from "@/data/sobre";
 import Reveal from "@/components/Reveal";
+import OrbitBorder from "@/components/OrbitBorder";
 
 const icones = { etapas: ListChecks, integradas: Layers, local: MapPin };
 
@@ -32,7 +33,11 @@ export default function QuemSomos() {
     >
       <Reveal>
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-          <div className="logo-card grid aspect-[16/10] place-items-center p-6 sm:p-10">
+          <OrbitBorder
+            radius={24}
+            className="logo-card"
+            contentClassName="logo-card-inner grid aspect-[16/10] place-items-center p-6 sm:p-10"
+          >
             <img
               src={logoUrl}
               alt="Logo Code Flow"
@@ -41,7 +46,7 @@ export default function QuemSomos() {
               loading="lazy"
               className="h-full w-full object-contain"
             />
-          </div>
+          </OrbitBorder>
           <div className="min-w-0">
             <p className="mb-4 text-xs font-bold uppercase tracking-widest text-primary">
               {d.rotulo}

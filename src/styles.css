@@ -440,11 +440,12 @@
     box-shadow: 0 0 10px var(--primary);
   }
 }
+/* Card da logo em Quem Somos: a borda é o anel do OrbitBorder */
 .logo-card {
-  border-radius: 24px;
-  border: 1px solid var(--border);
-  background: oklch(0.05 0 0);
   box-shadow: 0 0 60px -10px color-mix(in oklab, var(--primary) 40%, transparent);
+}
+.logo-card-inner {
+  background: oklch(0.05 0 0);
 }
 
 /* Flip cards (seção Serviços): frente escura, verso azul. Componente em src/components/ServiceFlipCards.tsx */
@@ -807,8 +808,9 @@
 }
 
 /* ==========================================================================
-   Botões orbitais (componente em src/components/OrbitButton.tsx)
+   Botões e bordas orbitais (OrbitButton.tsx e OrbitBorder.tsx em src/components/)
    Um arco luminoso gira em volta da borda (sentido anti-horário) e cresce no hover.
+   As duas peças usam as mesmas camadas (.orbit-glow, .orbit-ring, .orbit-spin).
    ========================================================================== */
 
 /* Tamanho do arco animável (permite a transição suave de 30% para 100%) */
@@ -824,7 +826,8 @@
 }
 
 @layer components {
-  .orbit-btn {
+  /* Base comum (botões e bordas) */
+  .orbit-surface {
     /* ===== Parâmetros (ajuste aqui) ===== */
     --orbit-thickness: 2px; /* espessura da borda */
     --orbit-speed: 7s; /* tempo de uma volta completa do arco */
@@ -835,12 +838,18 @@
     --orbit-glow-opacity: 1; /* intensidade do brilho (0 a 1) */
     --orbit-glow-width: 6px; /* largura da faixa que gera o brilho */
     --orbit-sharp-opacity: 0.45; /* opacidade do arco nítido sobre a borda */
-    --orbit-hover-scale: 1.04; /* aumento no hover */
-    --orbit-press-scale: 0.97; /* redução ao pressionar */
 
     --orbit-arc: var(--orbit-arc-rest);
     position: relative;
     isolation: isolate;
+    transition: --orbit-arc var(--orbit-arc-duration) ease;
+  }
+
+  /* Botão (OrbitButton) */
+  .orbit-btn {
+    --orbit-hover-scale: 1.04; /* aumento no hover */
+    --orbit-press-scale: 0.97; /* redução ao pressionar */
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -951,6 +960,22 @@
     transition: translate 250ms ease;
   }
 
+  /* Borda orbital em cards (OrbitBorder) */
+  .orbit-border {
+    --orbit-base: #13213a; /* cor da borda fora do arco */
+    --orbit-sharp-opacity: 0.9;
+  }
+  .orbit-border-content {
+    position: relative;
+    margin: var(--orbit-thickness);
+    border-radius: calc(var(--orbit-radius, 24px) - var(--orbit-thickness));
+  }
+  /* Versão discreta: arco mais suave, sem brilho */
+  .orbit-subtle {
+    --orbit-base: transparent;
+    --orbit-sharp-opacity: 0.55;
+  }
+
   /* Estados */
   .orbit-btn:focus-visible {
     --orbit-arc: var(--orbit-arc-hover);
@@ -976,6 +1001,9 @@
     }
     .orbit-round.orbit-whatsapp:hover {
       animation: wa-pulse 1.2s ease-in-out infinite;
+    }
+    .orbit-border:hover {
+      --orbit-arc: var(--orbit-arc-hover);
     }
   }
   /* Movimento reduzido: arco parado, sem escala nem pulso */
