@@ -2,72 +2,57 @@
 
 ```text
 .
-├── .env                      Endereços públicos do banco de dados (local, fora do Git)
+├── .env                      Endereços do banco de dados (local, fora do Git)
 ├── .env.example              Modelo do .env com os nomes das variáveis
-├── .gitignore                Arquivos ignorados pelo Git
-├── .prettierrc / .prettierignore  Regras de formatação automática do código
-├── AGENTS.md                 Regras técnicas do projeto (para o Lovable)
+├── AGENTS.md                 Regras técnicas do projeto
 ├── GUIA-DE-EDICAO.md         Passo a passo "quero mudar X, edite Y"
 ├── README.md                 Visão geral, instalação e publicação
-├── roadmap.md                Lista de tarefas do projeto
+├── package.json              Dependências e comandos (dev, build, test)
 ├── package-lock.json         Versões travadas das dependências (npm)
-├── components.json           Configuração dos componentes de interface (shadcn)
-├── eslint.config.js          Regras de verificação de código
-├── package.json              Dependências e comandos (dev, build...)
-├── tsconfig.json             Configuração do TypeScript
-├── vite.config.ts            Configuração do Vite (servidor e build)
-├── vitest.config.ts          Configuração dos testes
-├── docs/
-│   └── ESTRUTURA.md          Este arquivo
+├── vite.config.ts            Configuração do Vite
 ├── public/
-│   ├── favicon.svg           Ícone da aba do navegador
-│   └── robots.txt            Instruções para buscadores (Google)
-├── supabase/
-│   ├── config.toml           Configuração do banco (automático)
-│   └── migrations/*.sql      Criação da tabela de contatos (contact_leads)
+│   ├── favicon.ico           Ícone da aba (16/32/48px)
+│   ├── favicon.png           Ícone 192×192
+│   ├── apple-touch-icon.png  Ícone para a tela inicial do iPhone
+│   └── robots.txt            Instruções para buscadores
+├── supabase/                 Configuração e migrações do banco (tabela contact_leads)
 └── src/
     ├── routes/
-    │   ├── index.tsx         A PÁGINA: links, listas de conteúdo, todas as seções
-    │   ├── __root.tsx        HTML base, idioma pt-BR, fonte Open Sans, título padrão
-    │   └── README.md         Nota técnica sobre rotas
-    ├── styles.css            Cores, fonte, bordas, efeitos (cartões, brilho, animações)
+    │   ├── index.tsx         A página: seções, menu, metodologia, contato, rodapé
+    │   └── __root.tsx        HTML base, idioma, fonte, título, favicon e cursor
+    ├── styles.css            Cores, cards, botões/bordas orbitais, carrosséis, animações
+    ├── assets/
+    │   ├── code-flow-logo*.png  Logo (compacta, completa e original)
+    │   └── equipe/           Fotos da equipe
+    ├── data/
+    │   ├── config.ts         Instagram e número do WhatsApp
+    │   ├── ferramentas.ts    Faixa de plataformas e ferramentas
+    │   ├── servicos.ts       Cards de serviços (frente e verso)
+    │   ├── depoimentos.ts    Depoimentos, velocidades e nota ilustrativa
+    │   ├── equipe.ts         Integrantes da equipe
+    │   ├── sobre.ts          Site Personalizado e Quem Somos
+    │   ├── faq.ts            Perguntas e respostas
+    │   └── diferenciais.ts   Conteúdo antigo guardado (não usado)
+    ├── components/
+    │   ├── HeroWaves.tsx     Fundo animado 3D do topo
+    │   ├── OrbitButton.tsx   Botão com borda orbital
+    │   ├── OrbitBorder.tsx   Borda orbital para cards (logo em Quem Somos)
+    │   ├── Marquee.tsx       Faixa de rolagem infinita (ferramentas e depoimentos)
+    │   ├── AvatarIlustrado.tsx  Avatar em SVG gerado pelo nome
+    │   ├── ServiceFlipCards.tsx Cards de serviços que viram
+    │   ├── TeamCarousel.tsx  Carrossel da equipe
+    │   ├── CursorTrail.tsx   Rastro do mouse
+    │   ├── SitePersonalizado.tsx / QuemSomos.tsx / Reveal.tsx
+    │   ├── ServiceAdvisor.tsx   Consultor inteligente (IA)
+    │   └── ui/               Componentes prontos (shadcn)
     ├── lib/
-    │   ├── contact.functions.ts  Validação e gravação dos contatos do formulário
-    │   ├── utils.ts              Função auxiliar para juntar classes CSS
-    │   ├── error-capture.ts      Captura de erros
-    │   ├── error-page.ts         Página de erro
-    │   └── lovable-error-reporting.ts  Envio de erros ao Lovable
-    ├── components/HeroWaves.tsx  Fundo animado 3D do topo
-    ├── data/depoimentos.ts   Textos dos depoimentos
-    ├── data/faq.ts           Perguntas e respostas do FAQ
-    ├── data/config.ts        Link do Instagram
-    ├── components/ui/        Componentes prontos (button.tsx é usado na página; os demais ficam disponíveis)
-    ├── hooks/use-mobile.tsx  Detecta tela de celular
-    ├── integrations/supabase/  Conexão com o banco de dados (gerado, não editar)
+    │   ├── contact.functions.ts    Validação e gravação dos contatos
+    │   └── recommend.functions.ts  Recomendação do consultor de IA
+    ├── integrations/supabase/  Conexão com o banco (gerado, não editar)
     ├── test/                 Testes automáticos
-    ├── router.tsx            Cria o roteador do site
-    ├── routeTree.gen.ts      Lista de rotas (gerado, não editar)
-    ├── server.ts             Entrada do servidor
-    └── start.ts              Inicialização do app
+    └── routeTree.gen.ts      Lista de rotas (gerado, não editar)
 ```
 
-## Seções da página (todas em `src/routes/index.tsx`)
+## Ordem das seções da página
 
-| Seção                    | Identificador    | Dados usados                   |
-| ------------------------ | ---------------- | ------------------------------ |
-| Cabeçalho e menu         | `<header>`       | `navigation`                   |
-| Topo (hero)              | `#inicio`        | textos diretos                 |
-| Números                  | `Nossa atuação`  | lista dentro da seção          |
-| Serviços                 | `#servicos`      | `services`                     |
-| Metodologia              | `#metodologia`   | `steps`                        |
-| Depoimentos              | `#resultados`    | `src/data/depoimentos.ts`      |
-| Diferenciais             | `#diferenciais`  | `differences`                  |
-| Contato/formulário       | `#contato`       | `submitContact`, `whatsappUrl` |
-| Rodapé                   | `<footer>`       | `navigation`, `INSTAGRAM_URL`  |
-| Botão flutuante WhatsApp | final do arquivo | `whatsappUrl`                  |
-
-- `src/data/sobre.ts` — textos das seções Site Personalizado e Quem Somos.
-- `src/components/SitePersonalizado.tsx` — seção com o celular ilustrativo.
-- `src/components/QuemSomos.tsx` — seção Quem Somos com a logo e 3 cards.
-- `src/components/Reveal.tsx` — efeito de aparecer ao rolar.
-- `src/components/ServiceAdvisor.tsx` + `src/lib/recommend.functions.ts` — consultor inteligente com IA.
+Topo (hero) → Ferramentas → Site Personalizado → Quem Somos → Serviços (`#servicos`) → Metodologia (`#metodologia`) → Resultados (`#resultados`) → Nossa Equipe (`#equipe`) → Consultor (`#consultor`) → Contato (`#contato`) → FAQ (`#faq`) → Rodapé.

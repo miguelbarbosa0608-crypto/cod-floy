@@ -2,116 +2,65 @@
 
 Site de apresentação (uma única página) da **Code Flow**, empresa de tecnologia, marketing e automação. Todo o conteúdo está em português.
 
-> Guia rápido de edição: veja **GUIA-DE-EDICAO.md**. Árvore completa de arquivos: veja **docs/ESTRUTURA.md**.
+> Guia "quero mudar X, edite Y": veja **GUIA-DE-EDICAO.md**. Árvore de arquivos: veja **docs/ESTRUTURA.md**.
 
-## Tecnologias usadas
+## Tecnologias
 
-- **React 19** + **TypeScript** — construção da página
-- **TanStack Start / TanStack Router** — estrutura do site e rotas
-- **Vite** — servidor de desenvolvimento e geração do site final
-- **Tailwind CSS v4** — estilos (configurado em `src/styles.css`, não existe `tailwind.config.js`)
-- **Lovable Cloud** — banco de dados que guarda os contatos enviados pelo formulário
-- **lucide-react** — ícones
+- **React 19** + **TypeScript**
+- **TanStack Start / TanStack Router**: estrutura do site, rotas e funções de servidor
+- **Vite**: servidor de desenvolvimento e build
+- **Tailwind CSS v4**: estilos (configurados em `src/styles.css`; não existe `tailwind.config.js`)
+- **Supabase**: banco de dados que guarda os contatos do formulário
+- **lucide-react**: ícones · **three**: fundo animado do topo
 
-## Estrutura de pastas (resumo)
+## Como instalar e rodar
 
-```text
-public/            Arquivos públicos (favicon, robots.txt)
-src/
-  routes/
-    index.tsx      A página inteira: textos, listas, seções, links
-    __root.tsx     Estrutura HTML base, fonte e título padrão
-  styles.css       Cores, fonte, bordas e efeitos visuais
-  lib/
-    contact.functions.ts  Validação e envio do formulário
-  components/ui/   Componentes prontos (botões etc.)
-  integrations/    Conexão com o banco de dados (gerado automaticamente)
-supabase/          Configuração e histórico do banco de dados
-docs/ESTRUTURA.md  Árvore completa e função de cada arquivo
-```
-
-## Como instalar e rodar no VS Code
-
-1. Instale o **Node.js** (versão 20 ou superior): https://nodejs.org
-2. Baixe o projeto (ZIP ou `git clone`) e abra a pasta no VS Code.
-3. Abra o terminal do VS Code (menu **Terminal > Novo Terminal**) e rode:
+1. Instale o **Node.js** 20 ou superior: https://nodejs.org
+2. Copie o arquivo `.env.example` para `.env` e preencha os valores do Supabase (peça a quem administra o projeto). Sem o `.env`, o site abre, mas o formulário não salva os contatos.
+3. No terminal, dentro da pasta do projeto:
 
 ```sh
-npm install      # instala as dependências (só na primeira vez)
-npm run dev      # abre o site em modo desenvolvimento (http://localhost:8080 ou o endereço mostrado)
-npm run build    # gera a versão final para publicação
+npm install          # instala as dependências (só na primeira vez)
+npm run dev          # site em http://localhost:8080 (ou o endereço mostrado)
+npm run dev -- --host  # também mostra um endereço de rede para abrir no celular (mesma rede Wi-Fi)
+npm run build        # gera a versão final para publicação
+npm test             # roda os testes
 ```
 
-O arquivo `.env` contém os endereços públicos do banco de dados. Mantenha-o na pasta para o formulário funcionar.
+O projeto usa **npm** (arquivo `package-lock.json`). O `.env` não vai para o Git; o modelo com os nomes das variáveis está em `.env.example`.
 
-## Como editar
+## Seções da página (de cima para baixo)
 
-Quase tudo está em **`src/routes/index.tsx`**. No topo do arquivo ficam as listas de conteúdo:
+| Seção                       | Onde editar                                                            |
+| --------------------------- | ---------------------------------------------------------------------- |
+| Topo (hero) e fundo animado | `src/routes/index.tsx` e `src/components/HeroWaves.tsx`                |
+| Faixa de ferramentas        | `src/data/ferramentas.ts`                                              |
+| Site Personalizado          | `src/data/sobre.ts` (`sitePersonalizado`)                              |
+| Quem Somos (card da logo)   | `src/data/sobre.ts` (`quemSomos`)                                      |
+| Serviços (cards que viram)  | `src/data/servicos.ts`                                                 |
+| Metodologia                 | `src/routes/index.tsx` (`const steps`)                                 |
+| Resultados (depoimentos)    | `src/data/depoimentos.ts`                                              |
+| Nossa Equipe (carrossel)    | `src/data/equipe.ts` e fotos em `src/assets/equipe/`                   |
+| Consultor inteligente (IA)  | `src/components/ServiceAdvisor.tsx` e `src/lib/recommend.functions.ts` |
+| Contato (formulário)        | `src/routes/index.tsx` e `src/lib/contact.functions.ts`                |
+| FAQ                         | `src/data/faq.ts`                                                      |
 
-| O que mudar                      | Onde                                                |
-| -------------------------------- | --------------------------------------------------- |
-| Link do WhatsApp                 | constante `whatsappUrl`                             |
-| Link do Instagram                | `INSTAGRAM_URL` em `src/data/config.ts`             |
-| Menu                             | lista `navigation`                                  |
-| Serviços                         | lista `services`                                    |
-| Metodologia (etapas)             | lista `steps`                                       |
-| Depoimentos                      | `src/data/depoimentos.ts`                           |
-| Diferenciais                     | lista `differences`                                 |
-| Títulos e textos das seções      | dentro da função `Home`, procure o texto com Ctrl+F |
-| Título do Google / redes sociais | bloco `head` em `index.tsx`                         |
-
-**Cores e fonte:** em `src/styles.css`, no bloco `:root`. Exemplo: `--primary` é o azul principal, `--background` é o fundo, `--whatsapp` é o verde. Você pode trocar o valor por um código hexadecimal, ex.: `--primary: #0A8CFF;`.
-
-**Ícones:** cada item usa um ícone do lucide (ex.: `Target`, `Rocket`). Escolha outro em https://lucide.dev, adicione o nome na linha `import { ... } from 'lucide-react'` e troque no item.
-
-## Como trocar a logo
-
-Hoje a logo é escrita em texto (função `Logo` em `src/routes/index.tsx`).
-Para usar uma imagem:
-
-1. Coloque o arquivo em `src/assets/` (ex.: `src/assets/logo.png`).
-2. Em `index.tsx`, adicione `import logo from '@/assets/logo.png';`
-3. Dentro da função `Logo`, troque os `<span>` por `<img src={logo} alt="Code Flow" className="h-8 w-auto" />`.
-
-Para o ícone da aba do navegador, substitua `public/favicon.svg` (mesmo nome).
+Efeitos visuais reutilizáveis: `OrbitButton` (botões com borda orbital), `OrbitBorder` (a mesma borda em cards), `Marquee` (faixas que rolam sozinhas), `CursorTrail` (rastro do mouse) e `AvatarIlustrado` (avatares dos depoimentos), todos em `src/components/`. Como ajustar cada um está no **GUIA-DE-EDICAO.md**.
 
 ## Formulário de contato
 
-A validação e o envio ficam em `src/lib/contact.functions.ts`. Os contatos são salvos na tabela `contact_leads` do Lovable Cloud (visível no painel do Lovable, não é público). Para enviar também por e-mail, planilha ou CRM, adicione a chamada dentro do `handler`, logo após o `insert`.
+A validação e o envio ficam em `src/lib/contact.functions.ts`. Os contatos são salvos na tabela `contact_leads` do Supabase (não é pública). Para enviar também por e-mail, planilha ou CRM, adicione a chamada dentro do `handler`, logo após o `insert`.
 
 ## Como publicar
 
-- **Pelo Lovable (recomendado):** botão **Publish** no editor. Assim o formulário continua salvando no banco automaticamente.
-- **Vercel / Netlify / outra hospedagem:** conecte o repositório do GitHub, comando de build `npm run build`. Este projeto usa recursos de servidor (o formulário), então escolha uma hospedagem com suporte a Node/funções de servidor e copie as variáveis do `.env` nas configurações da hospedagem.
+Use uma hospedagem com suporte a Node/funções de servidor (o formulário roda no servidor). Comando de build: `npm run build`. Cadastre nas configurações da hospedagem as mesmas variáveis do `.env` (veja `.env.example`).
 
-## Enviar para o GitHub
+## Git
+
+O trabalho novo fica na branch `claude-code`; a `main` é a versão publicada. Para enviar suas alterações:
 
 ```sh
-git remote add novo https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
-git push novo main
+git add -A
+git commit -m "Descreva a alteração"
+git push origin claude-code
 ```
-
-## Fundo animado do topo (Hero)
-
-Arquivo: `src/components/HeroWaves.tsx`. No topo do arquivo, em "CONFIGURAÇÃO EDITÁVEL":
-
-- `COR_LINHAS` / `COR_PARTICULAS` — cores (hexadecimal)
-- `OPACIDADE_LINHAS` — intensidade das linhas
-- `VELOCIDADE_ONDA` / `ALTURA_ONDA` — velocidade e altura das ondas
-- `PARTICULAS_DESKTOP` / `PARTICULAS_MOBILE` — quantidade de partículas
-
-## Depoimentos
-
-Arquivo: `src/data/depoimentos.ts`. Edite texto, destaque, nome, cargo, segmento e ícone (`Smile`, `Sparkles` ou `Scale`).
-
-## Depoimentos (carrossel), FAQ e botões
-
-- **Depoimentos:** `src/data/depoimentos.ts`. Edite texto, nome, segmento, cidade e ícone. Velocidade: `VELOCIDADE_CARROSSEL_SEGUNDOS`.
-- **FAQ:** `src/data/faq.ts` — lista de `pergunta` e `resposta`.
-- **Efeitos dos botões:** final de `src/styles.css`, bloco "Efeitos dos botões" (classes `btn-primary`, `btn-secondary`, `btn-whatsapp`, `btn-whatsapp-float`). Efeito dos cards: `.feature-card`.
-
-## Novas seções
-
-- **Site Personalizado** e **Quem Somos**: textos em `src/data/sobre.ts`, componentes em `src/components/SitePersonalizado.tsx` e `src/components/QuemSomos.tsx`.
-- **Trocar a logo**: substitua `src/assets/logo.png` mantendo o nome.
-- Detalhes no `GUIA-DE-EDICAO.md`.
