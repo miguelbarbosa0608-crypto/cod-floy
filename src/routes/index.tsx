@@ -23,7 +23,7 @@ import { Button } from "@/components/ui/button";
 import { submitContact } from "@/lib/contact.functions";
 import { Smile, Sparkles, Scale, Store, Briefcase, Plus } from "lucide-react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import logoUrl from "@/assets/logo.png";
+import logoUrl from "@/assets/code-flow-logo-compacta.png";
 import HeroWaves from "@/components/HeroWaves";
 import ServiceAdvisor from "@/components/ServiceAdvisor";
 import ServiceFlipCards from "@/components/ServiceFlipCards";
@@ -92,13 +92,13 @@ const segmentIcons: Record<IconeSegmento, Icon> = { Smile, Sparkles, Scale, Stor
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CodeFlow | Tecnologia, Marketing e Automação" },
+      { title: "Code Flow | Tecnologia, Marketing e Automação" },
       {
         name: "description",
         content:
           "Soluções digitais integradas em tecnologia, marketing e automação para fortalecer a presença digital e as vendas do seu negócio.",
       },
-      { property: "og:title", content: "CodeFlow | Tecnologia, Marketing e Automação" },
+      { property: "og:title", content: "Code Flow | Tecnologia, Marketing e Automação" },
       {
         property: "og:description",
         content: "Soluções digitais integradas para transformar estratégia em resultados reais.",
@@ -114,14 +114,14 @@ function Logo({ footer = false }: { footer?: boolean }) {
   return (
     <a
       href="#inicio"
-      aria-label="Cod Floy, voltar ao início"
+      aria-label="Code Flow, voltar ao início"
       className="inline-flex shrink-0 items-center"
     >
       <img
         src={logoUrl}
-        alt="Cod Floy — Soluções digitais que geram resultados"
-        width={1240}
-        height={694}
+        alt="Logo Code Flow"
+        width={693}
+        height={395}
         className={`h-10 w-auto sm:h-11 ${footer ? "sm:h-14" : ""}`}
       />
     </a>
@@ -327,7 +327,7 @@ function Home() {
             eyebrow="Nossa Metodologia"
             subtitle="Um processo estruturado em 6 etapas, da necessidade do cliente até a entrega da solução."
           >
-            Metodologia <span className="text-primary">CodeFlow</span>
+            Metodologia <span className="text-primary">Code Flow</span>
           </SectionHeading>
           <div className="relative grid gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-9 lg:gap-y-14">
             {steps.map(({ icon: IconComponent, title, description }, i) => (
@@ -595,7 +595,7 @@ function Home() {
             </OrbitButton>
           </div>
           <p className="mt-8 text-xs text-muted-foreground">
-            © 2026 CodeFlow. Todos os direitos reservados.
+            © 2026 Code Flow. Todos os direitos reservados.
           </p>
         </div>
       </footer>
@@ -641,7 +641,7 @@ function Home() {
             <p className="mt-5 text-sm leading-7 text-muted-foreground">
               Os dados informados no formulário — nome, WhatsApp, e-mail e empresa — são utilizados
               para responder à sua solicitação de diagnóstico e entrar em contato sobre os serviços
-              da CodeFlow. Não exibimos esses dados publicamente. Você pode solicitar informações,
+              da Code Flow. Não exibimos esses dados publicamente. Você pode solicitar informações,
               correção ou exclusão dos seus dados pelo canal de contato da agência.
             </p>
             <Button onClick={() => setPrivacyOpen(false)} className="mt-7">

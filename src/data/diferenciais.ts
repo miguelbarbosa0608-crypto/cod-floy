@@ -2,7 +2,7 @@
 // substituída pela seção "Nossa Equipe". Guardado aqui, mas NÃO usado no site atualmente.
 // "icone" é o nome do ícone do lucide-react que a seção usava.
 export const diferenciaisCabecalho = {
-  rotulo: "Por que a CodeFlow?",
+  rotulo: "Por que a Code Flow?",
   titulo: "Não Entregamos Peças.",
   tituloDestaque: "Entregamos Soluções.",
   subtitulo:

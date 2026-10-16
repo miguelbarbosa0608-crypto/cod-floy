@@ -1,7 +1,7 @@
 // Seção "Quem Somos". Textos e cards: src/data/sobre.ts.
-// Para trocar a logo, substitua o arquivo src/assets/logo.png (mesmo nome).
+// Para trocar a logo, substitua src/assets/code-flow-logo-completa.png (mesmo nome).
 import { ListChecks, Layers, MapPin } from "lucide-react";
-import logoUrl from "@/assets/logo.png";
+import logoUrl from "@/assets/code-flow-logo-completa.png";
 import { quemSomos as d } from "@/data/sobre";
 import Reveal from "@/components/Reveal";
 
@@ -36,8 +36,8 @@ export default function QuemSomos() {
             <img
               src={logoUrl}
               alt="Logo Code Flow"
-              width={1240}
-              height={694}
+              width={761}
+              height={463}
               loading="lazy"
               className="h-full w-full object-contain"
             />

@@ -15,7 +15,7 @@ Dica: no VS Code, use **Ctrl+P** para abrir um arquivo pelo nome e **Ctrl+F** pa
 | Título principal do topo          | `src/routes/index.tsx`                                                            | `Soluções Digitais que Geram` |
 | Textos de qualquer seção          | `src/routes/index.tsx`                                                            | Ctrl+F com um trecho do texto |
 | Texto da Política de Privacidade  | `src/routes/index.tsx`                                                            | `Política de Privacidade`     |
-| Ano/rodapé                        | `src/routes/index.tsx`                                                            | `© 2026 CodeFlow`             |
+| Ano/rodapé                        | `src/routes/index.tsx`                                                            | `© 2026 Code Flow`            |
 | Título na aba do Google           | `src/routes/index.tsx`                                                            | `head:`                       |
 | Cor azul principal                | `src/styles.css`                                                                  | `--primary`                   |
 | Cor de fundo                      | `src/styles.css`                                                                  | `--background`                |

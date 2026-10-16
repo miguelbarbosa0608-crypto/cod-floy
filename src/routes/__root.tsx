@@ -79,14 +79,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "CodeFlow | Tecnologia, Marketing e Automação" },
+      { title: "Code Flow | Tecnologia, Marketing e Automação" },
       {
         name: "description",
         content:
           "Soluções digitais em tecnologia, marketing e automação para fortalecer a presença digital e as vendas do seu negócio.",
       },
-      { name: "author", content: "CodeFlow" },
-      { property: "og:title", content: "CodeFlow | Tecnologia, Marketing e Automação" },
+      { name: "author", content: "Code Flow" },
+      { property: "og:title", content: "Code Flow | Tecnologia, Marketing e Automação" },
       {
         property: "og:description",
         content:
@@ -100,7 +100,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "icon", href: "/favicon.ico", sizes: "48x48" },
+      { rel: "icon", href: "/favicon.png", type: "image/png", sizes: "192x192" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

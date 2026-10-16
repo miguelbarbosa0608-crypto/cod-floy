@@ -1,4 +1,4 @@
-- [x] Reproduce COD FLOY one-page content and visual direction from the supplied brief and reference.
+- [x] Reproduce Code Flow one-page content and visual direction from the supplied brief and reference.
 - [x] Add contact capture with validation and persistence.
 - [x] Verify navigation, mobile layout, and contact submission in the preview.
 - [ ] Replace temporary brand mark and contact destinations when the original logo, WhatsApp number, and Instagram URL are supplied (blocked by missing assets/details).

@@ -1,6 +1,6 @@
-# CodeFlow — Landing Page
+# Code Flow — Landing Page
 
-Site de apresentação (uma única página) da **CodeFlow**, empresa de tecnologia, marketing e automação. Todo o conteúdo está em português.
+Site de apresentação (uma única página) da **Code Flow**, empresa de tecnologia, marketing e automação. Todo o conteúdo está em português.
 
 > Guia rápido de edição: veja **GUIA-DE-EDICAO.md**. Árvore completa de arquivos: veja **docs/ESTRUTURA.md**.
 
@@ -71,7 +71,7 @@ Para usar uma imagem:
 
 1. Coloque o arquivo em `src/assets/` (ex.: `src/assets/logo.png`).
 2. Em `index.tsx`, adicione `import logo from '@/assets/logo.png';`
-3. Dentro da função `Logo`, troque os `<span>` por `<img src={logo} alt="CodeFlow" className="h-8 w-auto" />`.
+3. Dentro da função `Logo`, troque os `<span>` por `<img src={logo} alt="Code Flow" className="h-8 w-auto" />`.
 
 Para o ícone da aba do navegador, substitua `public/favicon.svg` (mesmo nome).
 
