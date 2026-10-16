@@ -6,8 +6,8 @@ import { useEffect, useRef } from "react";
 
 // ===== CONFIGURAÇÃO EDITÁVEL =====
 // Cores em hexadecimal (linhas e partículas)
-const COR_LINHAS = "#5CB8FF";      // azul claro das linhas
-const COR_PARTICULAS = "#9ADBFF";  // azul mais claro das partículas
+const COR_LINHAS = "#5CB8FF"; // azul claro das linhas
+const COR_PARTICULAS = "#9ADBFF"; // azul mais claro das partículas
 const OPACIDADE_LINHAS = 0.06;
 // Velocidade (maior = mais rápido) e altura das ondas
 const VELOCIDADE_ONDA = 0.25;
@@ -24,6 +24,13 @@ export default function HeroWaves() {
     if (!container) return;
     // Respeita quem prefere menos animação: mostra só o gradiente de fundo
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const isTestEnvironment = process.env.NODE_ENV === "test";
+    const supportsCanvas =
+      typeof HTMLCanvasElement !== "undefined" &&
+      typeof HTMLCanvasElement.prototype.getContext === "function";
+    const supportsWebGPU = typeof navigator !== "undefined" && "gpu" in navigator;
+    if (isTestEnvironment || !supportsCanvas || !supportsWebGPU) return;
 
     let disposed = false;
     let cleanup = () => {};
@@ -177,7 +184,11 @@ export default function HeroWaves() {
         scene.add(lines);
 
         const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-        const renderer = new THREE.WebGPURenderer({ antialias: true, alpha: true, forceWebGL: true } as any);
+        const renderer = new THREE.WebGPURenderer({
+          antialias: true,
+          alpha: true,
+          forceWebGL: true,
+        } as any);
         renderer.setClearColor(0x000000, 0);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
@@ -207,7 +218,9 @@ export default function HeroWaves() {
 
         // Só anima quando o hero está visível e a aba está ativa (economiza bateria)
         let visible = true;
-        const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: 0 });
+        const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting), {
+          threshold: 0,
+        });
         io.observe(container);
 
         const start = performance.now();
@@ -255,4 +268,3 @@ export default function HeroWaves() {
     />
   );
 }
-

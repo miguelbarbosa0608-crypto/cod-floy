@@ -2,33 +2,33 @@
 
 Dica: no VS Code, use **Ctrl+P** para abrir um arquivo pelo nome e **Ctrl+F** para achar um texto. Depois de salvar, o site em `npm run dev` atualiza sozinho.
 
-| Quero mudar... | Edite o arquivo | O que procurar |
-|---|---|---|
-| Link do WhatsApp | `src/routes/index.tsx` | `const whatsappUrl = '...'` |
-| Link do Instagram | `src/data/config.ts` | `INSTAGRAM_URL` |
-| Itens do menu | `src/routes/index.tsx` | `const navigation` |
-| Um serviço (título, texto, ícone) | `src/routes/index.tsx` | `const services` |
-| Etapas da metodologia | `src/routes/index.tsx` | `const steps` |
-| Depoimentos | `src/routes/index.tsx` | veja src/data/depoimentos.ts |
-| Diferenciais | `src/routes/index.tsx` | `const differences` |
-| Números (6 serviços, 100%...) | `src/routes/index.tsx` | `Serviços integrados` |
-| Título principal do topo | `src/routes/index.tsx` | `Soluções Digitais que Geram` |
-| Textos de qualquer seção | `src/routes/index.tsx` | Ctrl+F com um trecho do texto |
-| Texto da Política de Privacidade | `src/routes/index.tsx` | `Política de Privacidade` |
-| Ano/rodapé | `src/routes/index.tsx` | `© 2026 CodeFlow` |
-| Título na aba do Google | `src/routes/index.tsx` | `head:` |
-| Cor azul principal | `src/styles.css` | `--primary` |
-| Cor de fundo | `src/styles.css` | `--background` |
-| Cor dos cartões | `src/styles.css` | `--card` |
-| Cor de destaque (ciano) | `src/styles.css` | `--accent` |
-| Cor dos textos secundários | `src/styles.css` | `--muted-foreground` |
-| Cor do botão WhatsApp | `src/styles.css` | `--whatsapp` |
-| Fonte | `src/styles.css` (`--font-sans`) e `src/routes/__root.tsx` (link do Google Fonts) | `Open Sans` |
-| Arredondamento das bordas | `src/styles.css` | `--radius-` |
-| Logo | `src/routes/index.tsx` | `function Logo` (veja README) |
-| Ícone da aba (favicon) | `public/favicon.svg` | substitua o arquivo |
-| Campos/validação do formulário | `src/lib/contact.functions.ts` e `src/routes/index.tsx` (`<form`) | `contactSchema` |
-| Para onde vão os contatos | `src/lib/contact.functions.ts` | `handler` |
+| Quero mudar...                    | Edite o arquivo                                                                   | O que procurar                |
+| --------------------------------- | --------------------------------------------------------------------------------- | ----------------------------- |
+| Link do WhatsApp                  | `src/routes/index.tsx`                                                            | `const whatsappUrl = '...'`   |
+| Link do Instagram                 | `src/data/config.ts`                                                              | `INSTAGRAM_URL`               |
+| Itens do menu                     | `src/routes/index.tsx`                                                            | `const navigation`            |
+| Um serviço (título, texto, ícone) | `src/routes/index.tsx`                                                            | `const services`              |
+| Etapas da metodologia             | `src/routes/index.tsx`                                                            | `const steps`                 |
+| Depoimentos                       | `src/routes/index.tsx`                                                            | veja src/data/depoimentos.ts  |
+| Diferenciais                      | `src/routes/index.tsx`                                                            | `const differences`           |
+| Números (6 serviços, 100%...)     | `src/routes/index.tsx`                                                            | `Serviços integrados`         |
+| Título principal do topo          | `src/routes/index.tsx`                                                            | `Soluções Digitais que Geram` |
+| Textos de qualquer seção          | `src/routes/index.tsx`                                                            | Ctrl+F com um trecho do texto |
+| Texto da Política de Privacidade  | `src/routes/index.tsx`                                                            | `Política de Privacidade`     |
+| Ano/rodapé                        | `src/routes/index.tsx`                                                            | `© 2026 CodeFlow`             |
+| Título na aba do Google           | `src/routes/index.tsx`                                                            | `head:`                       |
+| Cor azul principal                | `src/styles.css`                                                                  | `--primary`                   |
+| Cor de fundo                      | `src/styles.css`                                                                  | `--background`                |
+| Cor dos cartões                   | `src/styles.css`                                                                  | `--card`                      |
+| Cor de destaque (ciano)           | `src/styles.css`                                                                  | `--accent`                    |
+| Cor dos textos secundários        | `src/styles.css`                                                                  | `--muted-foreground`          |
+| Cor do botão WhatsApp             | `src/styles.css`                                                                  | `--whatsapp`                  |
+| Fonte                             | `src/styles.css` (`--font-sans`) e `src/routes/__root.tsx` (link do Google Fonts) | `Open Sans`                   |
+| Arredondamento das bordas         | `src/styles.css`                                                                  | `--radius-`                   |
+| Logo                              | `src/routes/index.tsx`                                                            | `function Logo` (veja README) |
+| Ícone da aba (favicon)            | `public/favicon.svg`                                                              | substitua o arquivo           |
+| Campos/validação do formulário    | `src/lib/contact.functions.ts` e `src/routes/index.tsx` (`<form`)                 | `contactSchema`               |
+| Para onde vão os contatos         | `src/lib/contact.functions.ts`                                                    | `handler`                     |
 
 ## Exemplo: adicionar um serviço
 
@@ -47,23 +47,26 @@ Se usar um ícone novo, adicione o nome dele no `import { ... } from 'lucide-rea
 
 ## Novos itens
 
-| Quero mudar... | Edite o arquivo | O que procurar |
-|---|---|---|
-| Cor das ondas/partículas do topo | `src/components/HeroWaves.tsx` | `COR_LINHAS`, `COR_PARTICULAS` |
-| Velocidade das ondas | `src/components/HeroWaves.tsx` | `VELOCIDADE_ONDA` |
-| Quantidade de partículas | `src/components/HeroWaves.tsx` | `PARTICULAS_DESKTOP`, `PARTICULAS_MOBILE` |
-| Depoimentos (substituir/editar) | `src/data/depoimentos.ts` | lista `depoimentos` |
-| Velocidade do carrossel de depoimentos | `src/data/depoimentos.ts` | `VELOCIDADE_CARROSSEL_SEGUNDOS` |
-| Perguntas do FAQ | `src/data/faq.ts` | lista `faq` |
-| Efeitos dos botões (glow, brilho, subida) | `src/styles.css` | "Efeitos dos botões" |
-| Efeito dos cards ao passar o mouse | `src/styles.css` | `.feature-card:hover` |
-| Frase de credibilidade (abaixo do carrossel) | `src/data/depoimentos.ts` | `FRASE_CREDIBILIDADE` |
+| Quero mudar...                               | Edite o arquivo                | O que procurar                            |
+| -------------------------------------------- | ------------------------------ | ----------------------------------------- |
+| Cor das ondas/partículas do topo             | `src/components/HeroWaves.tsx` | `COR_LINHAS`, `COR_PARTICULAS`            |
+| Velocidade das ondas                         | `src/components/HeroWaves.tsx` | `VELOCIDADE_ONDA`                         |
+| Quantidade de partículas                     | `src/components/HeroWaves.tsx` | `PARTICULAS_DESKTOP`, `PARTICULAS_MOBILE` |
+| Depoimentos (substituir/editar)              | `src/data/depoimentos.ts`      | lista `depoimentos`                       |
+| Velocidade do carrossel de depoimentos       | `src/data/depoimentos.ts`      | `VELOCIDADE_CARROSSEL_SEGUNDOS`           |
+| Perguntas do FAQ                             | `src/data/faq.ts`              | lista `faq`                               |
+| Efeitos dos botões (glow, brilho, subida)    | `src/styles.css`               | "Efeitos dos botões"                      |
+| Efeito dos cards ao passar o mouse           | `src/styles.css`               | `.feature-card:hover`                     |
+| Frase de credibilidade (abaixo do carrossel) | `src/data/depoimentos.ts`      | `FRASE_CREDIBILIDADE`                     |
 
 ## Como editar a seção Site Personalizado
+
 Abra `src/data/sobre.ts` e altere o objeto `sitePersonalizado`: título, subtítulo, parágrafos, lista de itens, texto do botão e a mensagem pronta do WhatsApp. O número do WhatsApp fica em `src/data/config.ts` (`WHATSAPP_NUMERO`). O desenho do celular está em `src/components/SitePersonalizado.tsx`.
 
 ## Como editar a seção Quem Somos
+
 Em `src/data/sobre.ts`, edite o objeto `quemSomos`. Trechos entre `**asteriscos**` aparecem em negrito branco. Os 3 cards ficam na lista `cards`.
 
 ## Como trocar a logo
+
 Substitua o arquivo `src/assets/logo.png` por outro com o mesmo nome. Ela é usada no topo, no rodapé e na seção Quem Somos.

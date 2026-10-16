@@ -79,13 +79,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "CodeFlow | Tecnologia, Marketing e Automação" },
-      { name: "description", content: "Soluções digitais em tecnologia, marketing e automação para fortalecer a presença digital e as vendas do seu negócio." },
+      {
+        name: "description",
+        content:
+          "Soluções digitais em tecnologia, marketing e automação para fortalecer a presença digital e as vendas do seu negócio.",
+      },
       { name: "author", content: "CodeFlow" },
       { property: "og:title", content: "CodeFlow | Tecnologia, Marketing e Automação" },
-      { property: "og:description", content: "Soluções digitais em tecnologia, marketing e automação para fortalecer a presença digital e as vendas do seu negócio." },
+      {
+        property: "og:description",
+        content:
+          "Soluções digitais em tecnologia, marketing e automação para fortalecer a presença digital e as vendas do seu negócio.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      
     ],
     links: [
       {
@@ -95,7 +102,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.png", type: "image/png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -105,6 +115,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  if (process.env.NODE_ENV === "test") {
+    return (
+      <>
+        {children}
+        <Scripts />
+      </>
+    );
+  }
+
   return (
     <html lang="pt-BR">
       <head>

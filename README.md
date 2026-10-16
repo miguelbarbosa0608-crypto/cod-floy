@@ -48,17 +48,17 @@ O arquivo `.env` contém os endereços públicos do banco de dados. Mantenha-o n
 
 Quase tudo está em **`src/routes/index.tsx`**. No topo do arquivo ficam as listas de conteúdo:
 
-| O que mudar | Onde |
-|---|---|
-| Link do WhatsApp | constante `whatsappUrl` |
-| Link do Instagram | `INSTAGRAM_URL` em `src/data/config.ts` |
-| Menu | lista `navigation` |
-| Serviços | lista `services` |
-| Metodologia (etapas) | lista `steps` |
-| Depoimentos | `src/data/depoimentos.ts` |
-| Diferenciais | lista `differences` |
-| Títulos e textos das seções | dentro da função `Home`, procure o texto com Ctrl+F |
-| Título do Google / redes sociais | bloco `head` em `index.tsx` |
+| O que mudar                      | Onde                                                |
+| -------------------------------- | --------------------------------------------------- |
+| Link do WhatsApp                 | constante `whatsappUrl`                             |
+| Link do Instagram                | `INSTAGRAM_URL` em `src/data/config.ts`             |
+| Menu                             | lista `navigation`                                  |
+| Serviços                         | lista `services`                                    |
+| Metodologia (etapas)             | lista `steps`                                       |
+| Depoimentos                      | `src/data/depoimentos.ts`                           |
+| Diferenciais                     | lista `differences`                                 |
+| Títulos e textos das seções      | dentro da função `Home`, procure o texto com Ctrl+F |
+| Título do Google / redes sociais | bloco `head` em `index.tsx`                         |
 
 **Cores e fonte:** em `src/styles.css`, no bloco `:root`. Exemplo: `--primary` é o azul principal, `--background` é o fundo, `--whatsapp` é o verde. Você pode trocar o valor por um código hexadecimal, ex.: `--primary: #0A8CFF;`.
 
@@ -94,6 +94,7 @@ git push novo main
 ## Fundo animado do topo (Hero)
 
 Arquivo: `src/components/HeroWaves.tsx`. No topo do arquivo, em "CONFIGURAÇÃO EDITÁVEL":
+
 - `COR_LINHAS` / `COR_PARTICULAS` — cores (hexadecimal)
 - `OPACIDADE_LINHAS` — intensidade das linhas
 - `VELOCIDADE_ONDA` / `ALTURA_ONDA` — velocidade e altura das ondas
@@ -110,6 +111,7 @@ Arquivo: `src/data/depoimentos.ts`. Edite texto, destaque, nome, cargo, segmento
 - **Efeitos dos botões:** final de `src/styles.css`, bloco "Efeitos dos botões" (classes `btn-primary`, `btn-secondary`, `btn-whatsapp`, `btn-whatsapp-float`). Efeito dos cards: `.feature-card`.
 
 ## Novas seções
+
 - **Site Personalizado** e **Quem Somos**: textos em `src/data/sobre.ts`, componentes em `src/components/SitePersonalizado.tsx` e `src/components/QuemSomos.tsx`.
 - **Trocar a logo**: substitua `src/assets/logo.png` mantendo o nome.
 - Detalhes no `GUIA-DE-EDICAO.md`.

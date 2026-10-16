@@ -53,18 +53,18 @@
 
 ## Seções da página (todas em `src/routes/index.tsx`)
 
-| Seção | Identificador | Dados usados |
-|---|---|---|
-| Cabeçalho e menu | `<header>` | `navigation` |
-| Topo (hero) | `#inicio` | textos diretos |
-| Números | `Nossa atuação` | lista dentro da seção |
-| Serviços | `#servicos` | `services` |
-| Metodologia | `#metodologia` | `steps` |
-| Depoimentos | `#resultados` | `src/data/depoimentos.ts` |
-| Diferenciais | `#diferenciais` | `differences` |
-| Contato/formulário | `#contato` | `submitContact`, `whatsappUrl` |
-| Rodapé | `<footer>` | `navigation`, `INSTAGRAM_URL` |
-| Botão flutuante WhatsApp | final do arquivo | `whatsappUrl` |
+| Seção                    | Identificador    | Dados usados                   |
+| ------------------------ | ---------------- | ------------------------------ |
+| Cabeçalho e menu         | `<header>`       | `navigation`                   |
+| Topo (hero)              | `#inicio`        | textos diretos                 |
+| Números                  | `Nossa atuação`  | lista dentro da seção          |
+| Serviços                 | `#servicos`      | `services`                     |
+| Metodologia              | `#metodologia`   | `steps`                        |
+| Depoimentos              | `#resultados`    | `src/data/depoimentos.ts`      |
+| Diferenciais             | `#diferenciais`  | `differences`                  |
+| Contato/formulário       | `#contato`       | `submitContact`, `whatsappUrl` |
+| Rodapé                   | `<footer>`       | `navigation`, `INSTAGRAM_URL`  |
+| Botão flutuante WhatsApp | final do arquivo | `whatsappUrl`                  |
 
 - `src/data/sobre.ts` — textos das seções Site Personalizado e Quem Somos.
 - `src/components/SitePersonalizado.tsx` — seção com o celular ilustrativo.
