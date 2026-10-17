@@ -45,6 +45,15 @@ import {
 import AvatarIlustrado from "@/components/AvatarIlustrado";
 import { faq } from "@/data/faq";
 import { INSTAGRAM_URL } from "@/data/config";
+import {
+  IMAGEM_COMPARTILHAMENTO,
+  organizacaoJsonLd,
+  SITE_DESCRICAO,
+  SITE_DESCRICAO_COMPARTILHAMENTO,
+  SITE_NOME,
+  SITE_TITULO,
+  urlAbsoluta,
+} from "@/data/site";
 
 // WhatsApp contact link provided by the agency.
 const whatsappUrl = "https://www.contate.me/556292543903";
@@ -78,22 +87,28 @@ function DepoimentoCard({ item }: { item: Depoimento }) {
 }
 
 export const Route = createFileRoute("/")({
+  // SEO da página (textos e domínio em src/data/site.ts)
   head: () => ({
     meta: [
-      { title: "Code Flow | Tecnologia, Marketing e Automação" },
-      {
-        name: "description",
-        content:
-          "Soluções digitais integradas em tecnologia, marketing e automação para fortalecer a presença digital e as vendas do seu negócio.",
-      },
-      { property: "og:title", content: "Code Flow | Tecnologia, Marketing e Automação" },
-      {
-        property: "og:description",
-        content: "Soluções digitais integradas para transformar estratégia em resultados reais.",
-      },
+      { title: SITE_TITULO },
+      { name: "description", content: SITE_DESCRICAO },
+      { property: "og:title", content: SITE_TITULO },
+      { property: "og:description", content: SITE_DESCRICAO_COMPARTILHAMENTO },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: urlAbsoluta("/") },
+      { property: "og:site_name", content: SITE_NOME },
+      { property: "og:locale", content: "pt_BR" },
+      { property: "og:image", content: urlAbsoluta(IMAGEM_COMPARTILHAMENTO.caminho) },
+      { property: "og:image:width", content: String(IMAGEM_COMPARTILHAMENTO.largura) },
+      { property: "og:image:height", content: String(IMAGEM_COMPARTILHAMENTO.altura) },
+      { property: "og:image:alt", content: IMAGEM_COMPARTILHAMENTO.alt },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: SITE_TITULO },
+      { name: "twitter:description", content: SITE_DESCRICAO_COMPARTILHAMENTO },
+      { name: "twitter:image", content: urlAbsoluta(IMAGEM_COMPARTILHAMENTO.caminho) },
     ],
+    links: [{ rel: "canonical", href: urlAbsoluta("/") }],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(organizacaoJsonLd) }],
   }),
   component: Home,
 });

@@ -9,17 +9,21 @@
 ├── README.md                 Visão geral, instalação e publicação
 ├── package.json              Dependências e comandos (dev, build, test)
 ├── package-lock.json         Versões travadas das dependências (npm)
-├── vite.config.ts            Configuração do Vite
+├── vite.config.ts            Configuração do Vite (com o plugin da Netlify)
+├── netlify.toml              Build e publicação na Netlify
 ├── public/
 │   ├── favicon.ico           Ícone da aba (16/32/48px)
 │   ├── favicon.png           Ícone 192×192
 │   ├── apple-touch-icon.png  Ícone para a tela inicial do iPhone
-│   └── robots.txt            Instruções para buscadores
+│   ├── og-image.png          Imagem de compartilhamento (1200x630)
+│   └── logo-code-flow.png    Logo usada nos dados estruturados (JSON-LD)
 ├── supabase/                 Configuração e migrações do banco (tabela contact_leads)
 └── src/
     ├── routes/
     │   ├── index.tsx         A página: seções, menu, header, contato, rodapé
-    │   └── __root.tsx        HTML base, idioma, fonte, título, favicon e cursor
+    │   ├── __root.tsx        HTML base, idioma, fonte, título, favicon e cursor
+    │   ├── robots[.]txt.ts   /robots.txt gerado a partir de SITE_URL
+    │   └── sitemap[.]xml.ts  /sitemap.xml gerado a partir de SITE_URL
     ├── styles.css            Cores, cards, botões/bordas orbitais, carrosséis, animações
     ├── assets/
     │   ├── code-flow-logo*.png  Logo (compacta, completa e original)
@@ -27,6 +31,7 @@
     │   └── geo/              Mapa do globo (Natural Earth 110m: land.json e brasil.json)
     ├── data/
     │   ├── config.ts         Instagram e número do WhatsApp
+    │   ├── site.ts           SEO: domínio (SITE_URL), título, descrição, imagem e JSON-LD
     │   ├── ferramentas.ts    Faixa de plataformas e ferramentas
     │   ├── exemplosSites.ts  Celulares de exemplo (anel 3D de Site Personalizado)
     │   ├── porQue.ts         Seção "Por que a Code Flow"

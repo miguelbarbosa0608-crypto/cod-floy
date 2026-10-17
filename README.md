@@ -50,9 +50,17 @@ Efeitos visuais reutilizáveis: `OrbitButton` (botões com borda orbital), `Orbi
 
 A validação e o envio ficam em `src/lib/contact.functions.ts`. Os contatos são salvos na tabela `contact_leads` do Supabase (não é pública). Para enviar também por e-mail, planilha ou CRM, adicione a chamada dentro do `handler`, logo após o `insert`.
 
-## Como publicar
+## Como publicar (Netlify)
 
-Use uma hospedagem com suporte a Node/funções de servidor (o formulário roda no servidor). Comando de build: `npm run build`. Cadastre nas configurações da hospedagem as mesmas variáveis do `.env` (veja `.env.example`).
+O site está configurado para a **Netlify** com o plugin oficial `@netlify/vite-plugin-tanstack-start` (em `vite.config.ts`) e o arquivo `netlify.toml`. O build gera as páginas em `dist/client` e uma função de servidor para o SSR e o formulário de contato.
+
+1. Na Netlify: **Add new project > Import an existing project > GitHub** e escolha o repositório.
+2. **Branch to deploy:** a branch que será publicada (ex.: `claude-code` ou `main`).
+3. **Build command:** `npm run build` · **Publish directory:** `dist/client` (já vêm do `netlify.toml`). Deixe "Functions directory" em branco.
+4. **Environment variables:** cadastre as variáveis de `.env.example`. Para o formulário funcionar são obrigatórias `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` (secreta).
+5. Depois de ter o endereço final, troque `SITE_URL` em `src/data/site.ts` (usado nas meta tags, no `robots.txt` e no `sitemap.xml`) e publique de novo.
+
+Para testar o build de produção no computador: `npm run build` e depois `npm run preview`.
 
 ## Git
 
