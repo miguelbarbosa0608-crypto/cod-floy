@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { submitContact } from "@/lib/contact.functions";
+import { enviarParaNetlifyForms } from "@/lib/netlifyForms";
 import { Plus } from "lucide-react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import logoUrl from "@/assets/code-flow-logo-compacta.png";
@@ -172,25 +173,32 @@ function Home() {
     const form = event.currentTarget;
     if (!form.reportValidity()) return;
     const values = new FormData(form);
-    setSending(true);
-    setStatus("idle");
-    try {
-      await submit({
-        data: {
-          name: String(values.get("name") ?? ""),
-          whatsapp: String(values.get("whatsapp") ?? ""),
-          email: String(values.get("email") ?? ""),
-          company: String(values.get("company") ?? ""),
-          website: String(values.get("website") ?? ""),
-        },
-      });
+    const dados = {
+      name: String(values.get("name") ?? "").trim(),
+      whatsapp: String(values.get("whatsapp") ?? "").trim(),
+      email: String(values.get("email") ?? "").trim(),
+      company: String(values.get("company") ?? "").trim(),
+      website: String(values.get("website") ?? ""),
+    };
+    // Robô (honeypot preenchido): finge sucesso sem enviar nada.
+    if (dados.website) {
       form.reset();
       setStatus("success");
-    } catch {
-      setStatus("error");
-    } finally {
-      setSending(false);
+      return;
     }
+    setSending(true);
+    setStatus("idle");
+    // Destino principal: Netlify Forms. Em paralelo, grava no Supabase se estiver configurado.
+    const [netlify, banco] = await Promise.allSettled([
+      enviarParaNetlifyForms(dados),
+      submit({ data: dados }),
+    ]);
+    const recebido =
+      (netlify.status === "fulfilled" && netlify.value) ||
+      (banco.status === "fulfilled" && banco.value.salvo);
+    if (recebido) form.reset();
+    setStatus(recebido ? "success" : "error");
+    setSending(false);
   };
   return (
     <div className="site-shell min-h-screen">
@@ -425,6 +433,12 @@ function Home() {
                     placeholder={placeholder}
                     required
                     minLength={name === "whatsapp" ? 10 : 2}
+                    pattern={name === "whatsapp" ? String.raw`\+?[\d\s\(\)\-]{10,20}` : undefined}
+                    title={
+                      name === "whatsapp"
+                        ? "Informe o WhatsApp com DDD, ex.: (62) 99999-9999"
+                        : undefined
+                    }
                     autoComplete={
                       name === "name"
                         ? "name"

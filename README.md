@@ -48,17 +48,25 @@ Efeitos visuais reutilizáveis: `OrbitButton` (botões com borda orbital), `Orbi
 
 ## Formulário de contato
 
-A validação e o envio ficam em `src/lib/contact.functions.ts`. Os contatos são salvos na tabela `contact_leads` do Supabase (não é pública), pelo servidor, com o cliente de `src/integrations/supabase/client.server.ts`. Variáveis de ambiente usadas (só no servidor, o build não precisa delas): `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY`. O site não tem login e não acessa o Supabase pelo navegador. Para enviar também por e-mail, planilha ou CRM, adicione a chamada dentro do `handler`, logo após o `insert`.
+O formulário (seção Contato) envia cada contato para dois destinos ao mesmo tempo:
+
+1. **Netlify Forms** (destino principal): o navegador envia os dados para `/__forms.html` (código em `src/lib/netlifyForms.ts`). O arquivo `public/__forms.html` existe só para a Netlify detectar o formulário `contato`. Os contatos aparecem em **Netlify > projeto > Forms > contato** (dá para exportar em CSV) e podem chegar por e-mail (veja abaixo). Não precisa de nenhuma variável de ambiente.
+2. **Supabase** (opcional): a função de servidor `src/lib/contact.functions.ts` grava na tabela `contact_leads` **só se** `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` existirem. Sem elas, ela é pulada sem erro.
+
+A mensagem "Solicitação enviada!" aparece se pelo menos um destino aceitar o envio. O campo escondido `website` é uma armadilha anti-robô (honeypot): se vier preenchido, nada é enviado.
+
+**Receber cada contato por e-mail:** Netlify > projeto > **Forms > Submission notifications > Add notification > Email notification**, escolha o formulário `contato` e o seu e-mail. O e-mail chega com o assunto "Novo contato pelo site Code Flow" (definido em `src/lib/netlifyForms.ts`), e responder ao e-mail responde direto ao cliente (o campo `email` vira o Reply-to). Para WhatsApp, use o app de e-mail no celular com notificações, ou uma automação (Zapier/n8n) a partir do Netlify Forms.
 
 ## Como publicar (Netlify)
 
-O site está configurado para a **Netlify** com o plugin oficial `@netlify/vite-plugin-tanstack-start` (em `vite.config.ts`) e o arquivo `netlify.toml`. O build gera as páginas em `dist/client` e uma função de servidor para o SSR e o formulário de contato.
+O site está configurado para a **Netlify** com o plugin oficial `@netlify/vite-plugin-tanstack-start` (em `vite.config.ts`) e o arquivo `netlify.toml`. O build gera as páginas em `dist/client` e uma função de servidor para o SSR (e para a gravação opcional no Supabase).
 
 1. Na Netlify: **Add new project > Import an existing project > GitHub** e escolha o repositório.
 2. **Branch to deploy:** a branch que será publicada (ex.: `claude-code` ou `main`).
 3. **Build command:** `npm run build` · **Publish directory:** `dist/client` (já vêm do `netlify.toml`). Deixe "Functions directory" em branco.
-4. **Environment variables:** cadastre só `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` (marque esta como secreta). São usadas pela função de servidor do formulário; o build não precisa delas.
-5. Depois de ter o endereço final, troque `SITE_URL` em `src/data/site.ts` (usado nas meta tags, no `robots.txt` e no `sitemap.xml`) e publique de novo.
+4. **Formulário:** em **Forms**, clique em **Enable form detection** (vale a partir do próximo deploy; se o site já tinha sido publicado, faça um novo deploy). Depois configure o aviso por e-mail (veja "Formulário de contato").
+5. **Environment variables:** não são necessárias. Só cadastre `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` (secreta) se quiser gravar também num Supabase seu.
+6. Depois de ter o endereço final, troque `SITE_URL` em `src/data/site.ts` (usado nas meta tags, no `robots.txt` e no `sitemap.xml`) e publique de novo.
 
 Para testar o build de produção no computador: `npm run build` e depois `npm run preview`.
 

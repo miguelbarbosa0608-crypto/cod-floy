@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Formulário de contato (Netlify Forms)</title>
+  </head>
+  <body>
+    <!--
+      Formulário oculto usado só para a Netlify DETECTAR o formulário "contato" no deploy
+      (a Netlify lê o HTML estático; o formulário real do site é feito em React).
+      O site envia os contatos para este caminho (/__forms.html). Não remova este arquivo.
+      Os nomes dos campos precisam ser iguais aos do formulário do site (src/routes/index.tsx)
+      e aos de src/lib/netlifyForms.ts.
+    -->
+    <form name="contato" method="POST" data-netlify="true" netlify-honeypot="website" hidden>
+      <input type="hidden" name="form-name" value="contato" />
+      <input type="hidden" name="subject" />
+      <input type="text" name="name" />
+      <input type="tel" name="whatsapp" />
+      <input type="email" name="email" />
+      <input type="text" name="company" />
+      <input type="text" name="website" />
+    </form>
+  </body>
+</html>

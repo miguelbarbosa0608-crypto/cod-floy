@@ -2,7 +2,7 @@
 
 ```text
 .
-├── .env                      SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY (local, fora do Git)
+├── .env                      Opcional: SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY (local, fora do Git)
 ├── .env.example              Modelo do .env com os nomes das variáveis
 ├── AGENTS.md                 Regras técnicas do projeto
 ├── GUIA-DE-EDICAO.md         Passo a passo "quero mudar X, edite Y"
@@ -15,6 +15,7 @@
 │   ├── favicon.ico           Ícone da aba (16/32/48px)
 │   ├── favicon.png           Ícone 192×192
 │   ├── apple-touch-icon.png  Ícone para a tela inicial do iPhone
+│   ├── __forms.html          Formulário oculto para a Netlify detectar o formulário "contato"
 │   ├── og-image.png          Imagem de compartilhamento (1200x630)
 │   └── logo-code-flow.png    Logo usada nos dados estruturados (JSON-LD)
 ├── supabase/                 Configuração e migrações do banco (tabela contact_leads)
@@ -57,7 +58,8 @@
     │   ├── SitePersonalizado.tsx / QuemSomos.tsx / Reveal.tsx
     │   └── ui/               Componentes prontos (shadcn)
     ├── lib/
-    │   └── contact.functions.ts    Validação e gravação dos contatos
+    │   ├── netlifyForms.ts         Envio do formulário para o Netlify Forms (principal)
+    │   └── contact.functions.ts    Gravação opcional no Supabase (só com as variáveis)
     ├── integrations/supabase/  Cliente do banco usado pelo formulário (client.server.ts) e tipos
     ├── test/                 Testes automáticos
     └── routeTree.gen.ts      Lista de rotas (gerado, não editar)

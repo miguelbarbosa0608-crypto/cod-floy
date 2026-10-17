@@ -4,30 +4,31 @@ Dica: no VS Code, use **Ctrl+P** para abrir um arquivo pelo nome e **Ctrl+F** pa
 
 ## Tabela rápida
 
-| Quero mudar...                            | Edite o arquivo                            | O que procurar                                 |
-| ----------------------------------------- | ------------------------------------------ | ---------------------------------------------- |
-| Link do WhatsApp (contato e flutuante)    | `src/routes/index.tsx`                     | `const whatsappUrl`                            |
-| Número do WhatsApp (mensagens prontas)    | `src/data/config.ts`                       | `WHATSAPP_NUMERO`                              |
-| Link do Instagram                         | `src/data/config.ts`                       | `INSTAGRAM_URL`                                |
-| Itens do menu                             | `src/routes/index.tsx`                     | `const navigation`                             |
-| Título principal do topo                  | `src/routes/index.tsx`                     | `Soluções Digitais que Geram`                  |
-| Faixa de ferramentas                      | `src/data/ferramentas.ts`                  | lista `ferramentas`                            |
-| Serviços (frente e verso dos cards)       | `src/data/servicos.ts`                     | lista `servicos`                               |
-| Blocos de "Por que a Code Flow"           | `src/data/porQue.ts`                       | lista `motivos`                                |
-| Celulares de exemplo (Site Personalizado) | `src/data/exemplosSites.ts`                | lista `exemplosSites`                          |
-| Globo de Quem Somos (cores, local)        | `src/components/CodeFlowGlobe.tsx`         | "Parâmetros" no topo                           |
-| Header translúcido                        | `src/styles.css`                           | `.site-header`                                 |
-| Depoimentos                               | `src/data/depoimentos.ts`                  | lista `depoimentos`                            |
-| Integrantes da equipe                     | `src/data/equipe.ts`                       | lista `equipe`                                 |
-| Perguntas do FAQ                          | `src/data/faq.ts`                          | lista `faq`                                    |
-| Site Personalizado / Quem Somos           | `src/data/sobre.ts`                        | `sitePersonalizado` / `quemSomos`              |
-| Texto da Política de Privacidade          | `src/routes/index.tsx`                     | `Política de Privacidade`                      |
-| Ano/rodapé                                | `src/routes/index.tsx`                     | `© 2026 Code Flow`                             |
-| Título, descrição e domínio (SEO)         | `src/data/site.ts`                         | `SITE_URL`, `SITE_TITULO`, `SITE_DESCRICAO`    |
-| Cores principais                          | `src/styles.css`                           | bloco `:root` (`--primary`, `--background`...) |
-| Fonte                                     | `src/styles.css` e `src/routes/__root.tsx` | `Open Sans`                                    |
-| Fundo animado do topo                     | `src/components/HeroWaves.tsx`             | "CONFIGURAÇÃO EDITÁVEL"                        |
-| Campos/validação do formulário            | `src/lib/contact.functions.ts`             | `contactSchema`                                |
+| Quero mudar...                            | Edite o arquivo                                                                                             | O que procurar                                 |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| Link do WhatsApp (contato e flutuante)    | `src/routes/index.tsx`                                                                                      | `const whatsappUrl`                            |
+| Número do WhatsApp (mensagens prontas)    | `src/data/config.ts`                                                                                        | `WHATSAPP_NUMERO`                              |
+| Link do Instagram                         | `src/data/config.ts`                                                                                        | `INSTAGRAM_URL`                                |
+| Itens do menu                             | `src/routes/index.tsx`                                                                                      | `const navigation`                             |
+| Título principal do topo                  | `src/routes/index.tsx`                                                                                      | `Soluções Digitais que Geram`                  |
+| Faixa de ferramentas                      | `src/data/ferramentas.ts`                                                                                   | lista `ferramentas`                            |
+| Serviços (frente e verso dos cards)       | `src/data/servicos.ts`                                                                                      | lista `servicos`                               |
+| Blocos de "Por que a Code Flow"           | `src/data/porQue.ts`                                                                                        | lista `motivos`                                |
+| Celulares de exemplo (Site Personalizado) | `src/data/exemplosSites.ts`                                                                                 | lista `exemplosSites`                          |
+| Globo de Quem Somos (cores, local)        | `src/components/CodeFlowGlobe.tsx`                                                                          | "Parâmetros" no topo                           |
+| Header translúcido                        | `src/styles.css`                                                                                            | `.site-header`                                 |
+| Depoimentos                               | `src/data/depoimentos.ts`                                                                                   | lista `depoimentos`                            |
+| Integrantes da equipe                     | `src/data/equipe.ts`                                                                                        | lista `equipe`                                 |
+| Perguntas do FAQ                          | `src/data/faq.ts`                                                                                           | lista `faq`                                    |
+| Site Personalizado / Quem Somos           | `src/data/sobre.ts`                                                                                         | `sitePersonalizado` / `quemSomos`              |
+| Texto da Política de Privacidade          | `src/routes/index.tsx`                                                                                      | `Política de Privacidade`                      |
+| Ano/rodapé                                | `src/routes/index.tsx`                                                                                      | `© 2026 Code Flow`                             |
+| Título, descrição e domínio (SEO)         | `src/data/site.ts`                                                                                          | `SITE_URL`, `SITE_TITULO`, `SITE_DESCRICAO`    |
+| Cores principais                          | `src/styles.css`                                                                                            | bloco `:root` (`--primary`, `--background`...) |
+| Fonte                                     | `src/styles.css` e `src/routes/__root.tsx`                                                                  | `Open Sans`                                    |
+| Fundo animado do topo                     | `src/components/HeroWaves.tsx`                                                                              | "CONFIGURAÇÃO EDITÁVEL"                        |
+| Campos do formulário                      | `src/routes/index.tsx` (`<form`), `public/__forms.html` e `src/lib/netlifyForms.ts` (mesmos nomes nos três) | `name=`                                        |
+| Para onde vão os contatos                 | Netlify > Forms > contato; e-mail em Forms > Submission notifications                                       | veja o README                                  |
 
 Não edite `src/routeTree.gen.ts` nem `src/integrations/` (gerados automaticamente). Ao editar listas, mantenha vírgulas e aspas; se o site quebrar, desfaça com **Ctrl+Z**.
 
