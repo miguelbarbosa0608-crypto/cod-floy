@@ -552,14 +552,6 @@
     --ring-scale: 0.773; /* ~170x340px */
   }
 }
-/* Card da logo em Quem Somos: a borda é o anel do OrbitBorder */
-.logo-card {
-  box-shadow: 0 0 60px -10px color-mix(in oklab, var(--primary) 40%, transparent);
-}
-.logo-card-inner {
-  background: #070b12;
-}
-
 /* Por que a Code Flow (componente src/components/PorQue.tsx; textos em src/data/porQue.ts) */
 @media (min-width: 1024px) {
   .porque-titulo {
@@ -593,7 +585,8 @@
   --globe-d: 300px; /* diâmetro do globo na tela (calculado pelo componente) */
   position: absolute;
   inset: 0;
-  overflow: hidden;
+  overflow: visible; /* sem moldura nem corte: o halo pode passar do quadrado */
+  background: transparent;
   touch-action: pan-y; /* arrastar sem travar a rolagem vertical no celular */
   cursor: grab;
   user-select: none;
@@ -602,20 +595,21 @@
   cursor: grabbing;
 }
 .globe-box::before {
-  /* brilho azul suave ao redor do globo */
+  /* halo azul claro atrás do globo (de #5CB8FF a 35% até transparente), sem fundo retangular */
   content: "";
   position: absolute;
   left: 50%;
   top: 50%;
-  width: calc(var(--globe-d) * 1.25);
+  width: calc(var(--globe-d) * 1.6);
   aspect-ratio: 1;
   translate: -50% -50%;
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgb(10 140 255 / 0.22) 38%,
-    rgb(92 184 255 / 0.08) 52%,
-    transparent 68%
+    rgb(92 184 255 / 0.35) 0%,
+    rgb(92 184 255 / 0.16) 34%,
+    rgb(10 140 255 / 0.06) 50%,
+    transparent 64%
   );
   pointer-events: none;
 }

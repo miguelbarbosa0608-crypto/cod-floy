@@ -36,7 +36,7 @@ O projeto usa **npm** (arquivo `package-lock.json`). O `.env` não vai para o Gi
 | Topo (hero) e fundo animado | `src/routes/index.tsx` e `src/components/HeroWaves.tsx`        |
 | Faixa de ferramentas        | `src/data/ferramentas.ts`                                      |
 | Site Personalizado          | `src/data/sobre.ts` e celulares em `src/data/exemplosSites.ts` |
-| Quem Somos (card do globo)  | `src/data/sobre.ts` e `src/components/CodeFlowGlobe.tsx`       |
+| Quem Somos (globo 3D)       | `src/data/sobre.ts` e `src/components/CodeFlowGlobe.tsx`       |
 | Serviços (cards que viram)  | `src/data/servicos.ts`                                         |
 | Por que a Code Flow         | `src/data/porQue.ts`                                           |
 | Resultados (depoimentos)    | `src/data/depoimentos.ts`                                      |

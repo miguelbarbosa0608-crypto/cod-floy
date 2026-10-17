@@ -1,7 +1,8 @@
 // Rastro luminoso "constelação" que segue o mouse (estilo Multi-Effect Cursor).
 // Montado uma vez em src/routes/__root.tsx. O cursor normal do sistema continua visível;
 // o efeito é desenhado num <canvas> por cima da página, sem bloquear cliques.
-// Desligado em telas de toque (pointer: coarse) e com "reduzir movimento" ativado.
+// Desligado em telas de toque (pointer: coarse), com "reduzir movimento" ativado e sobre
+// elementos com o atributo data-sem-rastro (ex.: o globo de Quem Somos).
 import { useEffect, useRef } from "react";
 
 // ===== Parâmetros (ajuste aqui) =====
@@ -159,6 +160,12 @@ export default function CursorTrail() {
 
     const aoMover = (e: PointerEvent) => {
       if (e.pointerType !== "mouse" || !ativo()) return;
+      // Sem rastro sobre elementos marcados com data-sem-rastro (ex.: o globo de Quem Somos)
+      if (e.target instanceof Element && e.target.closest("[data-sem-rastro]")) {
+        temPosicao = false; // ao sair, o rastro recomeça do ponto atual (sem linha cruzando)
+        brilho = 0;
+        return;
+      }
       const x = e.clientX;
       const y = e.clientY;
       if (temPosicao) {

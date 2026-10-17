@@ -35,11 +35,11 @@ Não edite `src/routeTree.gen.ts` nem `src/integrations/` (gerados automaticamen
 
 As versões da logo ficam em `src/assets/`:
 
-| Arquivo                       | Onde aparece                                              | Observação                              |
-| ----------------------------- | --------------------------------------------------------- | --------------------------------------- |
-| `code-flow-logo-compacta.png` | Topo, rodapé e centro do globo                            | fundo transparente, recorte justo       |
-| `code-flow-logo-completa.png` | Card de Quem Somos quando o globo não carrega (sem WebGL) | fundo transparente, com respiro         |
-| `code-flow-logo.png`          | (original, guardada)                                      | imagem completa com o fundo azul-escuro |
+| Arquivo                       | Onde aparece                                          | Observação                              |
+| ----------------------------- | ----------------------------------------------------- | --------------------------------------- |
+| `code-flow-logo-compacta.png` | Topo, rodapé e centro do globo                        | fundo transparente, recorte justo       |
+| `code-flow-logo-completa.png` | Quem Somos, só quando o globo não carrega (sem WebGL) | fundo transparente, com respiro         |
+| `code-flow-logo.png`          | (original, guardada)                                  | imagem completa com o fundo azul-escuro |
 
 Para trocar, substitua o arquivo **mantendo o mesmo nome**, de preferência PNG com fundo transparente e pelo menos 600px de largura (nítido em telas retina). Se a proporção mudar muito, ajuste `width`/`height` da imagem na função `Logo` (`src/routes/index.tsx`) e em `src/components/CodeFlowGlobe.tsx`.
 
@@ -96,11 +96,11 @@ Arquivo `src/components/CursorTrail.tsx`, constantes no topo:
 - `DURACAO`: quanto tempo o rastro leva para sumir (segundos).
 - `MAX_PARTICULAS`, `TAMANHO`, `ALCANCE_LINHA`: quantidade, tamanho e distância das linhas.
 
-O efeito fica desligado em celulares/tablets (toque) e para quem ativou "reduzir movimento" no sistema.
+O efeito fica desligado em celulares/tablets (toque), para quem ativou "reduzir movimento" no sistema e sobre elementos com o atributo `data-sem-rastro` (hoje, o globo de Quem Somos).
 
 ## Como ajustar os botões e bordas orbitais
 
-Todos os botões principais usam `OrbitButton` (`src/components/OrbitButton.tsx`), e o card da logo em Quem Somos usa `OrbitBorder` (`src/components/OrbitBorder.tsx`). Os dois compartilham o bloco **"Botões e bordas orbitais"** de `src/styles.css`. No topo desse bloco (`.orbit-surface`):
+Todos os botões principais usam `OrbitButton` (`src/components/OrbitButton.tsx`). O `OrbitBorder` (`src/components/OrbitBorder.tsx`) aplica a mesma borda em cards; hoje não está em uso, mas continua disponível. Os dois compartilham o bloco **"Botões e bordas orbitais"** de `src/styles.css`. No topo desse bloco (`.orbit-surface`):
 
 - `--orbit-thickness`: espessura da borda.
 - `--orbit-speed`: tempo de uma volta do arco.
@@ -130,15 +130,20 @@ Comportamento do anel (constantes no topo de `src/components/PhoneRing.tsx`): `V
 
 ## Como editar o globo (Quem Somos)
 
-Arquivo `src/components/CodeFlowGlobe.tsx`, bloco "Parâmetros" no topo:
+O globo fica solto sobre o fundo da página, sem moldura, num quadrado de ~520px no computador e ~320px no celular (tamanho em `src/components/QuemSomos.tsx`). Arquivo `src/components/CodeFlowGlobe.tsx`, bloco "Parâmetros" no topo:
 
-- **Cores:** `COR_OCEANO`, `OPACIDADE_OCEANO`, `COR_PONTOS` (continentes), `COR_BRASIL` (destaque), `COR_GRADE`, `COR_CONTORNO` e `COR_MARCADOR`.
-- **Ponto de localização:** `LOCAL` (`nome`, `lat`, `lng`). Hoje é Goiânia · GO (-16.6869, -49.2648); o globo começa virado para esse ponto.
-- **Movimento:** `VELOCIDADE` (giro automático), `SENSIBILIDADE` e `ATRITO` (arraste e inércia).
-- **Densidade de pontos:** `PONTOS_DESKTOP` e `PONTOS_MOBILE` (mais pontos = continentes mais nítidos, porém mais pesado).
-- **Tamanho:** `OCUPACAO` (quanto do card o globo ocupa).
+- **Pontos dos continentes:** `COR_PONTOS`, `COR_BRASIL` (destaque), `OPACIDADE_PONTOS`, `TAMANHO_PONTO`, `VARIACAO_TAMANHO` (pontos grandes e pequenos, ±30%) e `VARIACAO_BRILHO` (textura).
+- **Densidade:** `PONTOS_DESKTOP` e `PONTOS_MOBILE` (mais pontos = continentes mais nítidos, porém mais pesado).
+- **Oceano:** `OCEANO_CENTRO` / `OCEANO_CENTRO_ALFA` e `OCEANO_BORDA` / `OCEANO_BORDA_ALFA` (gradiente do centro para a borda), `COR_LUZ_BORDA` e `INTENSIDADE_LUZ_BORDA` (luz no contorno da esfera).
+- **Atmosfera:** `COR_ATMOSFERA` e `INTENSIDADE_ATMOSFERA`. O halo extra atrás do canvas fica em `.globe-box::before` (`src/styles.css`).
+- **Grade e contornos:** `COR_GRADE` / `OPACIDADE_GRADE` (latitude/longitude) e `COR_CONTORNO` / `OPACIDADE_CONTORNO` (contorno dos continentes).
+- **Ponto de localização:** `LOCAL` (`nome`, `lat`, `lng`) e `COR_MARCADOR`. Hoje é Goiânia · GO (-16.6869, -49.2648); o globo começa virado para esse ponto.
+- **Arcos de conexão:** `DESTINOS_ARCOS` (lista de `lat`/`lng` para onde os arcos saem de Goiânia; são só decoração, sem rótulos), `COR_ARCOS` e `VELOCIDADE_ARCOS`.
+- **Movimento:** `VELOCIDADE` (0,4 radiano por minuto, sentido leste), `INCLINACAO_EIXO` (15°), `SENSIBILIDADE` e `ATRITO` (arraste e inércia). Passar o mouse pausa e o giro retoma suavemente.
+- **Estrelas:** `QUANTIDADE_ESTRELAS`, `COR_ESTRELAS` e `OPACIDADE_ESTRELAS`.
+- **Tamanho do globo no quadrado:** `OCUPACAO` (o resto do espaço fica para o halo e os arcos).
 
-O brilho em volta, a logo do centro (opacidade 0.22, 0.4 no hover) e o rótulo do local ficam no bloco "Globo 3D" de `src/styles.css` (`.globe-box`, `.globe-logo`, `.globe-label`). O mapa vem de `src/assets/geo/land.json` e `brasil.json` (Natural Earth 110m, domínio público). O Three.js e o mapa só carregam quando o card chega perto da tela; sem WebGL, aparece a logo estática.
+A logo do centro (opacidade 0.22, 0.4 no hover) e o rótulo do local ficam no bloco "Globo 3D" de `src/styles.css` (`.globe-logo`, `.globe-label`). O mapa vem de `src/assets/geo/land.json` e `brasil.json` (Natural Earth 110m, domínio público). O Three.js e o mapa só carregam quando o globo chega perto da tela; sem WebGL, aparece a logo estática. O rastro do cursor fica desligado sobre o globo (atributo `data-sem-rastro`).
 
 ## Como editar "Por que a Code Flow"
 

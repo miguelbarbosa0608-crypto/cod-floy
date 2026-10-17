@@ -40,7 +40,7 @@
     ├── components/
     │   ├── HeroWaves.tsx     Fundo animado 3D do topo
     │   ├── OrbitButton.tsx   Botão com borda orbital
-    │   ├── OrbitBorder.tsx   Borda orbital para cards (card do globo em Quem Somos)
+    │   ├── OrbitBorder.tsx   Borda orbital para cards (disponível, sem uso no momento)
     │   ├── Marquee.tsx       Faixa de rolagem infinita (ferramentas e depoimentos)
     │   ├── AvatarIlustrado.tsx  Avatar em SVG gerado pelo nome
     │   ├── ServiceFlipCards.tsx Cards de serviços que viram

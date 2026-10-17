@@ -1,9 +1,8 @@
 // Seção "Quem Somos". Textos e cards: src/data/sobre.ts.
-// O card grande mostra o globo 3D (CodeFlowGlobe); sem WebGL, aparece a logo estática.
+// À esquerda, o globo 3D (CodeFlowGlobe) solto sobre o fundo; sem WebGL, aparece a logo estática.
 import { ListChecks, Layers, MapPin } from "lucide-react";
 import { quemSomos as d } from "@/data/sobre";
 import Reveal from "@/components/Reveal";
-import OrbitBorder from "@/components/OrbitBorder";
 import CodeFlowGlobe from "@/components/CodeFlowGlobe";
 
 const icones = { etapas: ListChecks, integradas: Layers, local: MapPin };
@@ -33,13 +32,10 @@ export default function QuemSomos() {
     >
       <Reveal>
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-          <OrbitBorder
-            radius={24}
-            className="logo-card"
-            contentClassName="logo-card-inner relative aspect-[16/10] overflow-hidden"
-          >
+          {/* Globo solto sobre o fundo (sem moldura): ~320px no celular e ~520px no computador */}
+          <div className="relative mx-auto aspect-square w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[520px]">
             <CodeFlowGlobe />
-          </OrbitBorder>
+          </div>
           <div className="min-w-0">
             <p className="mb-4 text-xs font-bold uppercase tracking-widest text-primary">
               {d.rotulo}
