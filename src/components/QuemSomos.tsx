@@ -1,10 +1,10 @@
 // Seção "Quem Somos". Textos e cards: src/data/sobre.ts.
-// Para trocar a logo, substitua src/assets/code-flow-logo-completa.png (mesmo nome).
+// O card grande mostra o globo 3D (CodeFlowGlobe); sem WebGL, aparece a logo estática.
 import { ListChecks, Layers, MapPin } from "lucide-react";
-import logoUrl from "@/assets/code-flow-logo-completa.png";
 import { quemSomos as d } from "@/data/sobre";
 import Reveal from "@/components/Reveal";
 import OrbitBorder from "@/components/OrbitBorder";
+import CodeFlowGlobe from "@/components/CodeFlowGlobe";
 
 const icones = { etapas: ListChecks, integradas: Layers, local: MapPin };
 
@@ -36,16 +36,9 @@ export default function QuemSomos() {
           <OrbitBorder
             radius={24}
             className="logo-card"
-            contentClassName="logo-card-inner grid aspect-[16/10] place-items-center p-6 sm:p-10"
+            contentClassName="logo-card-inner relative aspect-[16/10] overflow-hidden"
           >
-            <img
-              src={logoUrl}
-              alt="Logo Code Flow"
-              width={761}
-              height={463}
-              loading="lazy"
-              className="h-full w-full object-contain"
-            />
+            <CodeFlowGlobe />
           </OrbitBorder>
           <div className="min-w-0">
             <p className="mb-4 text-xs font-bold uppercase tracking-widest text-primary">

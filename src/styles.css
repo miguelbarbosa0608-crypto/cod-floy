@@ -597,7 +597,89 @@
   box-shadow: 0 0 60px -10px color-mix(in oklab, var(--primary) 40%, transparent);
 }
 .logo-card-inner {
-  background: oklch(0.05 0 0);
+  background: #070b12;
+}
+
+/* Globo 3D de Quem Somos (componente src/components/CodeFlowGlobe.tsx) */
+.globe-box {
+  --globe-d: 300px; /* diâmetro do globo na tela (calculado pelo componente) */
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  touch-action: pan-y; /* arrastar sem travar a rolagem vertical no celular */
+  cursor: grab;
+  user-select: none;
+}
+.globe-box.is-dragging {
+  cursor: grabbing;
+}
+.globe-box::before {
+  /* brilho azul suave ao redor do globo */
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--globe-d) * 1.25);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgb(10 140 255 / 0.22) 38%,
+    rgb(92 184 255 / 0.08) 52%,
+    transparent 68%
+  );
+  pointer-events: none;
+}
+.globe-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.globe-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--globe-d) * 0.45);
+  translate: -50% -50%;
+  opacity: 0.22;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.globe-box[data-estado="carregando"] .globe-logo {
+  opacity: 0.5; /* enquanto o globo carrega, a logo aparece sozinha */
+}
+@media (hover: hover) and (pointer: fine) {
+  .globe-box:hover .globe-logo {
+    opacity: 0.4;
+  }
+}
+.globe-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid #13213a;
+  background: rgb(7 11 18 / 0.78);
+  color: #f7f9fc;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.globe-label-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00d9ff;
 }
 
 /* Flip cards (seção Serviços): frente escura, verso azul. Componente em src/components/ServiceFlipCards.tsx */
