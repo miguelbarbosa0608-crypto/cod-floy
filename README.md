@@ -31,19 +31,18 @@ O projeto usa **npm** (arquivo `package-lock.json`). O `.env` não vai para o Gi
 
 ## Seções da página (de cima para baixo)
 
-| Seção                       | Onde editar                                                            |
-| --------------------------- | ---------------------------------------------------------------------- |
-| Topo (hero) e fundo animado | `src/routes/index.tsx` e `src/components/HeroWaves.tsx`                |
-| Faixa de ferramentas        | `src/data/ferramentas.ts`                                              |
-| Site Personalizado          | `src/data/sobre.ts` (`sitePersonalizado`)                              |
-| Quem Somos (card da logo)   | `src/data/sobre.ts` (`quemSomos`)                                      |
-| Serviços (cards que viram)  | `src/data/servicos.ts`                                                 |
-| Metodologia                 | `src/routes/index.tsx` (`const steps`)                                 |
-| Resultados (depoimentos)    | `src/data/depoimentos.ts`                                              |
-| Nossa Equipe (carrossel)    | `src/data/equipe.ts` e fotos em `src/assets/equipe/`                   |
-| Consultor inteligente (IA)  | `src/components/ServiceAdvisor.tsx` e `src/lib/recommend.functions.ts` |
-| Contato (formulário)        | `src/routes/index.tsx` e `src/lib/contact.functions.ts`                |
-| FAQ                         | `src/data/faq.ts`                                                      |
+| Seção                       | Onde editar                                             |
+| --------------------------- | ------------------------------------------------------- |
+| Topo (hero) e fundo animado | `src/routes/index.tsx` e `src/components/HeroWaves.tsx` |
+| Faixa de ferramentas        | `src/data/ferramentas.ts`                               |
+| Site Personalizado          | `src/data/sobre.ts` (`sitePersonalizado`)               |
+| Quem Somos (card da logo)   | `src/data/sobre.ts` (`quemSomos`)                       |
+| Serviços (cards que viram)  | `src/data/servicos.ts`                                  |
+| Metodologia                 | `src/routes/index.tsx` (`const steps`)                  |
+| Resultados (depoimentos)    | `src/data/depoimentos.ts`                               |
+| Nossa Equipe (carrossel)    | `src/data/equipe.ts` e fotos em `src/assets/equipe/`    |
+| Contato (formulário)        | `src/routes/index.tsx` e `src/lib/contact.functions.ts` |
+| FAQ                         | `src/data/faq.ts`                                       |
 
 Efeitos visuais reutilizáveis: `OrbitButton` (botões com borda orbital), `OrbitBorder` (a mesma borda em cards), `Marquee` (faixas que rolam sozinhas), `CursorTrail` (rastro do mouse) e `AvatarIlustrado` (avatares dos depoimentos), todos em `src/components/`. Como ajustar cada um está no **GUIA-DE-EDICAO.md**.
 

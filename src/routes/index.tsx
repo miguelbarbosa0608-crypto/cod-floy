@@ -19,7 +19,6 @@ import { Plus } from "lucide-react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import logoUrl from "@/assets/code-flow-logo-compacta.png";
 import HeroWaves from "@/components/HeroWaves";
-import ServiceAdvisor from "@/components/ServiceAdvisor";
 import ServiceFlipCards from "@/components/ServiceFlipCards";
 import TeamCarousel from "@/components/TeamCarousel";
 import OrbitButton from "@/components/OrbitButton";
@@ -384,17 +383,6 @@ function Home() {
           <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-7 text-muted-foreground sm:text-base">
             {FRASE_EQUIPE}
           </p>
-        </section>
-        <div className="section-rule" />
-
-        <section id="consultor" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
-          <SectionHeading
-            eyebrow="Consultor Inteligente"
-            subtitle="Conte sobre seu negócio e seus desafios. Nossa inteligência artificial indica os serviços ideais e os próximos passos."
-          >
-            Descubra o Plano Ideal para seu <span className="text-primary">Negócio</span>
-          </SectionHeading>
-          <ServiceAdvisor />
         </section>
         <div className="section-rule" />
 

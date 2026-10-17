@@ -43,11 +43,9 @@
     │   ├── TeamCarousel.tsx  Carrossel da equipe
     │   ├── CursorTrail.tsx   Rastro do mouse
     │   ├── SitePersonalizado.tsx / QuemSomos.tsx / Reveal.tsx
-    │   ├── ServiceAdvisor.tsx   Consultor inteligente (IA)
     │   └── ui/               Componentes prontos (shadcn)
     ├── lib/
-    │   ├── contact.functions.ts    Validação e gravação dos contatos
-    │   └── recommend.functions.ts  Recomendação do consultor de IA
+    │   └── contact.functions.ts    Validação e gravação dos contatos
     ├── integrations/supabase/  Conexão com o banco (gerado, não editar)
     ├── test/                 Testes automáticos
     └── routeTree.gen.ts      Lista de rotas (gerado, não editar)
@@ -55,4 +53,4 @@
 
 ## Ordem das seções da página
 
-Topo (hero) → Ferramentas → Site Personalizado → Quem Somos → Serviços (`#servicos`) → Metodologia (`#metodologia`) → Resultados (`#resultados`) → Nossa Equipe (`#equipe`) → Consultor (`#consultor`) → Contato (`#contato`) → FAQ (`#faq`) → Rodapé.
+Topo (hero) → Ferramentas → Site Personalizado → Quem Somos → Serviços (`#servicos`) → Metodologia (`#metodologia`) → Resultados (`#resultados`) → Nossa Equipe (`#equipe`) → Contato (`#contato`) → FAQ (`#faq`) → Rodapé.
