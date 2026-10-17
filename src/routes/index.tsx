@@ -1,23 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState, type FormEvent, type ComponentType } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowRight,
   ArrowUpRight,
   Check,
   ChevronRight,
-  FileText,
   Instagram,
-  Map,
   Menu,
   MessageCircle,
   Quote,
-  Rocket,
-  Search,
   Send,
-  ShieldCheck,
   X,
-  Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { submitContact } from "@/lib/contact.functions";
@@ -29,6 +23,7 @@ import ServiceAdvisor from "@/components/ServiceAdvisor";
 import ServiceFlipCards from "@/components/ServiceFlipCards";
 import TeamCarousel from "@/components/TeamCarousel";
 import OrbitButton from "@/components/OrbitButton";
+import PorQue from "@/components/PorQue";
 import Marquee from "@/components/Marquee";
 import {
   ferramentas,
@@ -55,47 +50,14 @@ import { INSTAGRAM_URL } from "@/data/config";
 // WhatsApp contact link provided by the agency.
 const whatsappUrl = "https://www.contate.me/556292543903";
 
-type Icon = ComponentType<{ className?: string; size?: number; strokeWidth?: number }>;
 const navigation = [
   ["Sobre", "#quem-somos"],
   ["Serviços", "#servicos"],
-  ["Metodologia", "#metodologia"],
+  ["Por que a Code Flow", "#por-que"],
   ["Resultados", "#resultados"],
   ["Equipe", "#equipe"],
   ["Contato", "#contato"],
   ["FAQ", "#faq"],
-];
-const steps: { icon: Icon; title: string; description: string }[] = [
-  {
-    icon: Search,
-    title: "Diagnóstico",
-    description: "Entendemos a fundo a necessidade, o mercado e as oportunidades do seu negócio.",
-  },
-  {
-    icon: Map,
-    title: "Planejamento",
-    description: "Definimos escopo, tarefas, responsáveis e prazos com metas claras.",
-  },
-  {
-    icon: Zap,
-    title: "Execução",
-    description: "Desenvolvemos a solução contratada com precisão e foco em resultado.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Teste + QA",
-    description: "Revisamos funcionamento, qualidade e requisitos antes de qualquer entrega.",
-  },
-  {
-    icon: FileText,
-    title: "Documentação",
-    description: "Registramos a solução e orientamos você sobre como utilizá-la.",
-  },
-  {
-    icon: Rocket,
-    title: "Entrega",
-    description: "Apresentamos a solução, coletamos feedback e seguimos como parceiros.",
-  },
 ];
 // Depoimentos ficam em src/data/depoimentos.ts.
 // Card de depoimento (estilos no bloco "Depoimentos" de src/styles.css).
@@ -361,31 +323,7 @@ function Home() {
         </section>
         <div className="section-rule" />
 
-        <section
-          id="metodologia"
-          className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-10"
-        >
-          <SectionHeading
-            eyebrow="Nossa Metodologia"
-            subtitle="Um processo estruturado em 6 etapas, da necessidade do cliente até a entrega da solução."
-          >
-            Metodologia <span className="text-primary">Code Flow</span>
-          </SectionHeading>
-          <div className="relative grid gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-9 lg:gap-y-14">
-            {steps.map(({ icon: IconComponent, title, description }, i) => (
-              <article key={title} className="relative flex flex-col items-center text-center">
-                <div className="icon-tile relative mb-6 grid h-19 w-19 place-items-center border border-border">
-                  <IconComponent size={31} strokeWidth={1.7} />
-                  <span className="absolute -right-3 -top-3 grid h-8 w-8 place-items-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <h3 className="mb-2 text-lg font-bold">{title}</h3>
-                <p className="max-w-xs text-sm leading-7 text-muted-foreground">{description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
+        <PorQue />
         <div className="section-rule" />
 
         <section

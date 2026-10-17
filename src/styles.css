@@ -600,6 +600,34 @@
   background: #070b12;
 }
 
+/* Por que a Code Flow (componente src/components/PorQue.tsx; textos em src/data/porQue.ts) */
+@media (min-width: 1024px) {
+  .porque-titulo {
+    position: sticky;
+    top: 120px; /* abaixo do header fixo */
+    align-self: start;
+  }
+}
+.porque-bloco {
+  padding-block: 2.5rem;
+}
+.porque-bloco:first-child {
+  padding-top: 0;
+}
+.porque-bloco + .porque-bloco {
+  border-top: 1px solid #13213a; /* linha divisória entre os blocos */
+}
+.porque-icone {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.875rem;
+  border: 1px solid #13213a;
+  background: #0b1220;
+  color: #0a8cff;
+}
+
 /* Globo 3D de Quem Somos (componente src/components/CodeFlowGlobe.tsx) */
 .globe-box {
   --globe-d: 300px; /* diâmetro do globo na tela (calculado pelo componente) */
