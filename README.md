@@ -16,7 +16,7 @@ Site de apresentação (uma única página) da **Code Flow**, empresa de tecnolo
 ## Como instalar e rodar
 
 1. Instale o **Node.js** 20 ou superior: https://nodejs.org
-2. Copie o arquivo `.env.example` para `.env` e preencha os valores do Supabase (peça a quem administra o projeto). Sem o `.env`, o site abre, mas o formulário não salva os contatos.
+2. Copie o arquivo `.env.example` para `.env` e preencha `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` (peça a quem administra o projeto). Sem elas, o site abre normalmente, mas o formulário não salva os contatos.
 3. No terminal, dentro da pasta do projeto:
 
 ```sh
@@ -48,7 +48,7 @@ Efeitos visuais reutilizáveis: `OrbitButton` (botões com borda orbital), `Orbi
 
 ## Formulário de contato
 
-A validação e o envio ficam em `src/lib/contact.functions.ts`. Os contatos são salvos na tabela `contact_leads` do Supabase (não é pública). Para enviar também por e-mail, planilha ou CRM, adicione a chamada dentro do `handler`, logo após o `insert`.
+A validação e o envio ficam em `src/lib/contact.functions.ts`. Os contatos são salvos na tabela `contact_leads` do Supabase (não é pública), pelo servidor, com o cliente de `src/integrations/supabase/client.server.ts`. Variáveis de ambiente usadas (só no servidor, o build não precisa delas): `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY`. O site não tem login e não acessa o Supabase pelo navegador. Para enviar também por e-mail, planilha ou CRM, adicione a chamada dentro do `handler`, logo após o `insert`.
 
 ## Como publicar (Netlify)
 
@@ -57,7 +57,7 @@ O site está configurado para a **Netlify** com o plugin oficial `@netlify/vite-
 1. Na Netlify: **Add new project > Import an existing project > GitHub** e escolha o repositório.
 2. **Branch to deploy:** a branch que será publicada (ex.: `claude-code` ou `main`).
 3. **Build command:** `npm run build` · **Publish directory:** `dist/client` (já vêm do `netlify.toml`). Deixe "Functions directory" em branco.
-4. **Environment variables:** cadastre as variáveis de `.env.example`. Para o formulário funcionar são obrigatórias `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` (secreta).
+4. **Environment variables:** cadastre só `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` (marque esta como secreta). São usadas pela função de servidor do formulário; o build não precisa delas.
 5. Depois de ter o endereço final, troque `SITE_URL` em `src/data/site.ts` (usado nas meta tags, no `robots.txt` e no `sitemap.xml`) e publique de novo.
 
 Para testar o build de produção no computador: `npm run build` e depois `npm run preview`.

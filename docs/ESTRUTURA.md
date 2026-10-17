@@ -2,7 +2,7 @@
 
 ```text
 .
-├── .env                      Endereços do banco de dados (local, fora do Git)
+├── .env                      SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY (local, fora do Git)
 ├── .env.example              Modelo do .env com os nomes das variáveis
 ├── AGENTS.md                 Regras técnicas do projeto
 ├── GUIA-DE-EDICAO.md         Passo a passo "quero mudar X, edite Y"
@@ -58,7 +58,7 @@
     │   └── ui/               Componentes prontos (shadcn)
     ├── lib/
     │   └── contact.functions.ts    Validação e gravação dos contatos
-    ├── integrations/supabase/  Conexão com o banco (gerado, não editar)
+    ├── integrations/supabase/  Cliente do banco usado pelo formulário (client.server.ts) e tipos
     ├── test/                 Testes automáticos
     └── routeTree.gen.ts      Lista de rotas (gerado, não editar)
 ```
