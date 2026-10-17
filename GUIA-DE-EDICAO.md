@@ -4,27 +4,30 @@ Dica: no VS Code, use **Ctrl+P** para abrir um arquivo pelo nome e **Ctrl+F** pa
 
 ## Tabela rápida
 
-| Quero mudar...                         | Edite o arquivo                                  | O que procurar                                 |
-| -------------------------------------- | ------------------------------------------------ | ---------------------------------------------- |
-| Link do WhatsApp (contato e flutuante) | `src/routes/index.tsx`                           | `const whatsappUrl`                            |
-| Número do WhatsApp (mensagens prontas) | `src/data/config.ts`                             | `WHATSAPP_NUMERO`                              |
-| Link do Instagram                      | `src/data/config.ts`                             | `INSTAGRAM_URL`                                |
-| Itens do menu                          | `src/routes/index.tsx`                           | `const navigation`                             |
-| Título principal do topo               | `src/routes/index.tsx`                           | `Soluções Digitais que Geram`                  |
-| Faixa de ferramentas                   | `src/data/ferramentas.ts`                        | lista `ferramentas`                            |
-| Serviços (frente e verso dos cards)    | `src/data/servicos.ts`                           | lista `servicos`                               |
-| Etapas da metodologia                  | `src/routes/index.tsx`                           | `const steps`                                  |
-| Depoimentos                            | `src/data/depoimentos.ts`                        | lista `depoimentos`                            |
-| Integrantes da equipe                  | `src/data/equipe.ts`                             | lista `equipe`                                 |
-| Perguntas do FAQ                       | `src/data/faq.ts`                                | lista `faq`                                    |
-| Site Personalizado / Quem Somos        | `src/data/sobre.ts`                              | `sitePersonalizado` / `quemSomos`              |
-| Texto da Política de Privacidade       | `src/routes/index.tsx`                           | `Política de Privacidade`                      |
-| Ano/rodapé                             | `src/routes/index.tsx`                           | `© 2026 Code Flow`                             |
-| Título na aba e no Google              | `src/routes/__root.tsx` e `src/routes/index.tsx` | `head:`                                        |
-| Cores principais                       | `src/styles.css`                                 | bloco `:root` (`--primary`, `--background`...) |
-| Fonte                                  | `src/styles.css` e `src/routes/__root.tsx`       | `Open Sans`                                    |
-| Fundo animado do topo                  | `src/components/HeroWaves.tsx`                   | "CONFIGURAÇÃO EDITÁVEL"                        |
-| Campos/validação do formulário         | `src/lib/contact.functions.ts`                   | `contactSchema`                                |
+| Quero mudar...                            | Edite o arquivo                                  | O que procurar                                 |
+| ----------------------------------------- | ------------------------------------------------ | ---------------------------------------------- |
+| Link do WhatsApp (contato e flutuante)    | `src/routes/index.tsx`                           | `const whatsappUrl`                            |
+| Número do WhatsApp (mensagens prontas)    | `src/data/config.ts`                             | `WHATSAPP_NUMERO`                              |
+| Link do Instagram                         | `src/data/config.ts`                             | `INSTAGRAM_URL`                                |
+| Itens do menu                             | `src/routes/index.tsx`                           | `const navigation`                             |
+| Título principal do topo                  | `src/routes/index.tsx`                           | `Soluções Digitais que Geram`                  |
+| Faixa de ferramentas                      | `src/data/ferramentas.ts`                        | lista `ferramentas`                            |
+| Serviços (frente e verso dos cards)       | `src/data/servicos.ts`                           | lista `servicos`                               |
+| Blocos de "Por que a Code Flow"           | `src/data/porQue.ts`                             | lista `motivos`                                |
+| Celulares de exemplo (Site Personalizado) | `src/data/exemplosSites.ts`                      | lista `exemplosSites`                          |
+| Globo de Quem Somos (cores, local)        | `src/components/CodeFlowGlobe.tsx`               | "Parâmetros" no topo                           |
+| Header translúcido                        | `src/styles.css`                                 | `.site-header`                                 |
+| Depoimentos                               | `src/data/depoimentos.ts`                        | lista `depoimentos`                            |
+| Integrantes da equipe                     | `src/data/equipe.ts`                             | lista `equipe`                                 |
+| Perguntas do FAQ                          | `src/data/faq.ts`                                | lista `faq`                                    |
+| Site Personalizado / Quem Somos           | `src/data/sobre.ts`                              | `sitePersonalizado` / `quemSomos`              |
+| Texto da Política de Privacidade          | `src/routes/index.tsx`                           | `Política de Privacidade`                      |
+| Ano/rodapé                                | `src/routes/index.tsx`                           | `© 2026 Code Flow`                             |
+| Título na aba e no Google                 | `src/routes/__root.tsx` e `src/routes/index.tsx` | `head:`                                        |
+| Cores principais                          | `src/styles.css`                                 | bloco `:root` (`--primary`, `--background`...) |
+| Fonte                                     | `src/styles.css` e `src/routes/__root.tsx`       | `Open Sans`                                    |
+| Fundo animado do topo                     | `src/components/HeroWaves.tsx`                   | "CONFIGURAÇÃO EDITÁVEL"                        |
+| Campos/validação do formulário            | `src/lib/contact.functions.ts`                   | `contactSchema`                                |
 
 Não edite `src/routeTree.gen.ts` nem `src/integrations/` (gerados automaticamente). Ao editar listas, mantenha vírgulas e aspas; se o site quebrar, desfaça com **Ctrl+Z**.
 
@@ -32,13 +35,13 @@ Não edite `src/routeTree.gen.ts` nem `src/integrations/` (gerados automaticamen
 
 As versões da logo ficam em `src/assets/`:
 
-| Arquivo                       | Onde aparece         | Observação                              |
-| ----------------------------- | -------------------- | --------------------------------------- |
-| `code-flow-logo-compacta.png` | Topo e rodapé        | fundo transparente, recorte justo       |
-| `code-flow-logo-completa.png` | Card de Quem Somos   | fundo transparente, com respiro         |
-| `code-flow-logo.png`          | (original, guardada) | imagem completa com o fundo azul-escuro |
+| Arquivo                       | Onde aparece                                              | Observação                              |
+| ----------------------------- | --------------------------------------------------------- | --------------------------------------- |
+| `code-flow-logo-compacta.png` | Topo, rodapé e centro do globo                            | fundo transparente, recorte justo       |
+| `code-flow-logo-completa.png` | Card de Quem Somos quando o globo não carrega (sem WebGL) | fundo transparente, com respiro         |
+| `code-flow-logo.png`          | (original, guardada)                                      | imagem completa com o fundo azul-escuro |
 
-Para trocar, substitua o arquivo **mantendo o mesmo nome**, de preferência PNG com fundo transparente e pelo menos 600px de largura (nítido em telas retina). Se a proporção mudar muito, ajuste `width`/`height` da imagem na função `Logo` (`src/routes/index.tsx`) e em `src/components/QuemSomos.tsx`.
+Para trocar, substitua o arquivo **mantendo o mesmo nome**, de preferência PNG com fundo transparente e pelo menos 600px de largura (nítido em telas retina). Se a proporção mudar muito, ajuste `width`/`height` da imagem na função `Logo` (`src/routes/index.tsx`) e em `src/components/CodeFlowGlobe.tsx`.
 
 **Ícone da aba (favicon):** substitua os arquivos de `public/`: `favicon.ico` (16/32/48px), `favicon.png` (192×192) e `apple-touch-icon.png` (180×180). Hoje eles mostram o símbolo CF sobre um quadrado escuro arredondado.
 
@@ -118,6 +121,45 @@ Para usar o botão em outro lugar:
   Texto do botão
 </OrbitButton>
 ```
+
+## Como editar os celulares de exemplo (Site Personalizado)
+
+Os 4 celulares do anel 3D vêm de `src/data/exemplosSites.ts`. Cada item tem `marca` (sempre fictícia; não use marcas reais nem nomes de clientes), `selo`, `titulo`, `botao`, os 3 `cards` e um `tema` com as cores da mini-página (`fundo`, `superficie`, `texto`, `textoSuave`, `destaque`, `textoBotao` e as 4 cores da `paleta` do rodapé). Dá para adicionar ou remover celulares: o ângulo entre eles se ajusta sozinho. A etiqueta "Exemplo de layout" fica em `ETIQUETA_EXEMPLO`.
+
+Comportamento do anel (constantes no topo de `src/components/PhoneRing.tsx`): `VELOCIDADE` (graus por segundo), `RAIO`, `INCLINACAO`, `SENSIBILIDADE` do arraste, `ATRITO` da inércia e `BRILHO_MINIMO` dos celulares ao fundo. Tamanho e altura da área: `.phone-ring` em `src/styles.css` (`--ring-height` e `--ring-scale`; no celular a escala é 0.773, ~170x340px).
+
+## Como editar o globo (Quem Somos)
+
+Arquivo `src/components/CodeFlowGlobe.tsx`, bloco "Parâmetros" no topo:
+
+- **Cores:** `COR_OCEANO`, `OPACIDADE_OCEANO`, `COR_PONTOS` (continentes), `COR_BRASIL` (destaque), `COR_GRADE`, `COR_CONTORNO` e `COR_MARCADOR`.
+- **Ponto de localização:** `LOCAL` (`nome`, `lat`, `lng`). Hoje é Goiânia · GO (-16.6869, -49.2648); o globo começa virado para esse ponto.
+- **Movimento:** `VELOCIDADE` (giro automático), `SENSIBILIDADE` e `ATRITO` (arraste e inércia).
+- **Densidade de pontos:** `PONTOS_DESKTOP` e `PONTOS_MOBILE` (mais pontos = continentes mais nítidos, porém mais pesado).
+- **Tamanho:** `OCUPACAO` (quanto do card o globo ocupa).
+
+O brilho em volta, a logo do centro (opacidade 0.22, 0.4 no hover) e o rótulo do local ficam no bloco "Globo 3D" de `src/styles.css` (`.globe-box`, `.globe-logo`, `.globe-label`). O mapa vem de `src/assets/geo/land.json` e `brasil.json` (Natural Earth 110m, domínio público). O Three.js e o mapa só carregam quando o card chega perto da tela; sem WebGL, aparece a logo estática.
+
+## Como editar "Por que a Code Flow"
+
+Arquivo `src/data/porQue.ts`:
+
+- **Título, frase e botão** da coluna esquerda: `porQueCabecalho`.
+- **Blocos** da direita: lista `motivos` (`icone`, `titulo`, `texto`). O `icone` precisa ser um dos nomes do mapa em `src/components/PorQue.tsx` (Puzzle, Target, LayoutTemplate, Workflow, ListChecks, MessagesSquare); para outro ícone do https://lucide.dev, adicione-o nesse mapa e no tipo `IconePorQue`.
+- Só inclua afirmações verdadeiras e sem números de resultado.
+
+No computador, a coluna do título fica fixa enquanto os blocos rolam (`.porque-titulo`, `top: 120px` em `src/styles.css`); no celular vira uma coluna só. O conteúdo da antiga seção "Metodologia" está guardado em `src/data/metodologia.ts` (sem uso).
+
+## Como ajustar o header
+
+O header fixo é translúcido (fundo escuro com desfoque). Ajustes no bloco "Header fixo translúcido" de `src/styles.css` (`.site-header`):
+
+- `--header-alpha`: opacidade no topo da página (0.55).
+- `--header-alpha-scrolled`: opacidade depois de rolar (0.72).
+- `--header-alpha-menu`: opacidade com o menu do celular aberto (0.85, para leitura).
+- `--header-h` / `--header-h-scrolled`: altura antes e depois de rolar (no computador, 76px e 68px).
+
+Sem suporte a desfoque no navegador, o fundo fica sólido (#070B12). Os links do menu ficam em `const navigation` (`src/routes/index.tsx`).
 
 ## Como editar as seções Site Personalizado e Quem Somos
 

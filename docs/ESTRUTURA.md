@@ -18,30 +18,37 @@
 ├── supabase/                 Configuração e migrações do banco (tabela contact_leads)
 └── src/
     ├── routes/
-    │   ├── index.tsx         A página: seções, menu, metodologia, contato, rodapé
+    │   ├── index.tsx         A página: seções, menu, header, contato, rodapé
     │   └── __root.tsx        HTML base, idioma, fonte, título, favicon e cursor
     ├── styles.css            Cores, cards, botões/bordas orbitais, carrosséis, animações
     ├── assets/
     │   ├── code-flow-logo*.png  Logo (compacta, completa e original)
-    │   └── equipe/           Fotos da equipe
+    │   ├── equipe/           Fotos da equipe
+    │   └── geo/              Mapa do globo (Natural Earth 110m: land.json e brasil.json)
     ├── data/
     │   ├── config.ts         Instagram e número do WhatsApp
     │   ├── ferramentas.ts    Faixa de plataformas e ferramentas
+    │   ├── exemplosSites.ts  Celulares de exemplo (anel 3D de Site Personalizado)
+    │   ├── porQue.ts         Seção "Por que a Code Flow"
     │   ├── servicos.ts       Cards de serviços (frente e verso)
     │   ├── depoimentos.ts    Depoimentos, velocidades e nota ilustrativa
     │   ├── equipe.ts         Integrantes da equipe
     │   ├── sobre.ts          Site Personalizado e Quem Somos
     │   ├── faq.ts            Perguntas e respostas
+    │   ├── metodologia.ts    Conteúdo antigo guardado (não usado)
     │   └── diferenciais.ts   Conteúdo antigo guardado (não usado)
     ├── components/
     │   ├── HeroWaves.tsx     Fundo animado 3D do topo
     │   ├── OrbitButton.tsx   Botão com borda orbital
-    │   ├── OrbitBorder.tsx   Borda orbital para cards (logo em Quem Somos)
+    │   ├── OrbitBorder.tsx   Borda orbital para cards (card do globo em Quem Somos)
     │   ├── Marquee.tsx       Faixa de rolagem infinita (ferramentas e depoimentos)
     │   ├── AvatarIlustrado.tsx  Avatar em SVG gerado pelo nome
     │   ├── ServiceFlipCards.tsx Cards de serviços que viram
     │   ├── TeamCarousel.tsx  Carrossel da equipe
     │   ├── CursorTrail.tsx   Rastro do mouse
+    │   ├── PhoneRing.tsx     Anel 3D de celulares (Site Personalizado)
+    │   ├── CodeFlowGlobe.tsx Globo 3D (Quem Somos)
+    │   ├── PorQue.tsx        Seção "Por que a Code Flow"
     │   ├── SitePersonalizado.tsx / QuemSomos.tsx / Reveal.tsx
     │   └── ui/               Componentes prontos (shadcn)
     ├── lib/
@@ -53,4 +60,4 @@
 
 ## Ordem das seções da página
 
-Topo (hero) → Ferramentas → Site Personalizado → Quem Somos → Serviços (`#servicos`) → Metodologia (`#metodologia`) → Resultados (`#resultados`) → Nossa Equipe (`#equipe`) → Contato (`#contato`) → FAQ (`#faq`) → Rodapé.
+Topo (hero) → Ferramentas → Site Personalizado → Quem Somos → Serviços (`#servicos`) → Por que a Code Flow (`#por-que`) → Resultados (`#resultados`) → Nossa Equipe (`#equipe`) → Contato (`#contato`) → FAQ (`#faq`) → Rodapé.
