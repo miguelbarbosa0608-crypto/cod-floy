@@ -12,4 +12,4 @@
 <!-- LOVABLE:END -->
 
 - Keep the public marketing page on `/` and its content data in the page module because the site is a single-page presentation.
-- Store contact leads through a validated server function using an internal-only database client because public visitors must not read submitted details.
+- Contact leads go to Netlify Forms (src/lib/netlifyForms.ts + public/__forms.html); there is no database or Supabase in this project, and submissions are only visible in the Netlify dashboard.

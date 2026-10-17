@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
-import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -14,7 +13,6 @@ import {
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { submitContact } from "@/lib/contact.functions";
 import { enviarParaNetlifyForms } from "@/lib/netlifyForms";
 import { Plus } from "lucide-react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
@@ -167,7 +165,6 @@ function Home() {
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
-  const submit = useServerFn(submitContact);
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -188,14 +185,8 @@ function Home() {
     }
     setSending(true);
     setStatus("idle");
-    // Destino principal: Netlify Forms. Em paralelo, grava no Supabase se estiver configurado.
-    const [netlify, banco] = await Promise.allSettled([
-      enviarParaNetlifyForms(dados),
-      submit({ data: dados }),
-    ]);
-    const recebido =
-      (netlify.status === "fulfilled" && netlify.value) ||
-      (banco.status === "fulfilled" && banco.value.salvo);
+    // Único destino: Netlify Forms (src/lib/netlifyForms.ts). Em erro, os dados ficam no formulário.
+    const recebido = await enviarParaNetlifyForms(dados).catch(() => false);
     if (recebido) form.reset();
     setStatus(recebido ? "success" : "error");
     setSending(false);

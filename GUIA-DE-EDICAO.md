@@ -30,7 +30,7 @@ Dica: no VS Code, use **Ctrl+P** para abrir um arquivo pelo nome e **Ctrl+F** pa
 | Campos do formulário                      | `src/routes/index.tsx` (`<form`), `public/__forms.html` e `src/lib/netlifyForms.ts` (mesmos nomes nos três) | `name=`                                        |
 | Para onde vão os contatos                 | Netlify > Forms > contato; e-mail em Forms > Submission notifications                                       | veja o README                                  |
 
-Não edite `src/routeTree.gen.ts` nem `src/integrations/` (gerados automaticamente). Ao editar listas, mantenha vírgulas e aspas; se o site quebrar, desfaça com **Ctrl+Z**.
+Não edite `src/routeTree.gen.ts` (gerado automaticamente). Ao editar listas, mantenha vírgulas e aspas; se o site quebrar, desfaça com **Ctrl+Z**.
 
 ## Como trocar a logo
 
