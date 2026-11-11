@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<section class="titulo-pagina">
+    <h2>Movimentação de Estoque</h2>
+    <p>Registre entradas e saídas de produtos.</p>
+</section>
+
+<form method="POST" class="formulario">
+
+    <label>Produto *</label>
+
+    <select name="produto_id" required>
+        <option value="">Selecione um produto</option>
+
+        {% for produto in produtos %}
+            <option value="{{ produto.id }}">
+                {{ produto.sku }} - {{ produto.nome }}
+                (Estoque: {{ produto.estoque }})
+            </option>
+        {% endfor %}
+    </select>
+
+    <label>Tipo de movimentação *</label>
+
+    <select name="tipo" required>
+        <option value="">Selecione</option>
+        <option value="Entrada">Entrada</option>
+        <option value="Saida">Saída</option>
+    </select>
+
+    <label>Quantidade *</label>
+    <input type="number" name="quantidade" min="1" required>
+
+    <label>Justificativa / Observação</label>
+    <textarea name="observacao"
+              placeholder="Ex.: Compra de novos produtos ou venda."></textarea>
+
+    <button type="submit" class="botao">
+        Registrar Movimentação
+    </button>
+
+</form>
+
+{% endblock %}

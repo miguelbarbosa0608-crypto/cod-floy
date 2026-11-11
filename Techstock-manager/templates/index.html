@@ -1,0 +1,92 @@
+   {% extends "base.html" %}
+
+{% block conteudo %}
+
+<section class="titulo-pagina">
+    <h2>Dashboard de Estoque</h2>
+    <p>Visão geral dos produtos cadastrados.</p>
+</section>
+
+<div class="acoes">
+    <a href="{{ url_for('cadastro') }}" class="botao">
+        + Novo Produto
+    </a>
+
+    <a href="{{ url_for('movimentacao') }}" class="botao secundario">
+        Registrar Movimentação
+    </a>
+</div>
+
+<div class="tabela-container">
+    <table>
+        <thead>
+            <tr>
+                <th>SKU</th>
+                <th>Produto</th>
+                <th>Fabricante</th>
+                <th>Categoria</th>
+                <th>Fornecedor</th>
+                <th>Preço</th>
+                <th>Estoque</th>
+                <th>Localização / Licença</th>
+                <th>Status</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for produto in produtos %}
+            <tr class="{% if produto.estoque <= produto.estoque_minimo %}alerta{% endif %}">
+
+                <td>{{ produto.sku }}</td>
+                <td>{{ produto.nome }}</td>
+                <td>{{ produto.fabricante }}</td>
+                <td>{{ produto.categoria }}</td>
+                <td>{{ produto.fornecedor }}</td>
+
+                <td>
+                    R$ {{ "%.2f"|format(produto.valor_unitario) }}
+                </td>
+
+                <td>{{ produto.estoque }}</td>
+
+                <td>
+                    {{ produto.localizacao or '-' }}
+                    {% if produto.modalidade_licenciamento %}
+                        <br>
+                        <small>{{ produto.modalidade_licenciamento }}</small>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if produto.estoque <= produto.estoque_minimo %}
+                        <span class="badge perigo">
+                            Risco de Ruptura / Reposição Necessária
+                        </span>
+                    {% else %}
+                        <span class="badge sucesso">Estoque Normal</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    <form action="{{ url_for('desativar', id=produto.id) }}"
+                          method="POST"
+                          onsubmit="return confirm('Deseja desativar este produto?')">
+
+                        <button type="submit" class="botao-excluir">
+                            Desativar
+                        </button>
+                    </form>
+                </td>
+
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="10">Nenhum produto cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

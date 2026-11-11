@@ -1,0 +1,238 @@
+/* CONFIGURAÇÃO GERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f5f9;
+    color: #1e293b;
+}
+
+/* CABEÇALHO */
+header {
+    background-color: #102a43;
+    color: white;
+    padding: 25px;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 8px;
+}
+
+/* MENU */
+nav {
+    background-color: #1e3a5f;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #60a5fa;
+}
+
+/* CONTEÚDO */
+main {
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 20px;
+    min-height: 65vh;
+}
+
+.titulo-pagina {
+    margin-bottom: 25px;
+}
+
+.titulo-pagina h2 {
+    margin-bottom: 8px;
+    color: #102a43;
+}
+
+/* BOTÕES */
+.acoes {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.botao {
+    display: inline-block;
+    background-color: #2563eb;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.botao:hover {
+    background-color: #1d4ed8;
+}
+
+.secundario {
+    background-color: #475569;
+}
+
+.secundario:hover {
+    background-color: #334155;
+}
+
+.botao-excluir {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 9px 12px;
+    cursor: pointer;
+}
+
+.botao-excluir:hover {
+    background-color: #991b1b;
+}
+
+/* TABELA */
+.tabela-container {
+    width: 100%;
+    overflow-x: auto;
+    background-color: white;
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1000px;
+}
+
+th, td {
+    padding: 13px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 13px;
+}
+
+th {
+    background-color: #e2e8f0;
+    color: #102a43;
+}
+
+tr:hover {
+    background-color: #f8fafc;
+}
+
+/* ALERTAS */
+.alerta {
+    background-color: #fff1f2;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 9px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.perigo {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.sucesso {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+/* FORMULÁRIOS */
+.formulario {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 650px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.formulario label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+.formulario input,
+.formulario select,
+.formulario textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.formulario textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.formulario button {
+    margin-top: 22px;
+}
+
+/* MENSAGENS */
+.mensagem {
+    padding: 13px;
+    border-radius: 6px;
+    margin-bottom: 18px;
+}
+
+.mensagem.sucesso {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.mensagem.erro {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* RODAPÉ */
+footer {
+    background-color: #102a43;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 5px;
+    font-size: 13px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 700px) {
+    nav a {
+        display: block;
+        margin: 12px;
+    }
+
+    .acoes {
+        flex-direction: column;
+    }
+
+    .formulario {
+        padding: 15px;
+    }
+}

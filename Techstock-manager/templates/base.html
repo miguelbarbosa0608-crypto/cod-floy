@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStock Manager</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>TechStock Manager</h1>
+        <p>Gestão inteligente de estoque</p>
+    </header>
+
+    <nav>
+        <a href="{{ url_for('index') }}">Dashboard</a>
+        <a href="{{ url_for('cadastro') }}">Cadastrar Produto</a>
+        <a href="{{ url_for('movimentacao') }}">Movimentações</a>
+    </nav>
+
+    <main>
+        {% with mensagens = get_flashed_messages(with_categories=true) %}
+            {% for categoria, mensagem in mensagens %}
+                <div class="mensagem {{ categoria }}">
+                    {{ mensagem }}
+                </div>
+            {% endfor %}
+        {% endwith %}
+
+        {% block conteudo %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>TechStore Informática & Serviços Corporativos</p>
+        <p>TechStock Manager - Sistema de Controle de Estoque</p>
+    </footer>
+
+</body>
+</html>
